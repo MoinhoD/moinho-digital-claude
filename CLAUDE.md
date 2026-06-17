@@ -1,14 +1,53 @@
-# Claude Code OS — Kit Ratos de IA
+# Moinho Digital — Claude Code OS
 
-Este repositório é o kit de boas-vindas do curso Claude Code OS.
+## O que é esse workspace
 
-Se você acabou de clonar esse repositório:
-1. Rode `/setup` pra configurar o sistema pro seu negócio (uns 5 minutos)
-2. Depois rode `/mapear` pra criar skills personalizadas pro que você faz no dia a dia
+Ambiente de trabalho da Moinho Digital, agência de marketing digital com foco em performance e conteúdo. Usado por Ina Cunha e o time para produzir entregas de clientes e organizar os processos internos da agência.
+
+**Estrutura de pastas:**
+- `clientes/` — uma pasta por cliente, seguindo o modelo em `_modelo-cliente/`
+  - `_modelo-cliente/onboarding/` — materiais de onboarding e kickoff
+  - `_modelo-cliente/planejamento/` — planejamentos estratégicos
+  - `_modelo-cliente/conteudo/` — conteúdos produzidos (redes sociais, blog, email)
+  - `_modelo-cliente/anuncios/` — materiais e relatórios de mídia paga
+  - `_modelo-cliente/relatorios/` — relatórios mensais, bimestrais, trimestrais, semestrais e anuais
+- `comercial/` — documentos comerciais da agência
+  - `comercial/propostas/` — propostas para novos clientes
+  - `comercial/contratos/` — contratos fechados
+- `documentacao/` — processos internos da Moinho documentados (SOPs, fluxos, rotinas)
+- `dados/` — arquivos para análise (CSV, XLSX, PDF, TXT)
+- `marca/` — identidade visual e design guide
+- `templates/skills/` — templates de skills prontos para personalizar com /mapear
+- `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis para usar em skills
+- `tarefas.md` — anotações e pendências do workspace
+
+## Sobre o negócio
+
+A Moinho Digital é uma agência de marketing digital com foco em performance e conteúdo. Desenvolve estratégias e executa ações em canais digitais para tracionar negócios de clientes externos. Tagline: "Tração para negócios que importam." Time multidisciplinar com redatores, estrategistas, analistas, designers e jornalistas.
+
+## O que mais fazemos aqui
+
+- Materiais de onboarding e kickoff de clientes
+- Planejamentos estratégicos de conteúdo e mídia
+- Produção de conteúdo para redes sociais, blog e email
+- Gestão de anúncios no Google, LinkedIn e Meta
+- Relatórios de performance (mensais, bimestrais, trimestrais, semestrais e anuais)
+- Propostas comerciais e contratos
+- Organização de processos internos e gestão do time
+
+## Clientes e contexto
+
+Atende clientes externos. Ina lidera a operação e o comercial. O foco atual é otimizar processos, enxugar o time e ampliar a carteira com clientes de ticket mais alto.
+
+## Tom de voz
+
+Seguir o tom de voz da marca: argumentador, explicativo, convidativo, coerente, lógico, tranquilo, informal e despretensioso. Voz ativa. Frases curtas e diretas. Sem travessão, sem títulos em caixa alta, sem jargões.
+
+## Ferramentas conectadas
+
+ClickUp, Google Drive, WhatsApp, Reportei, Google Ads, Meta Ads, Business Suite, LinkedIn, Instagram, Mlabs, Conta Azul.
 
 ---
-
-<!-- Este arquivo será atualizado pelo /setup com o contexto do seu negócio. -->
 
 ## Contexto do negócio
 
@@ -18,7 +57,7 @@ No início de toda conversa, ler os seguintes arquivos (se existirem e estiverem
 2. `_contexto/preferencias.md` — tom de voz, estilo de escrita, o que evitar
 3. `_contexto/estrategia.md` — foco atual, prioridades, o que pode esperar
 
-Usar essas informações como base pra qualquer resposta ou decisão. Ao sugerir prioridades, formatos ou abordagens, considerar o foco atual descrito em `estrategia.md`.
+Usar essas informações como base para qualquer resposta ou decisão. Ao sugerir prioridades, formatos ou abordagens, considerar o foco atual descrito em `estrategia.md`.
 
 Para qualquer tarefa visual (carrossel, proposta, slide, landing page), consultar `marca/design-guide.md` como referência de estilo.
 
@@ -36,7 +75,7 @@ Ao concluir uma tarefa que não tinha skill mas parece repetível (o usuário pr
 
 > "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
 
-Não perguntar pra tarefas pontuais ou perguntas simples. Só quando o padrão de repetição for claro.
+Não perguntar para tarefas pontuais ou perguntas simples. Só quando o padrão de repetição for claro.
 
 ---
 
@@ -75,23 +114,23 @@ Se sim, identificar o que precisa atualizar:
 
 Mostrar o que vai mudar antes de salvar. Não reformatar o arquivo inteiro, só adicionar ou editar a linha relevante.
 
-**Quando NÃO perguntar:**
+**Quando não perguntar:**
 - Tarefas pontuais que não mudam o contexto (ex: escrever um email, criar um post avulso)
 - Perguntas simples ou conversas sem ação
 - Mudanças que já foram salvas pelo bloco "Aprender com correções"
 
-**Dica:** se não sabe se algo mudou, rode `/atualizar` pra uma varredura completa.
+**Dica:** se não sabe se algo mudou, rode `/atualizar` para uma varredura completa.
 
 ---
 
 ## Criação de skills
 
-Quando o usuário pedir pra criar uma nova skill:
+Quando o usuário pedir para criar uma nova skill:
 
-1. Verificar se existe um template relevante em `templates/skills/`. Se existir, usar como base e adaptar pro contexto do usuário
+1. Verificar se existe um template relevante em `templates/skills/`. Se existir, usar como base e adaptar ao contexto do usuário
 2. Perguntar: "Essa skill é específica pra esse projeto ou vai ser útil em qualquer projeto?"
    - Específica desse negócio → salvar em `.claude/skills/nome-da-skill/SKILL.md` (local)
    - Útil em qualquer projeto → salvar em `~/.claude/skills/nome-da-skill/SKILL.md` (global)
-3. Ler `_contexto/empresa.md` e `_contexto/preferencias.md` pra calibrar o conteúdo da skill ao contexto do negócio
+3. Ler `_contexto/empresa.md` e `_contexto/preferencias.md` para calibrar o conteúdo da skill ao contexto do negócio
 4. Se a skill precisar de arquivos de apoio (templates, referências, exemplos), criar dentro da pasta da skill
 5. Seguir o fluxo da skill-creator nativa do Claude Code

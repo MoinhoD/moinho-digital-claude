@@ -1,23 +1,24 @@
 ---
 name: publicar-site
 description: >
-  Publica um arquivo HTML no ar via Cloudflare Pages e retorna um link compartilhável.
+  Publica um arquivo HTML no ar via Netlify e retorna um link compartilhável.
   Use quando o usuário disser "publica", "coloca no ar", "quero um link", "deploy",
   "publica esse HTML", "publicar-site" ou após criar uma proposta/landing page.
 ---
 
-# /publicar-site — Deploy no Cloudflare Pages
+# /publicar-site — Deploy no Netlify
 
 ## O que faz
 
-Envia um arquivo HTML pro Cloudflare Pages e retorna uma URL pública com HTTPS.
+Envia um arquivo ou pasta HTML pro Netlify e retorna uma URL pública com HTTPS.
 O link funciona em qualquer dispositivo e pode ser compartilhado direto com o cliente.
 
 ## Como usar
 
-Chame `/publicar-site` seguido do caminho do arquivo:
+Chame `/publicar-site` seguido do caminho do arquivo ou pasta:
 ```
 /publicar-site propostas/proposta-cliente-x.html
+/publicar-site comercial/propostas/cliente-x/
 ```
 
 Ou chame sem argumento — o Claude vai perguntar qual arquivo publicar.
@@ -28,33 +29,39 @@ Ou chame sem argumento — o Claude vai perguntar qual arquivo publicar.
 
 Para usar essa skill você precisa:
 
-1. **Conta no Cloudflare** (gratuita): cloudflare.com
-2. **API Token do Cloudflare** com permissão de Cloudflare Pages
-3. **Project ID** do seu projeto no Cloudflare Pages
+1. **Netlify CLI instalado:**
+   ```bash
+   netlify --version
+   ```
+   Se não estiver instalado: `npm install -g netlify-cli`
 
-Configure as variáveis de ambiente no arquivo `.env` na raiz do projeto:
-```
-CLOUDFLARE_API_TOKEN=seu_token_aqui
-CLOUDFLARE_ACCOUNT_ID=seu_account_id_aqui
-CLOUDFLARE_PROJECT_NAME=nome-do-seu-projeto
-```
+2. **Login no Netlify:**
+   ```bash
+   netlify login
+   ```
+   Se o projeto já tiver `.netlify/state.json` com `siteId`, o deploy usa o site existente automaticamente.
 
-Se o `.env` não existir, a skill vai guiar você na configuração passo a passo.
+Se o `.netlify/state.json` não existir, a CLI vai perguntar se quer criar um novo site ou vincular a um existente.
 
 ---
 
 ## Workflow
 
-1. Verificar se o arquivo existe e é um HTML válido
-2. Verificar se `.env` tem as variáveis necessárias — se não tiver, guiar configuração
-3. Fazer upload via Cloudflare Pages API
-4. Retornar a URL pública
+1. Verificar se o arquivo ou pasta existe e contém HTML válido
+2. Verificar se Netlify CLI está instalado — se não, orientar instalação
+3. Verificar se está logado no Netlify (`netlify status`)
+4. Fazer deploy:
+   ```bash
+   netlify deploy --dir "[caminho]" --prod
+   ```
+   Se for um arquivo único (não pasta), mover para uma pasta temporária antes de fazer o deploy.
+5. Retornar a URL pública
 
 **Output:**
-> "Publicado. Link: https://[projeto].pages.dev/[arquivo]"
+> "Publicado. Link: https://[site].netlify.app/[arquivo]"
 
 ---
 
 ## Dica
 
-Pra ter um domínio próprio (ex: propostas.seusite.com.br), conecte seu domínio no painel do Cloudflare Pages depois de publicar. A skill continua funcionando igual.
+Pra ter um domínio próprio (ex: propostas.moinhod.com.br), conecte o domínio no painel do Netlify após o primeiro deploy. A skill continua funcionando igual.
