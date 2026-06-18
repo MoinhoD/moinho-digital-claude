@@ -545,7 +545,30 @@ Se não instalado: `npm install -D playwright && npx playwright install chromium
 node ".claude/skills/proposta/exportar-pdf.js" "clientes/[slug-cliente]/planejamento/index.html" "clientes/[slug-cliente]/planejamento/planejamento-[slug-cliente].pdf"
 ```
 
-### 7. Publicar no Netlify
+### 7. Salvar no Google Drive
+
+Fazer upload do PDF para a pasta do cliente no Google Drive, dentro de "alinhamentos iniciais".
+
+Requer `gdrive-moinho` configurado via rclone — ver skill `/subir-drive`.
+
+Perguntar o ID da pasta do cliente no Drive se ainda não estiver salvo. Caso o cliente tenha pasta em `clientes/[slug-cliente]/`, verificar se existe um arquivo `clientes/[slug-cliente]/.drive-folder-id` com o ID salvo.
+
+```powershell
+$env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH','User')
+$slug    = "[slug-cliente]"
+$pdf     = "clientes/$slug/planejamento/planejamento-$slug.pdf"
+$destino = "[Nome do Cliente]/alinhamentos iniciais"
+rclone copy $pdf "gdrive-moinho:$destino" --progress 2>&1
+```
+
+Verificar o upload:
+```powershell
+rclone ls "gdrive-moinho:[Nome do Cliente]/alinhamentos iniciais" 2>&1
+```
+
+Se a pasta "alinhamentos iniciais" não existir no Drive, o rclone a cria automaticamente.
+
+### 9. Publicar no Netlify
 
 Subdomínio: `planejamento-[slug-cliente].moinhod.com.br`
 
@@ -557,7 +580,7 @@ netlify api updateSite --data '{"site_id":"[PROJECT_ID]","body":{"custom_domain"
 netlify api provisionSiteTLSCertificate --data '{"site_id":"[PROJECT_ID]"}'
 ```
 
-### 8. Cloudflare Access — proteção privada
+### 10. Cloudflare Access — proteção privada
 
 O site fica protegido por Cloudflare Access. O cliente precisa digitar o email e confirmar com um código de 6 dígitos recebido por email. Nenhuma senha para gerenciar.
 
@@ -572,8 +595,9 @@ Ver `.claude/skills/planejamento-onboarding/cloudflare-access-setup.md`
 **Mensagem para enviar ao cliente com o link:**
 > "O planejamento está disponível em [link]. Para acessar, é só digitar o seu email ([email do cliente]) quando solicitado — você vai receber um código de confirmação direto na caixa de entrada."
 
-### 9. Retornar resultado
+### 11. Retornar resultado
 
 - Link protegido: `https://planejamento-[slug-cliente].moinhod.com.br`
-- PDF: `clientes/[slug-cliente]/planejamento/planejamento-[slug-cliente].pdf`
+- PDF no Drive: `[Nome do Cliente]/alinhamentos iniciais/planejamento-[slug-cliente].pdf`
+- PDF local: `clientes/[slug-cliente]/planejamento/planejamento-[slug-cliente].pdf`
 - HTML: `clientes/[slug-cliente]/planejamento/index.html`
