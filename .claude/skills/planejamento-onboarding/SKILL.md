@@ -47,6 +47,30 @@ Ler `_contexto/servicos.md`. Apresentar a lista de serviços e perguntar quais e
 
 Confirmar o escopo antes de prosseguir.
 
+### 3.5. Direcionamento estratégico por serviço
+
+Após confirmar o escopo, fazer perguntas específicas para cada serviço contratado. Uma pergunta por vez — não listar tudo de uma vez.
+
+**Se Google Ads no escopo:**
+1. Qual o objetivo principal da campanha? (captação de leads, vendas diretas, reconhecimento de marca, tráfego pro site?)
+2. Tem alguma palavra-chave ou termo que o cliente já mencionou como prioritário, ou que eles gostariam de evitar?
+3. Existe alguma restrição ou particularidade importante? (ex: produto muito nichado, concorrência agressiva, verba limitada)
+
+**Se Meta Ads no escopo:**
+1. Qual o objetivo das campanhas no Meta? (gerar leads, aumentar reconhecimento, impulsionar vendas?)
+2. Tem algum perfil de cliente ideal mais definido — faixa etária, localização, comportamento?
+3. Já tem criativos produzidos ou vai precisar criar tudo do zero?
+
+**Se Redes Sociais no escopo:**
+1. Qual o foco de conteúdo nesse primeiro momento? (posicionamento, autoridade, engajamento, gerar leads orgânicos?)
+2. Tem algum tema, produto ou assunto que o cliente quer prioritizar nos primeiros conteúdos?
+3. Existe algum estilo visual ou de comunicação que o cliente gosta como referência — ou que definitivamente não quer?
+
+**Se outros serviços (Blog, Email, Landing Page, etc.):**
+Perguntar o objetivo específico de cada um em uma frase.
+
+Guardar todas essas respostas — elas vão alimentar diretamente os slides de estratégia de cada serviço.
+
 ### 4. Pesquisa complementar
 
 Com base no contexto do cliente e nos concorrentes informados, enriquecer a análise:
@@ -70,10 +94,12 @@ Substituir os placeholders:
 - `{{PILARES}}` — HTML dos pilares do projeto (padrão abaixo)
 - `{{SLIDES_CONTEUDO}}` — todos os slides condicionais por serviço (padrões abaixo)
 - `{{DUVIDAS}}` — perguntas e alinhamentos para o cliente (padrão abaixo)
-- `{{DEMANDAS}}` — demandas em aberto (padrão abaixo)
+- `{{DEMANDAS}}` — demandas em aberto coletadas na entrevista (padrão abaixo)
 - `{{APROVACOES}}` — itens que o cliente precisa entregar/aprovar (padrão abaixo)
 - `{{CRONOGRAMA}}` — itens do cronograma HTML (padrão abaixo)
 - `{{LOGO_SRC}}` e `{{SIMBOLO_SRC}}` — injetar via Node.js depois
+
+**Regra para os slides de estratégia:** os slides de objetivo, direcionamento de campanha, foco de conteúdo e demandas em aberto devem refletir exatamente o que foi informado nas etapas 2 e 3.5 — não inventar ou generalizar. O que não foi respondido explicitamente pode ser completado com pesquisa (etapa 4) ou marcado como `[a definir com o cliente]` no slide.
 
 Injetar logos após escrever o HTML:
 ```js
