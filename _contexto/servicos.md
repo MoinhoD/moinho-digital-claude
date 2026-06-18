@@ -4,7 +4,7 @@
 
 | Serviço | Valor |
 |---|---|
-| Anúncios | R$ 2.750/mês |
+| Anúncios (Google, Meta, LinkedIn, TikTok) | R$ 2.750/mês — não inclui budget de mídia |
 | Anúncios + redes sociais (8 posts/mês) | R$ 4.950/mês |
 | Redes sociais (12 posts/mês) | R$ 3.500/mês |
 
@@ -35,6 +35,8 @@
 **Meta Ads:** Criação e otimização de campanhas no Facebook e Instagram (reconhecimento, engajamento, captação). — Cliente: aprovação dos criativos e feedback sobre qualidade dos leads.
 
 **Google Ads:** Criação e otimização de campanhas de pesquisa, display e/ou YouTube. — Cliente: aprovação dos criativos e feedback sobre os leads.
+
+**TikTok Ads:** Criação e otimização de campanhas no TikTok (reconhecimento, engajamento, captação). — Cliente: aprovação dos criativos e feedback sobre qualidade dos leads.
 
 **Blog:** Planejamento e criação de 2 posts/mês com SEO. Publicação e distribuição nas redes. — Cliente: aprovação dos textos.
 
