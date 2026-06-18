@@ -7,7 +7,7 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "C:\\Claude Code Moinho Digital\\ccos-ratos"
+publish = "C:\\Claude Code Moinho Digital\\Moinho Digital"
 publishOrigin = "default"
 
 [build.environment]
