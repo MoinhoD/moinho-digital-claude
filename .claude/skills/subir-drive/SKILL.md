@@ -2,37 +2,11 @@
 
 Faz upload de arquivos locais para o Google Drive usando rclone.
 
-## ⚠️ Regra obrigatória
-
-**TODO upload vai para o drive compartilhado "Moinho Cloud" — nunca para o Drive pessoal.**
-
-O drive compartilhado da agência é o `Moinho Cloud` (ID: `0ALgpJ_aODvwWUk9PVA`). Sempre adicionar a flag `--drive-root-folder-id 0ALgpJ_aODvwWUk9PVA` em todos os comandos rclone, sem exceção.
-
-O remote `gdrive-moinho` sem essa flag sobe no Drive pessoal de `inaiara@moinhod.com.br` — o que está errado.
-
----
-
 ## Pré-requisitos
 
 - rclone instalado (`winget install Rclone.Rclone`)
 - Remote configurado como `gdrive-moinho` para a conta da Moinho Digital
 - Para reconfigurar: `rclone config reconnect gdrive-moinho:`
-
-## Destino correto: Moinho Cloud
-
-O destino padrão é o **Shared Drive "Moinho Cloud"** (ID `0ALgpJ_aODvwWUk9PVA`), não o Drive pessoal.
-
-Sempre usar o prefixo com `team_drive`:
-
-```
-gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:[caminho-no-drive]
-```
-
-Exemplo completo:
-```powershell
-rclone copy "[origem]" "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:Clientes/Venmka/Instagram/Stories/Destaque 5" --progress
-```
-- Para listar os drives disponíveis: `rclone backend drives gdrive-moinho:`
 
 ## Uso
 
@@ -43,7 +17,6 @@ rclone copy "[origem]" "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:Clientes/Ve
 **Exemplos:**
 - `/subir-drive` — infere origem e pergunta destino
 - `/subir-drive clientes/Venmka/conteudo/exports` — pergunta o destino
-- `/subir-drive clientes/Venmka/conteudo/exports → Clientes/Venmka/Instagram/Stories`
 
 ---
 
@@ -55,85 +28,71 @@ rclone copy "[origem]" "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:Clientes/Ve
 - Se não passado, procurar `exports/` ou `saidas/` no contexto ativo
 - Se não encontrar, perguntar ao usuário
 
-### 2. Identificar o destino no Drive
+### 2. Encontrar a pasta de destino no Drive
 
-- Se passado no argumento (após `→`), usar esse caminho como base
-- Se não passado, tentar inferir do contexto:
-  - Extrair cliente de `clientes/[NOME]/`
-  - Sugerir `Clientes/[NOME]/[tipo-conteudo]`
-- Se não conseguir inferir, perguntar
+Usar o MCP do Google Drive para buscar a pasta correta pelo nome do cliente:
+
+```
+search_files(query: "name contains '[nome do cliente]' and mimeType = 'application/vnd.google-apps.folder'")
+```
+
+Mostrar os resultados ao usuário e confirmar qual pasta é a correta antes de continuar. Nunca presumir — o Drive pode ter múltiplas pastas com nomes parecidos.
+
+Depois de confirmar, usar o ID da pasta como `--drive-root-folder-id` em todos os comandos rclone.
 
 ### 3. Verificar se o destino já tem arquivos
 
-Antes de definir o caminho final, checar o que há no destino:
-
 ```powershell
 $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH','User')
-$check = rclone ls "gdrive-moinho:[destino-base]" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA 2>&1
+$check = rclone ls "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA] 2>&1
 $temArquivos = ($check | Where-Object { $_ -notmatch "^Error" -and $_.Trim() -ne "" }).Count -gt 0
 ```
 
-- **Destino vazio ou não existe** → upload direto em `[destino-base]`
-- **Destino já tem arquivos** → criar subpasta com timestamp: `[destino-base]/yyyy-MM-dd_HH-mm`
+- **Vazio ou não existe** → upload direto
+- **Já tem arquivos** → criar subpasta com timestamp: `yyyy-MM-dd_HH-mm`
 
 ```powershell
 if ($temArquivos) {
     $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm"
-    $destinoFinal = "[destino-base]/$timestamp"
-    Write-Output "Já existe conteúdo em [destino-base]. Enviando para subpasta $timestamp."
-} else {
-    $destinoFinal = "[destino-base]"
+    Write-Output "Já existe conteúdo. Enviando para subpasta $timestamp."
 }
 ```
-
-Mostrar ao usuário o caminho final antes de confirmar.
 
 ### 4. Simular antes de subir (dry-run)
 
 ```powershell
-rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA --dry-run --stats-one-line 2>&1
+rclone copy "[origem-absoluta]" "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA] --dry-run --stats-one-line 2>&1
 ```
 
-Mostrar ao usuário o que seria enviado. Confirmar antes de prosseguir.
+Mostrar o que seria enviado. Confirmar antes de prosseguir.
 
 ### 5. Fazer o upload
 
 ```powershell
-rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA --progress --stats-one-line 2>&1
+rclone copy "[origem-absoluta]" "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA] --progress --stats-one-line 2>&1
 ```
 
 ### 6. Verificar o resultado
 
 ```powershell
-rclone ls "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA 2>&1
+rclone ls "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA] 2>&1
 ```
 
 ### 7. Gerar link do Drive
 
-Depois de verificar, gerar o link público da pasta:
-
 ```powershell
-rclone link "gdrive-moinho:$destinoFinal" 2>&1
+rclone link "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA] 2>&1
 ```
 
 Mostrar o link ao usuário para acesso direto.
 
 ### 8. Reportar ao usuário
 
-Informar:
 - Quantos arquivos foram enviados
 - Tamanho total
-- Caminho completo no Drive onde estão (e se foi para subpasta por conflito)
 - Link direto do Drive
 
 ---
-
-## Notas técnicas
-
-- Upload direto se o destino estiver vazio; subpasta com timestamp se já houver arquivos
-- `rclone copy` nunca apaga arquivos do destino
-- Mantém a estrutura de subpastas da origem
-- Para verificar integridade: `rclone check "[origem]" "gdrive-moinho:$destinoFinal"`
 
 ## Diagnóstico de erros
 
@@ -143,21 +102,6 @@ Informar:
 | `Failed to create drive root dir` | Autenticação expirou — rodar `rclone config reconnect gdrive-moinho:` |
 | `directory not found` | O caminho local está errado — verificar com `Get-ChildItem "[caminho]"` |
 | Arquivo corrompido no destino | Rodar `rclone check` para encontrar diferenças |
-
-## Estrutura de pastas conhecida no Moinho Cloud
-
-Antes de criar caminhos novos, checar se já existe uma pasta para o cliente:
-
-```powershell
-rclone lsd "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:" --max-depth 2 2>&1
-```
-
-Pastas conhecidas:
-- `Clientes/Venmka/Conteúdos Orgânicos Redes Sociais/Destaques` — stories de destaques do Instagram (ID da pasta de destaques: `17NwKFC943sJzwyXNUNCnZnHKB-Tke-xI`)
-
-**Regra:** nunca criar pastas de cliente novas sem antes listar o que existe. O Drive pode ter duas pastas com o mesmo nome se criar sem verificar.
-
----
 
 ## Lições aprendidas
 
