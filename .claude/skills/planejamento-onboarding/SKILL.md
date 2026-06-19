@@ -547,23 +547,25 @@ node ".claude/skills/proposta/exportar-pdf.js" "clientes/[slug-cliente]/planejam
 
 ### 7. Salvar no Google Drive
 
-Fazer upload do PDF para a pasta do cliente no Google Drive, dentro de "alinhamentos iniciais".
+Fazer upload do PDF para a pasta do cliente no Moinho Cloud.
 
-Requer `gdrive-moinho` configurado via rclone — ver skill `/subir-drive`.
+**Fluxo:**
+1. Usar o MCP do Google Drive (`search_files`) para encontrar a pasta do cliente pelo nome
+2. Mostrar o resultado e confirmar com o usuário qual pasta é a correta antes de fazer o upload
+3. Usar o ID da pasta confirmada como `--drive-root-folder-id` no rclone
 
-Perguntar o ID da pasta do cliente no Drive se ainda não estiver salvo. Caso o cliente tenha pasta em `clientes/[slug-cliente]/`, verificar se existe um arquivo `clientes/[slug-cliente]/.drive-folder-id` com o ID salvo.
+O PDF vai direto na pasta raiz do cliente — não cria subpasta.
 
 ```powershell
 $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH','User')
 $slug    = "[slug-cliente]"
 $pdf     = "clientes/$slug/planejamento/planejamento-$slug.pdf"
-$destino = "[Nome do Cliente]/alinhamentos iniciais"
-rclone copy $pdf "gdrive-moinho:$destino" --progress 2>&1
+rclone copy $pdf "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA-DO-CLIENTE] --progress 2>&1
 ```
 
 Verificar o upload:
 ```powershell
-rclone ls "gdrive-moinho:[Nome do Cliente]/alinhamentos iniciais" 2>&1
+rclone ls "gdrive-moinho:" --drive-root-folder-id [ID-DA-PASTA-DO-CLIENTE] 2>&1
 ```
 
 Se a pasta "alinhamentos iniciais" não existir no Drive, o rclone a cria automaticamente.
