@@ -133,7 +133,28 @@ node ".claude/skills/orcamento/exportar-pdf.js" "comercial/orcamentos/[nome-clie
 
 Salvar na pasta `Propostas ANO/MM.Mês` dentro da raiz "Comercial" (Drive root ID: `1SyPB-ivHx0zImZnEZlReQ_uqr5d2AFGE`).
 
-O flag `--drive-import-formats html` converte o HTML automaticamente em Google Doc no Drive.
+**Nota:** `--drive-import-formats html` falha no rclone por conflito com o formato de exportação configurado no remote. Usar o MCP `create_file` para o Google Doc.
+
+#### 6a. Localizar a pasta de destino no Drive
+
+```
+Buscar: parentId = '1SyPB-ivHx0zImZnEZlReQ_uqr5d2AFGE' and title = 'Propostas [ANO]'
+→ pegar o ID da pasta Propostas [ANO]
+
+Buscar: parentId = '[ID_PROPOSTAS_ANO]' and title contains '[mês]'
+→ pegar o ID da pasta MM.mês (criar se não existir com mimeType application/vnd.google-apps.folder)
+```
+
+#### 6b. Criar o Google Doc via MCP
+
+Usar `create_file` com `contentMimeType: "text/html"` e `textContent` com o HTML limpo (sem base64 — só texto, headings e tabelas). O MCP converte automaticamente para Google Doc.
+
+- `parentId`: ID da pasta `MM.mês`
+- `title`: `orcamento-[nome-cliente]`
+
+**Atenção:** o MCP sempre cria um documento novo — não atualiza o existente. Se o orçamento foi regenerado, apagar o arquivo anterior no Drive antes de criar o novo, ou avisar o usuário para apagar manualmente.
+
+#### 6c. Subir o PDF via rclone
 
 ```powershell
 $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH','User')
@@ -142,19 +163,9 @@ $ano     = (Get-Date).Year
 $mm      = (Get-Date).Month.ToString('00')
 $mes     = $meses[(Get-Date).Month]
 $destino = "Propostas $ano/$mm.$mes"
-$html    = "comercial/orcamentos/[nome-cliente]/orcamento-[nome-cliente].html"
 $pdf     = "comercial/orcamentos/[nome-cliente]/orcamento-[nome-cliente].pdf"
 
-# Sobe HTML convertendo para Google Doc
-rclone copy $html "gdrive-moinho:$destino" --drive-import-formats html --drive-root-folder-id 1SyPB-ivHx0zImZnEZlReQ_uqr5d2AFGE --progress 2>&1
-
-# Sobe PDF
 rclone copy $pdf "gdrive-moinho:$destino" --drive-root-folder-id 1SyPB-ivHx0zImZnEZlReQ_uqr5d2AFGE --progress 2>&1
-```
-
-Verificar o upload:
-```powershell
-rclone ls "gdrive-moinho:$destino" --drive-root-folder-id 1SyPB-ivHx0zImZnEZlReQ_uqr5d2AFGE 2>&1
 ```
 
 ---
