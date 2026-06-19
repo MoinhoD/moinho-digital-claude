@@ -17,6 +17,21 @@ O remote `gdrive-moinho` sem essa flag sobe no Drive pessoal de `inaiara@moinhod
 - rclone instalado (`winget install Rclone.Rclone`)
 - Remote configurado como `gdrive-moinho` para `inaiara@moinhod.com.br`
 - Para reconfigurar: `rclone config reconnect gdrive-moinho:`
+
+## Destino correto: Moinho Cloud
+
+O destino padrão é o **Shared Drive "Moinho Cloud"** (ID `0ALgpJ_aODvwWUk9PVA`), não o Drive pessoal da Ina.
+
+Sempre usar o prefixo com `team_drive`:
+
+```
+gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:[caminho-no-drive]
+```
+
+Exemplo completo:
+```powershell
+rclone copy "[origem]" "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:Clientes/Venmka/Instagram/Stories/Destaque 5" --progress
+```
 - Para listar os drives disponíveis: `rclone backend drives gdrive-moinho:`
 
 ## Uso
