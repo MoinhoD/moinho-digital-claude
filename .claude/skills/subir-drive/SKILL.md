@@ -2,11 +2,22 @@
 
 Faz upload de arquivos locais para o Google Drive usando rclone.
 
+## ⚠️ Regra obrigatória
+
+**TODO upload vai para o drive compartilhado "Moinho Cloud" — nunca para o Drive pessoal.**
+
+O drive compartilhado da agência é o `Moinho Cloud` (ID: `0ALgpJ_aODvwWUk9PVA`). Sempre adicionar a flag `--drive-root-folder-id 0ALgpJ_aODvwWUk9PVA` em todos os comandos rclone, sem exceção.
+
+O remote `gdrive-moinho` sem essa flag sobe no Drive pessoal de `inaiara@moinhod.com.br` — o que está errado.
+
+---
+
 ## Pré-requisitos
 
 - rclone instalado (`winget install Rclone.Rclone`)
 - Remote configurado como `gdrive-moinho` para `inaiara@moinhod.com.br`
 - Para reconfigurar: `rclone config reconnect gdrive-moinho:`
+- Para listar os drives disponíveis: `rclone backend drives gdrive-moinho:`
 
 ## Uso
 
@@ -43,7 +54,7 @@ Antes de definir o caminho final, checar o que há no destino:
 
 ```powershell
 $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH','User')
-$check = rclone ls "gdrive-moinho:[destino-base]" 2>&1
+$check = rclone ls "gdrive-moinho:[destino-base]" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA 2>&1
 $temArquivos = ($check | Where-Object { $_ -notmatch "^Error" -and $_.Trim() -ne "" }).Count -gt 0
 ```
 
