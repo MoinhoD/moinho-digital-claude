@@ -15,12 +15,12 @@ O remote `gdrive-moinho` sem essa flag sobe no Drive pessoal de `inaiara@moinhod
 ## Pré-requisitos
 
 - rclone instalado (`winget install Rclone.Rclone`)
-- Remote configurado como `gdrive-moinho` para `inaiara@moinhod.com.br`
+- Remote configurado como `gdrive-moinho` para a conta da Moinho Digital
 - Para reconfigurar: `rclone config reconnect gdrive-moinho:`
 
 ## Destino correto: Moinho Cloud
 
-O destino padrão é o **Shared Drive "Moinho Cloud"** (ID `0ALgpJ_aODvwWUk9PVA`), não o Drive pessoal da Ina.
+O destino padrão é o **Shared Drive "Moinho Cloud"** (ID `0ALgpJ_aODvwWUk9PVA`), não o Drive pessoal.
 
 Sempre usar o prefixo com `team_drive`:
 
@@ -148,5 +148,5 @@ Informar:
 
 - MCP `create_file` funciona mas tem limitação prática: base64 de ~87KB não cabe no contexto para ser passado como parâmetro. Use rclone para arquivos maiores que ~15KB.
 - PNG base64 = tamanho × 1.33. Um arquivo de 65KB vira ~87K chars de base64.
-- O remote `gdrive-moinho` está autenticado em `inaiara@moinhod.com.br` (conta da Moinho Digital). Config em `C:\Users\inaia\AppData\Roaming\rclone\rclone.conf`.
-- O Google Drive Desktop instalado no PC usa uma conta diferente — não confiar para uploads da agência.
+- O remote `gdrive-moinho` está autenticado na conta da Moinho Digital. Config em `C:\Users\inaia\AppData\Roaming\rclone\rclone.conf`.
+- O Google Drive Desktop instalado no PC pode usar uma conta diferente — não confiar para uploads da agência.
