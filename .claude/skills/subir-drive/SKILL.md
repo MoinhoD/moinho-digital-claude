@@ -76,7 +76,7 @@ Mostrar ao usuário o caminho final antes de confirmar.
 ### 4. Simular antes de subir (dry-run)
 
 ```powershell
-rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --dry-run --stats-one-line 2>&1
+rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA --dry-run --stats-one-line 2>&1
 ```
 
 Mostrar ao usuário o que seria enviado. Confirmar antes de prosseguir.
@@ -84,13 +84,13 @@ Mostrar ao usuário o que seria enviado. Confirmar antes de prosseguir.
 ### 5. Fazer o upload
 
 ```powershell
-rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --progress --stats-one-line 2>&1
+rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA --progress --stats-one-line 2>&1
 ```
 
 ### 6. Verificar o resultado
 
 ```powershell
-rclone ls "gdrive-moinho:$destinoFinal" 2>&1
+rclone ls "gdrive-moinho:$destinoFinal" --drive-root-folder-id 0ALgpJ_aODvwWUk9PVA 2>&1
 ```
 
 ### 7. Gerar link do Drive
