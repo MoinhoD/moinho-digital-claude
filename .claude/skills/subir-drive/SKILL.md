@@ -82,12 +82,23 @@ rclone copy "[origem-absoluta]" "gdrive-moinho:$destinoFinal" --progress --stats
 rclone ls "gdrive-moinho:$destinoFinal" 2>&1
 ```
 
-### 7. Reportar ao usuário
+### 7. Gerar link do Drive
+
+Depois de verificar, gerar o link público da pasta:
+
+```powershell
+rclone link "gdrive-moinho:$destinoFinal" 2>&1
+```
+
+Mostrar o link ao usuário para acesso direto.
+
+### 8. Reportar ao usuário
 
 Informar:
 - Quantos arquivos foram enviados
 - Tamanho total
 - Caminho completo no Drive onde estão (e se foi para subpasta por conflito)
+- Link direto do Drive
 
 ---
 
