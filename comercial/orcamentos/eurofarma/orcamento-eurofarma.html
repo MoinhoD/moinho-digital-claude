@@ -150,6 +150,60 @@
       line-height: 1.5;
     }
 
+    /* OPCOES */
+    .opcoes-titulo {
+      font-family: 'Noto Serif', serif;
+      font-size: 11.5pt;
+      font-weight: 600;
+      color: #5A368C;
+      margin-bottom: 16px;
+    }
+    .opcao {
+      border: 1px solid #ddd5ee;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      background: #faf9fc;
+    }
+    .opcao-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .opcao-num {
+      font-family: 'Noto Serif', serif;
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #5A368C;
+    }
+    .opcao-valor {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #5A368C;
+      white-space: nowrap;
+    }
+    .opcao-desc {
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.68;
+      margin-bottom: 8px;
+    }
+    .opcao-prazo {
+      font-size: 9.5pt;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    .opcao-exemplo {
+      font-size: 9pt;
+      color: #888;
+      font-style: italic;
+    }
+    .opcao-exemplo a {
+      color: #5A368C;
+      text-decoration: none;
+    }
+
     /* ROTEIRO */
     .roteiro-separador {
       border: none;
@@ -295,20 +349,16 @@
   <div class="section">
     <h2>Produção e edição</h2>
     <ul>
-      <li>Curadoria e seleção de imagens e vídeos de banco de acordo com o briefing e a identidade visual da Eurofarma</li>
-      <li>Edição e montagem do vídeo com sequência visual alinhada ao roteiro aprovado</li>
-      <li>Inserção de trilha sonora de biblioteca de áudio licenciada</li>
-      <li>Criação de textos e legendas em tela seguindo a identidade visual da marca</li>
-      <li>Até duas rodadas de revisão e ajustes após a entrega do primeiro corte</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Prazo e entrega</h2>
-    <ul>
-      <li>Prazo de até 4 dias úteis a partir do alinhamento e aprovação do briefing</li>
-      <li>Estão previstas até duas rodadas de ajustes após a primeira entrega do vídeo</li>
-      <li>Entrega do arquivo final em formato MP4, em alta resolução, pronto para uso em apresentações e canais digitais</li>
+      <li>Vídeo com duração de até 6 minutos</li>
+      <li>Desenvolvimento da estrutura visual baseada no roteiro fornecido</li>
+      <li>Seleção e inserção de imagens e vídeos ilustrativos</li>
+      <li>Criação de legendas explicativas para reforço do conteúdo</li>
+      <li>Locução profissional (opcional, conforme contratação)</li>
+      <li>Inserção de elementos gráficos e vídeos</li>
+      <li>Edição dinâmica e profissional</li>
+      <li>Tratamento de imagem e áudio</li>
+      <li>Finalização em formato digital para treinamento e distribuição interna</li>
+      <li>Formato previsto: wide</li>
     </ul>
   </div>
 
@@ -316,20 +366,41 @@
     <h3>Não estão inclusos no orçamento (caso necessário, deverão ser orçados à parte):</h3>
     <ul>
       <li>Captação de imagens ou vídeos in loco</li>
-      <li>Locução ou narração em voz</li>
-      <li>Criação de motion graphics ou animações complexas</li>
-      <li>Rodadas de revisão adicionais além da prevista no escopo</li>
+      <li>Rodadas de revisão adicionais além das previstas no escopo</li>
     </ul>
   </div>
 
   <div class="investimento">
-    <h2>Investimento no serviço*:</h2>
-    <table>
-      <tr>
-        <td>Desenvolvimento de vídeo institucional (até 6 min)</td>
-        <td class="valor">R$ 13.950,00</td>
-      </tr>
-    </table>
+    <div class="opcoes-titulo">Investimento no serviço* — escolha a opção:</div>
+
+    <div class="opcao">
+      <div class="opcao-header">
+        <span class="opcao-num">Opção 1 — Somente banco de imagens</span>
+        <span class="opcao-valor">R$ 4.500,00</span>
+      </div>
+      <p class="opcao-desc">Gravação com locutor(a), produção para análise de roteiro, pesquisa das imagens e criação de vídeo explicativo com legenda, música, imagens e vídeos ilustrativos com vinheta de introdução e finalização.</p>
+      <p class="opcao-prazo">Prazo: 3 dias após aprovação do briefing e roteiro.</p>
+    </div>
+
+    <div class="opcao">
+      <div class="opcao-header">
+        <span class="opcao-num">Opção 2 — Banco de imagens e apresentador profissional</span>
+        <span class="opcao-valor">R$ 5.250,00</span>
+      </div>
+      <p class="opcao-desc">Gravação com apresentadora profissional, produção para análise de roteiro, pesquisa das imagens e criação de vídeo explicativo com legenda, música, imagens e vídeos ilustrativos com vinheta de introdução e finalização.</p>
+      <p class="opcao-prazo">Prazo: 3 dias após aprovação do briefing e roteiro.</p>
+      <p class="opcao-exemplo">Exemplo: <a href="https://www.youtube.com/watch?v=D30vhHdvkJ0">youtube.com/watch?v=D30vhHdvkJ0</a></p>
+    </div>
+
+    <div class="opcao">
+      <div class="opcao-header">
+        <span class="opcao-num">Opção 3 — Animação</span>
+        <span class="opcao-valor">R$ 9.250,00</span>
+      </div>
+      <p class="opcao-desc">Criação de animações 2D baseadas no roteiro fornecido. Desenvolvimento de personagens, ícones e elementos visuais ilustrativos.</p>
+      <p class="opcao-prazo">Prazo: 15 dias após aprovação do briefing e roteiro.</p>
+      <p class="opcao-exemplo">Exemplo: <a href="https://www.youtube.com/watch?v=m6VrnIezjOM">youtube.com/watch?v=m6VrnIezjOM</a></p>
+    </div>
   </div>
 
   <p class="nota-adicional">Condições de pagamento: 50% no momento da contratação e 50% em 30 dias.</p>
