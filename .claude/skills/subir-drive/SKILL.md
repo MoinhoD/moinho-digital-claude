@@ -144,6 +144,21 @@ Informar:
 | `directory not found` | O caminho local está errado — verificar com `Get-ChildItem "[caminho]"` |
 | Arquivo corrompido no destino | Rodar `rclone check` para encontrar diferenças |
 
+## Estrutura de pastas conhecida no Moinho Cloud
+
+Antes de criar caminhos novos, checar se já existe uma pasta para o cliente:
+
+```powershell
+rclone lsd "gdrive-moinho,team_drive=0ALgpJ_aODvwWUk9PVA:" --max-depth 2 2>&1
+```
+
+Pastas conhecidas:
+- `Clientes/Venmka/Conteúdos Orgânicos Redes Sociais/Destaques` — stories de destaques do Instagram (ID da pasta de destaques: `17NwKFC943sJzwyXNUNCnZnHKB-Tke-xI`)
+
+**Regra:** nunca criar pastas de cliente novas sem antes listar o que existe. O Drive pode ter duas pastas com o mesmo nome se criar sem verificar.
+
+---
+
 ## Lições aprendidas
 
 - MCP `create_file` funciona mas tem limitação prática: base64 de ~87KB não cabe no contexto para ser passado como parâmetro. Use rclone para arquivos maiores que ~15KB.
