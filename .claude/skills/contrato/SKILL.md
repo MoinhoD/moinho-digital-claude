@@ -116,15 +116,15 @@ query: name contains '[Nome do Cliente]' and mimeType = 'application/vnd.google-
 
 Se encontrar mais de uma pasta, mostrar as opções e pedir confirmação. Se não encontrar, avisar e perguntar se quer criar.
 
-#### 5b. Localizar ou criar a subpasta "Proposta+Contrato"
+#### 5b. Localizar ou criar subpasta de contrato
 
-Dentro do ID da pasta do cliente, buscar:
+Dentro do ID da pasta do cliente, buscar qualquer pasta que contenha "contrato" ou "proposta" no nome:
 ```
-query: name = 'Proposta+Contrato' and '[ID_CLIENTE]' in parents and mimeType = 'application/vnd.google-apps.folder'
+query: title contains 'contrato' and '[ID_CLIENTE]' in parents and mimeType = 'application/vnd.google-apps.folder'
 ```
 
-Se não existir, criar via MCP `create_file`:
-- `title`: `Proposta+Contrato`
+Se encontrar, usar o ID dessa pasta. Se não encontrar, criar via MCP `create_file`:
+- `title`: `Contrato e proposta`
 - `mimeType`: `application/vnd.google-apps.folder`
 - `parentId`: ID da pasta do cliente
 
@@ -134,7 +134,9 @@ Usar `create_file` com:
 - `title`: `contrato-[nome-cliente]`
 - `contentMimeType`: `text/html`
 - `textContent`: conteúdo HTML do contrato (texto limpo — sem base64)
-- `parentId`: ID da subpasta `Proposta+Contrato`
+- `parentId`: ID da subpasta de contrato
+
+**Importante para a formatação:** no HTML enviado ao MCP, usar `<p style="text-align:center"><strong>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</strong></p>` para o título — nunca `<h1>`, pois o Google Docs converte `<h1>` para Heading 1 (fonte grande e colorida), o que não fica adequado para um contrato. Usar `<p>&nbsp;</p>` entre as seções para espaçamento.
 
 **Atenção:** o MCP sempre cria um documento novo. Se já existir uma versão anterior com o mesmo nome, avisar o usuário para apagar manualmente no Drive antes de criar o novo.
 
