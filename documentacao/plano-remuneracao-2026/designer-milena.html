@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de remuneração — Designer · Milena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo: #5A368C;
+      --vermelho: #D23E4F;
+      --salmao: #F0867D;
+      --creme: #EFEEDF;
+      --texto: #1C1C1C;
+      --suave: #666;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; background: #fff; }
+    body { font-family: 'Lexend', 'Calibri', sans-serif; color: var(--texto); line-height: 1.6; }
+
+    .slides-track { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: center; padding: 48px 0 72px; overflow-y: auto;
+      opacity: 0; pointer-events: none; transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(.25,.1,.25,1), opacity 0.35s ease;
+    }
+    .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+    .slide.bg-creme { background: var(--creme); }
+    .slide.bg-roxo  { background: linear-gradient(135deg,#5A368C 0%,#3d2260 100%); color:#fff; }
+    .slide.bg-dark  { background: linear-gradient(135deg,#3d2260 0%,#2a1845 100%); color:#fff; }
+    .slide.bg-hero  { background: linear-gradient(135deg,#5A368C 0%,#3d2260 60%,#D23E4F 100%); color:#fff; }
+    .slide-tall     { justify-content: flex-start; padding-top: 52px; }
+
+    .carousel-nav {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(20,8,40,.78); backdrop-filter: blur(14px);
+      border-radius: 40px; padding: 9px 22px; z-index: 200;
+    }
+    .nav-btn { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 2px 8px; opacity: .75; transition: opacity .2s; }
+    .nav-btn:hover { opacity: 1; }
+    .nav-btn:disabled { opacity: .22; cursor: default; }
+    .counter { color: rgba(255,255,255,.65); font-size: 11px; letter-spacing: 1.5px; min-width: 40px; text-align: center; }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--salmao); z-index: 200; transition: width .4s ease; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 64px; width: 100%; }
+    .label-tag { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--salmao); margin-bottom: 10px; }
+    h2 { font-family: 'Noto Serif', serif; font-size: 30px; font-weight: 600; line-height: 1.2; margin-bottom: 24px; }
+    p { font-size: 15px; margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    ul { list-style: none; padding: 0; }
+
+    .hero-logo { height: 52px; width: auto; margin-bottom: 36px; display: block; }
+    .hero-role { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 12px; }
+    .hero-tag  { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--salmao); margin-bottom: 18px; }
+    .hero h1   { font-family: 'Noto Serif', serif; font-weight: 600; font-size: 64px; line-height: 1.05; margin-bottom: 16px; }
+    .hero-meta { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 300; }
+
+    .motivacoes-list { display: flex; flex-direction: column; gap: 18px; margin-top: 4px; }
+    .motivacao-item { display: flex; align-items: flex-start; gap: 22px; }
+    .motivacao-num { font-family: 'Noto Serif', serif; font-size: 20px; font-weight: 600; color: var(--salmao); min-width: 26px; line-height: 1; padding-top: 4px; flex-shrink: 0; }
+    .motivacao-texto { font-size: 18px; font-weight: 300; line-height: 1.55; color: rgba(255,255,255,.9); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 26px 22px; box-shadow: 0 2px 14px rgba(0,0,0,.07); display: flex; flex-direction: column; gap: 8px; border-top: 4px solid var(--roxo); }
+    .stat-card:nth-child(2) { border-top-color: var(--vermelho); }
+    .stat-card:nth-child(3) { border-top-color: var(--salmao); }
+    .stat-num-row { display: flex; align-items: baseline; gap: 10px; }
+    .stat-clientes { font-family: 'Noto Serif', serif; font-size: 42px; font-weight: 600; color: var(--roxo); line-height: 1; }
+    .stat-card:nth-child(2) .stat-clientes { color: var(--vermelho); }
+    .stat-card:nth-child(3) .stat-clientes { color: var(--salmao); }
+    .stat-pct-badge { font-size: 12px; font-weight: 500; color: var(--suave); }
+    .stat-faixa { font-size: 13px; font-weight: 500; color: var(--texto); }
+    .stat-desc { font-size: 12px; color: var(--suave); line-height: 1.5; margin: 0; }
+    .cenario-note { font-size: 13px; color: var(--suave); font-style: italic; padding: 14px 18px; border-left: 3px solid var(--roxo); background: rgba(90,54,140,.05); border-radius: 0 8px 8px 0; }
+
+    .meta-numero { font-family: 'Noto Serif', serif; font-size: 100px; font-weight: 600; line-height: 1; color: #fff; margin-bottom: 4px; }
+    .meta-sublabel { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.45); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 36px; }
+    .meta-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .meta-card { background: rgba(255,255,255,.1); border-radius: 10px; padding: 20px 22px; border: 1px solid rgba(255,255,255,.15); }
+    .meta-card-num { font-family: 'Noto Serif', serif; font-size: 30px; font-weight: 600; color: var(--salmao); line-height: 1; margin-bottom: 6px; }
+    .meta-card-desc { font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+    .servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .servico-card { background: #fff; border-radius: 12px; padding: 26px 22px; box-shadow: 0 2px 14px rgba(0,0,0,.07); display: flex; flex-direction: column; gap: 10px; }
+    .servico-tag { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--salmao); }
+    .servico-nome { font-size: 15px; font-weight: 500; color: var(--texto); line-height: 1.35; }
+    .servico-inclui { font-size: 12px; color: var(--suave); line-height: 1.5; }
+    .servico-preco { font-family: 'Noto Serif', serif; font-size: 34px; font-weight: 600; color: var(--roxo); line-height: 1; margin-top: auto; }
+    .servico-card:nth-child(2) .servico-preco { color: var(--vermelho); }
+    .servico-card:nth-child(3) .servico-preco { color: var(--salmao); }
+
+    .faixas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+    .faixa-card { background: #fff; border-radius: 12px; padding: 24px 22px; box-shadow: 0 2px 14px rgba(0,0,0,.06); border-top: 4px solid var(--roxo); }
+    .faixa-card:nth-child(2) { border-top-color: var(--vermelho); }
+    .faixa-card:nth-child(3) { border-top-color: var(--salmao); }
+    .faixa-num { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--suave); margin-bottom: 6px; }
+    .faixa-periodo { font-family: 'Noto Serif', serif; font-size: 18px; font-weight: 600; color: var(--roxo); line-height: 1.2; margin-bottom: 12px; }
+    .faixa-card:nth-child(2) .faixa-periodo { color: var(--vermelho); }
+    .faixa-card:nth-child(3) .faixa-periodo { color: var(--salmao); }
+    .faixa-pct { font-family: 'Noto Serif', serif; font-size: 44px; font-weight: 600; color: var(--roxo); line-height: 1; }
+    .faixa-card:nth-child(2) .faixa-pct { color: var(--vermelho); }
+    .faixa-card:nth-child(3) .faixa-pct { color: var(--salmao); }
+    .faixa-pct-label { font-size: 13px; color: var(--suave); margin-top: 4px; }
+    .faixas-limites { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .limite-card { background: #fff; border-radius: 10px; padding: 16px 20px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    .limite-label { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--suave); margin-bottom: 4px; }
+    .limite-valor { font-family: 'Noto Serif', serif; font-size: 26px; font-weight: 600; color: var(--roxo); line-height: 1; }
+    .limite-card:nth-child(2) .limite-valor { color: var(--salmao); }
+
+    .cenario-hero { margin-bottom: 28px; }
+    .cenario-range { font-family: 'Noto Serif', serif; font-size: 72px; font-weight: 600; color: var(--roxo); line-height: 1; }
+    .cenario-range-label { font-size: 14px; color: var(--suave); margin-top: 6px; }
+    .cenario-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cenario-card { background: #fff; border-radius: 12px; padding: 24px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+    .cenario-card-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--suave); margin-bottom: 10px; }
+    .cenario-card-valor { font-family: 'Noto Serif', serif; font-size: 36px; font-weight: 600; line-height: 1; margin-bottom: 6px; }
+    .cenario-card:first-child .cenario-card-valor { color: var(--roxo); }
+    .cenario-card:last-child .cenario-card-valor  { color: var(--salmao); }
+    .cenario-card-desc { font-size: 12px; color: var(--suave); line-height: 1.5; }
+
+    .boni-destaque { font-family: 'Noto Serif', serif; font-size: 56px; font-weight: 600; line-height: 1.05; margin-bottom: 16px; max-width: 700px; }
+    .boni-sub { font-size: 18px; font-weight: 300; color: rgba(255,255,255,.75); max-width: 600px; line-height: 1.6; margin-bottom: 32px; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      h2 { font-size: 22px; }
+      .hero h1 { font-size: 40px; }
+      .stats-grid, .servicos-grid, .faixas-grid, .meta-cards, .cenario-cards, .faixas-limites { grid-template-columns: 1fr; }
+      .meta-numero { font-size: 60px; }
+      .cenario-range { font-size: 48px; }
+      .slide-tall { padding-top: 52px; -webkit-overflow-scrolling: touch; }
+    }
+
+    @media print {
+      html, body { height: auto; overflow: visible; }
+      .slides-track { position: static; height: auto; overflow: visible; }
+      .carousel-nav, .progress-bar { display: none !important; }
+      .slide { position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto; height: 100vh; page-break-after: always; overflow: hidden; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+<div class="slides-track">
+
+  <!-- 1. CAPA -->
+  <div class="slide bg-hero active">
+    <div class="container">
+      <img class="hero-logo" src="../../marca/md-1-branco.png" alt="Moinho Digital">
+      <p class="hero-role">Designer · Milena</p>
+      <p class="hero-tag">Plano de remuneração</p>
+      <h1 class="hero">Estamos crescendo<br>e queremos que<br>todos cresçam<br>com a gente.</h1>
+      <p class="hero-meta">Moinho Digital · Junho 2026</p>
+    </div>
+  </div>
+
+  <!-- 2. MOTIVAÇÃO -->
+  <div class="slide bg-roxo">
+    <div class="container">
+      <p class="label-tag">Por que estamos aqui</p>
+      <h2>De onde vem essa decisão</h2>
+      <div class="motivacoes-list">
+        <div class="motivacao-item">
+          <span class="motivacao-num">01</span>
+          <p class="motivacao-texto">Ter todos motivados com a entrada de novos clientes</p>
+        </div>
+        <div class="motivacao-item">
+          <span class="motivacao-num">02</span>
+          <p class="motivacao-texto">Ampliar o sentimento de ganha-a-ganha e pertencimento</p>
+        </div>
+        <div class="motivacao-item">
+          <span class="motivacao-num">03</span>
+          <p class="motivacao-texto">Reconhecer o impacto que cada um gera para a fidelização dos clientes</p>
+        </div>
+        <div class="motivacao-item">
+          <span class="motivacao-num">04</span>
+          <p class="motivacao-texto">Unificar a forma de pagamento de todos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CENÁRIO ATUAL -->
+  <div class="slide bg-creme">
+    <div class="container">
+      <p class="label-tag">Onde estamos</p>
+      <h2>Julho de 2026 com 14 clientes na carteira</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num-row">
+            <div class="stat-clientes">10</div>
+            <span class="stat-pct-badge">72%</span>
+          </div>
+          <div class="stat-faixa">R$ 2.000 — R$ 3.500</div>
+          <p class="stat-desc">Só conteúdo ou só anúncios</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num-row">
+            <div class="stat-clientes">2</div>
+            <span class="stat-pct-badge">14%</span>
+          </div>
+          <div class="stat-faixa">R$ 3.500 — R$ 5.000</div>
+          <p class="stat-desc">Novos contratos com conteúdo e anúncios</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num-row">
+            <div class="stat-clientes">2</div>
+            <span class="stat-pct-badge">14%</span>
+          </div>
+          <div class="stat-faixa">R$ 5.000 — R$ 10.000</div>
+          <p class="stat-desc">Antigos clientes mais robustos</p>
+        </div>
+      </div>
+      <p class="cenario-note">A maioria ainda está no menor ticket. A meta é mudar esse cenário até o final do ano.</p>
+    </div>
+  </div>
+
+  <!-- 4. NOSSA META -->
+  <div class="slide bg-dark">
+    <div class="container">
+      <p class="label-tag">Nossa meta</p>
+      <div class="meta-numero">R$ 100k</div>
+      <p class="meta-sublabel">por mês até o final de 2026</p>
+      <div class="meta-cards">
+        <div class="meta-card">
+          <div class="meta-card-num">12</div>
+          <p class="meta-card-desc">novos clientes para fechar no ano</p>
+        </div>
+        <div class="meta-card">
+          <div class="meta-card-num">R$ 6.000</div>
+          <p class="meta-card-desc">ticket médio por novo cliente</p>
+        </div>
+        <div class="meta-card">
+          <div class="meta-card-num">24</div>
+          <p class="meta-card-desc">clientes totais em dezembro com ticket médio de R$ 4.000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CARTEIRA DE SERVIÇOS -->
+  <div class="slide bg-creme">
+    <div class="container">
+      <p class="label-tag">O que vendemos</p>
+      <h2>Serviços da nova carteira</h2>
+      <div class="servicos-grid">
+        <div class="servico-card">
+          <p class="servico-tag">Pacote base</p>
+          <div class="servico-nome">Anúncios</div>
+          <p class="servico-inclui">Gestão de campanhas Google, Meta ou LinkedIn</p>
+          <div class="servico-preco">R$ 2.750</div>
+        </div>
+        <div class="servico-card">
+          <p class="servico-tag">Pacote completo</p>
+          <div class="servico-nome">Anúncios + Conteúdo Redes</div>
+          <p class="servico-inclui">Campanhas + 8 conteúdos mensais para redes sociais</p>
+          <div class="servico-preco">R$ 4.950</div>
+        </div>
+        <div class="servico-card">
+          <p class="servico-tag">Pacote conteúdo</p>
+          <div class="servico-nome">Conteúdo Redes</div>
+          <p class="servico-inclui">12 conteúdos mensais para redes sociais</p>
+          <div class="servico-preco">R$ 3.500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. FAIXAS DE REMUNERAÇÃO -->
+  <div class="slide slide-tall">
+    <div class="container">
+      <p class="label-tag">Como funciona</p>
+      <h2>Quanto mais tempo de cliente, mais você ganha</h2>
+      <div class="faixas-grid">
+        <div class="faixa-card">
+          <div class="faixa-num">Faixa 1</div>
+          <div class="faixa-periodo">Até 6 meses</div>
+          <div class="faixa-pct">6%</div>
+          <p class="faixa-pct-label">do fee do cliente</p>
+        </div>
+        <div class="faixa-card">
+          <div class="faixa-num">Faixa 2</div>
+          <div class="faixa-periodo">De 6 a 18 meses</div>
+          <div class="faixa-pct">7%</div>
+          <p class="faixa-pct-label">do fee do cliente</p>
+        </div>
+        <div class="faixa-card">
+          <div class="faixa-num">Faixa 3</div>
+          <div class="faixa-periodo">A partir do 18º mês</div>
+          <div class="faixa-pct">8%</div>
+          <p class="faixa-pct-label">do fee do cliente</p>
+        </div>
+      </div>
+      <div class="faixas-limites">
+        <div class="limite-card">
+          <div class="limite-label">Fee mínimo por cliente</div>
+          <div class="limite-valor">R$ 240</div>
+        </div>
+        <div class="limite-card">
+          <div class="limite-label">Fee máximo por cliente</div>
+          <div class="limite-valor">R$ 500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CENÁRIO DESEJADO -->
+  <div class="slide bg-creme">
+    <div class="container">
+      <p class="label-tag">Projeção</p>
+      <h2>O que vemos para o seu cenário</h2>
+      <div class="cenario-hero">
+        <div class="cenario-range">10 a 16</div>
+        <p class="cenario-range-label">clientes por designer no novo modelo</p>
+      </div>
+      <div class="cenario-cards">
+        <div class="cenario-card">
+          <div class="cenario-card-label">Cenário conservador</div>
+          <div class="cenario-card-valor">R$ 2.400</div>
+          <p class="cenario-card-desc">10 clientes com fee mínimo de R$ 240 cada</p>
+        </div>
+        <div class="cenario-card">
+          <div class="cenario-card-label">Cenário com carteira cheia</div>
+          <div class="cenario-card-valor">R$ 8.000</div>
+          <p class="cenario-card-desc">16 clientes com fee máximo de R$ 500 cada</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. BONIFICAÇÃO -->
+  <div class="slide bg-hero">
+    <div class="container">
+      <p class="label-tag">Meta batida</p>
+      <p class="boni-sub">Moinho batendo a meta de faturamento — com novos clientes e retendo a carteira atual —</p>
+      <div class="boni-destaque">todos serão<br>bonificados.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAV -->
+<nav class="carousel-nav">
+  <button class="nav-btn" id="prev" onclick="navigate(-1)" disabled>←</button>
+  <span class="counter" id="counter">1 / 8</span>
+  <button class="nav-btn" id="next" onclick="navigate(1)">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  let current = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    slides[current].style.transform = n > current ? 'translateX(-100%)' : 'translateX(100%)';
+    current = n;
+    slides[current].classList.add('active');
+    slides[current].style.transform = 'translateX(0)';
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+  }
+
+  function navigate(dir) {
+    const n = current + dir;
+    if (n >= 0 && n < slides.length) goTo(n);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+  });
+
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) navigate(dx > 0 ? 1 : -1);
+  });
+
+  goTo(0);
+  progress.style.width = (1 / slides.length * 100) + '%';
+</script>
+</body>
+</html>
