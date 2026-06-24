@@ -29,6 +29,7 @@ Apresentar as perguntas agrupadas em uma única mensagem:
 
 **Objeto**
 - Descrição dos serviços contratados (texto livre — pode ser o escopo da proposta)
+- Se o usuário não souber o texto exato, consultar `.claude/skills/contrato/objetos.md` e sugerir o modelo mais adequado ao escopo informado, adaptando o número de conteúdos e redes conforme o caso
 
 **Valores**
 - Valor da parcela fixa mensal (ex: R$ 3.000,00)
