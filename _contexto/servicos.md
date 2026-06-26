@@ -17,8 +17,8 @@
 | Site institucional | R$ 6.500 |
 | Indexação em IA | R$ 2.350 |
 | Influenciadores | R$ 1.850/mês |
-| Blog (2 posts/mês) | R$ 1.200/mês |
-| Materiais gráficos | R$ 500/mês |
+| Blog (4 posts/mês) | R$ 1.400/mês |
+| Materiais gráficos | R$ 900/mês |
 | Email marketing ou WhatsApp | R$ 1.200/mês |
 | Identidade visual + posicionamento | R$ 15.000 |
 | Enxoval de redes sociais | R$ 2.950 |

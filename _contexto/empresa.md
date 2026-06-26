@@ -1,6 +1,5 @@
 # Contexto da Empresa — Moinho Digital
 
-**Nome:** Ina Cunha
 **Negócio:** Moinho Digital
 **O que faz:** Agência de marketing digital com foco em performance e conteúdo. Desenvolve estratégias e executa ações em canais digitais para tracionar negócios de clientes externos.
 **Tagline:** Tração para negócios que importam.
@@ -12,8 +11,8 @@
 
 ## Contexto adicional
 
-Ina atua na liderança da agência, sendo responsável tanto pela operação interna quanto pelo desenvolvimento comercial. A Moinho Digital atende clientes com estratégias que combinam produção de conteúdo (redes sociais, blog, email) e gestão de anúncios (Google, LinkedIn, Meta).
+A Moinho Digital atende clientes com estratégias que combinam produção de conteúdo (redes sociais, blog, email) e gestão de anúncios (Google, LinkedIn, Meta).
 
-Atributos de marca: Transformadora, Criativa, Determinada, Colaboradora, Questionadora, Inovadora.
+Atributos de marca: Transformadora, Determinada, Colaboradora, Questionadora, Inovadora.
 
-Valores: Parceria, Criatividade, Resultado, Agilidade, Simplicidade, Comprometimento, Confiança, Transparência.
+Valores: Parceria, Resultado, Agilidade, Simplicidade, Comprometimento, Transparência, objetividade.
