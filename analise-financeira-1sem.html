@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise Financeira 1SEM25 × 1SEM26 — Moinho Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo: #5A368C;
+      --vermelho: #D23E4F;
+      --salmao: #F0867D;
+      --creme: #EFEEDF;
+      --branco: #FFFFFF;
+      --texto: #1a1a1a;
+      --cinza: #666;
+      --positivo: #2a7a4b;
+      --negativo: #D23E4F;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lexend', Calibri, sans-serif;
+      font-weight: 400;
+      color: var(--texto);
+      background: var(--creme);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--roxo);
+      padding: 44px 64px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; right: 120px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.05);
+    }
+
+    .header-logo {
+      height: 34px;
+      margin-bottom: 36px;
+      opacity: 0.95;
+      display: block;
+    }
+
+    .header-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--branco);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.4px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      margin-top: 24px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 5px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.6px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 52px 36px 88px;
+    }
+
+    section { margin-bottom: 60px; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-family: 'Noto Serif', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--roxo);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--roxo);
+    }
+
+    h3 {
+      font-family: 'Noto Serif', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--texto);
+      margin: 32px 0 12px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    /* ── CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: var(--branco);
+      border-radius: 10px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 14px rgba(90,54,140,0.09);
+      border-top: 3px solid var(--roxo);
+    }
+
+    .card.verde  { border-top-color: var(--positivo); }
+    .card.salmao { border-top-color: var(--salmao); }
+    .card.verm   { border-top-color: var(--negativo); }
+
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--cinza);
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-family: 'Noto Serif', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--roxo);
+      line-height: 1.1;
+    }
+
+    .card.verde  .card-value { color: var(--positivo); }
+    .card.verm   .card-value { color: var(--negativo); }
+
+    .card-sub {
+      font-size: 0.76rem;
+      color: var(--cinza);
+      margin-top: 5px;
+    }
+
+    /* ── TABLES ── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 14px rgba(90,54,140,0.08);
+      margin-bottom: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      background: var(--branco);
+    }
+
+    thead th {
+      background: var(--roxo);
+      color: var(--branco);
+      font-weight: 500;
+      font-size: 0.78rem;
+      padding: 12px 18px;
+      text-align: right;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    thead th:first-child {
+      text-align: left;
+      border-radius: 10px 0 0 0;
+    }
+
+    thead th:last-child { border-radius: 0 10px 0 0; }
+
+    tbody tr { border-bottom: 1px solid #f0eedf; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #faf9f4; }
+
+    td {
+      padding: 10px 18px;
+      text-align: right;
+      color: var(--texto);
+      white-space: nowrap;
+    }
+
+    td:first-child { text-align: left; font-weight: 500; }
+
+    tr.total td {
+      background: #f2eef9;
+      font-weight: 600;
+      border-top: 2px solid var(--roxo);
+    }
+
+    tr.ajustado td {
+      background: #fdfaf3;
+      font-weight: 600;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* ── VALUE COLORS ── */
+    .pos { color: var(--positivo); }
+    .neg { color: var(--negativo); }
+    .neutro { color: #888; }
+
+    /* ── NOTE ── */
+    .note {
+      background: #faf9f4;
+      border-left: 3px solid var(--salmao);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      color: #555;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── INSIGHTS ── */
+    .insights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .insight {
+      background: var(--branco);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.83rem;
+      box-shadow: 0 1px 8px rgba(90,54,140,0.07);
+      line-height: 1.5;
+    }
+
+    .insight strong {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .insight.ok   { border-left: 3px solid var(--positivo); }
+    .insight.ok strong { color: var(--positivo); }
+    .insight.alerta { border-left: 3px solid var(--vermelho); }
+    .insight.alerta strong { color: var(--vermelho); }
+
+    /* ── TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.74rem;
+      padding: 3px 11px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .t-moinho { background: #ede8f7; color: var(--roxo); }
+    .t-grupo  { background: #fde8e0; color: #c0392b; }
+    .t-bd     { background: #e8f0fe; color: #2563eb; }
+
+    /* ── PLACEHOLDER ── */
+    .placeholder {
+      background: #faf9f4;
+      border: 2px dashed #ccc9b8;
+      border-radius: 10px;
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .placeholder p {
+      color: #aaa;
+      font-size: 0.88rem;
+      margin-top: 6px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 0.75rem;
+      color: #aaa;
+      border-top: 1px solid #dedad0;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 28px 24px 36px; }
+      .header-title { font-size: 1.7rem; }
+      main { padding: 32px 16px 60px; }
+      .insights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="marca/md-1-branco.png" alt="Moinho Digital" class="header-logo">
+  <div class="header-title">Análise financeira<br>1SEM25 × 1SEM26</div>
+  <div class="header-subtitle">Exercício comparativo — primeiro semestre</div>
+  <div class="header-badge">Documento interno · junho 2026</div>
+</header>
+
+<main>
+
+  <!-- 01 FATURAMENTO -->
+  <section>
+    <div class="section-label">01 — Receita</div>
+    <h2>Faturamento</h2>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">1SEM25 — total</div>
+        <div class="card-value">R$ 278.831</div>
+        <div class="card-sub">Média R$ 46.472/mês</div>
+      </div>
+      <div class="card salmao">
+        <div class="card-label">1SEM26 — total</div>
+        <div class="card-value">R$ 291.900</div>
+        <div class="card-sub">Média R$ 48.650/mês</div>
+      </div>
+      <div class="card verde">
+        <div class="card-label">Crescimento</div>
+        <div class="card-value">+4,7%</div>
+        <div class="card-sub">+R$ 13.069 no semestre</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>1SEM25</th>
+            <th>1SEM26</th>
+            <th>Variação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Janeiro</td>
+            <td>R$ 42.199</td>
+            <td>R$ 49.843</td>
+            <td class="pos">+18,2%</td>
+          </tr>
+          <tr>
+            <td>Fevereiro</td>
+            <td>R$ 47.988</td>
+            <td>R$ 49.508</td>
+            <td class="pos">+3,2%</td>
+          </tr>
+          <tr>
+            <td>Março</td>
+            <td>R$ 49.990</td>
+            <td>R$ 55.461</td>
+            <td class="pos">+10,9%</td>
+          </tr>
+          <tr>
+            <td>Abril</td>
+            <td>R$ 52.094</td>
+            <td>R$ 49.240</td>
+            <td class="neg">-5,5%</td>
+          </tr>
+          <tr>
+            <td>Maio</td>
+            <td>R$ 47.946</td>
+            <td>R$ 46.863</td>
+            <td class="neg">-2,3%</td>
+          </tr>
+          <tr>
+            <td>Junho</td>
+            <td>R$ 38.614</td>
+            <td>R$ 40.985</td>
+            <td class="pos">+6,1%</td>
+          </tr>
+          <tr class="total">
+            <td>Total</td>
+            <td>R$ 278.831</td>
+            <td>R$ 291.900</td>
+            <td class="pos">+4,7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 02 RESULTADO -->
+  <section>
+    <div class="section-label">02 — Resultado</div>
+    <h2>Lucro / prejuízo</h2>
+
+    <div class="cards">
+      <div class="card verm">
+        <div class="card-label">1SEM25 — resultado real</div>
+        <div class="card-value">-R$ 13.712</div>
+        <div class="card-sub">Margem: -4,9%</div>
+      </div>
+      <div class="card verde">
+        <div class="card-label">1SEM25 — resultado ajustado ¹</div>
+        <div class="card-value">+R$ 28.360</div>
+        <div class="card-sub">Margem ajustada: +10,2%</div>
+      </div>
+      <div class="card verde">
+        <div class="card-label">1SEM26 — resultado</div>
+        <div class="card-value">+R$ 52.583</div>
+        <div class="card-sub">Margem: +18,0%</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>1SEM25</th>
+            <th>Margem 25</th>
+            <th>1SEM26</th>
+            <th>Margem 26</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Janeiro</td>
+            <td class="pos">R$ 696</td>
+            <td class="pos">1,6%</td>
+            <td class="pos">R$ 19.435</td>
+            <td class="pos">38,9%</td>
+          </tr>
+          <tr>
+            <td>Fevereiro</td>
+            <td class="pos">R$ 796</td>
+            <td class="pos">1,7%</td>
+            <td class="pos">R$ 10.306</td>
+            <td class="pos">20,8%</td>
+          </tr>
+          <tr>
+            <td>Março</td>
+            <td class="neg">-R$ 3.586</td>
+            <td class="neg">-7,2%</td>
+            <td class="pos">R$ 15.207</td>
+            <td class="pos">27,4%</td>
+          </tr>
+          <tr>
+            <td>Abril</td>
+            <td class="neg">-R$ 1.346</td>
+            <td class="neg">-2,6%</td>
+            <td class="pos">R$ 3.779</td>
+            <td class="pos">7,7%</td>
+          </tr>
+          <tr>
+            <td>Maio</td>
+            <td class="neg">-R$ 2.782</td>
+            <td class="neg">-5,8%</td>
+            <td class="pos">R$ 153</td>
+            <td class="pos">0,3%</td>
+          </tr>
+          <tr>
+            <td>Junho</td>
+            <td class="neg">-R$ 7.488</td>
+            <td class="neg">-19,4%</td>
+            <td class="pos">R$ 3.702</td>
+            <td class="pos">9,0%</td>
+          </tr>
+          <tr class="total">
+            <td>Total real</td>
+            <td class="neg">-R$ 13.712</td>
+            <td class="neg">-4,9%</td>
+            <td class="pos">+R$ 52.583</td>
+            <td class="pos">+18,0%</td>
+          </tr>
+          <tr class="ajustado">
+            <td>Total ajustado ¹</td>
+            <td class="pos">+R$ 28.360</td>
+            <td class="pos">+10,2%</td>
+            <td class="pos">+R$ 52.583</td>
+            <td class="pos">+18,0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      ¹ O resultado de 2025 foi ajustado somando a diferença de pró-labore entre os períodos (+R$ 42.072), para comparar a geração de valor disponível às sócias na mesma base de extração. Na comparação real, o 1SEM26 foi R$ 66.295 melhor. Na base ajustada, a melhora foi de +R$ 24.223 (+85%).
+    </div>
+  </section>
+
+  <!-- 03 CUSTOS -->
+  <section>
+    <div class="section-label">03 — Custos</div>
+    <h2>Estrutura de custos</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>1SEM25</th>
+            <th>% fat. 25</th>
+            <th>1SEM26</th>
+            <th>% fat. 26</th>
+            <th>Variação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pró-labore sócias</td>
+            <td>R$ 59.384</td>
+            <td>21,3%</td>
+            <td>R$ 17.312</td>
+            <td>5,9%</td>
+            <td class="pos">-R$ 42.072</td>
+          </tr>
+          <tr>
+            <td>Liquidação Carol</td>
+            <td>R$ 36.000</td>
+            <td>12,9%</td>
+            <td>R$ 0</td>
+            <td>0%</td>
+            <td class="pos">-R$ 36.000</td>
+          </tr>
+          <tr>
+            <td>Impostos</td>
+            <td>R$ 43.015</td>
+            <td>15,4%</td>
+            <td>R$ 31.653</td>
+            <td>10,8%</td>
+            <td class="pos">-R$ 11.362</td>
+          </tr>
+          <tr>
+            <td>Freelas / time</td>
+            <td>R$ 93.011</td>
+            <td>33,4%</td>
+            <td>R$ 134.990</td>
+            <td>46,2%</td>
+            <td class="neg">+R$ 41.979</td>
+          </tr>
+          <tr>
+            <td>Operacional</td>
+            <td>R$ 21.386</td>
+            <td>7,7%</td>
+            <td>R$ 38.853</td>
+            <td>13,3%</td>
+            <td class="neg">+R$ 17.467</td>
+          </tr>
+          <tr>
+            <td>Comercial (BNI etc.)</td>
+            <td>R$ 936</td>
+            <td>0,3%</td>
+            <td>R$ 10.753</td>
+            <td>3,7%</td>
+            <td class="neg">+R$ 9.817</td>
+          </tr>
+          <tr>
+            <td>Reserva de caixa</td>
+            <td>R$ 1.006</td>
+            <td>0,4%</td>
+            <td>R$ 21.104</td>
+            <td>7,2%</td>
+            <td class="neg">+R$ 20.098</td>
+          </tr>
+          <tr class="total">
+            <td>Total custos</td>
+            <td>R$ 296.751</td>
+            <td>106,4%</td>
+            <td>R$ 242.317</td>
+            <td>83,0%</td>
+            <td class="pos">-R$ 54.434</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insights">
+      <div class="insight ok">
+        <strong>O que reduziu</strong>
+        Liquidação da Carol foi custo único (R$ 36k, não se repete). Pró-labore reclassificado (-R$ 42k). Carga tributária menor (-R$ 11k).
+      </div>
+      <div class="insight alerta">
+        <strong>O que aumentou (intencionalmente)</strong>
+        Time cresceu R$ 42k — necessário para dobrar a carteira. Operacional e comercial acompanharam o crescimento.
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 CARTEIRA -->
+  <section>
+    <div class="section-label">04 — Carteira</div>
+    <h2>Clientes e ticket médio</h2>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Clientes/mês — 1SEM25</div>
+        <div class="card-value">10,2</div>
+        <div class="card-sub">Ticket médio R$ 4.618</div>
+      </div>
+      <div class="card salmao">
+        <div class="card-label">Clientes/mês — 1SEM26</div>
+        <div class="card-value">19,8</div>
+        <div class="card-sub">Ticket médio R$ 2.505</div>
+      </div>
+    </div>
+
+    <div class="note">
+      O ticket médio caiu 45,8% (R$ 4.618 → R$ 2.505) enquanto a quantidade de clientes quase dobrou (+94%). A receita total cresceu apenas 4,7% — o modelo migrou de poucos contratos de alto valor para uma carteira mais pulverizada. Maio e junho/26 com margens baixas (0,3% e 9%) sinalizam que esse modelo exige atenção contínua ao custo do time.
+    </div>
+  </section>
+
+  <!-- 05 VENDAS E CHURN -->
+  <section>
+    <div class="section-label">05 — Comercial</div>
+    <h2>Vendas e churn no período</h2>
+
+    <h3>Novas vendas — R$ 20.000 MRR (8 clientes)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th style="text-align:left">Origem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Marmoraria Harmonia</td><td style="text-align:left">Prospecção Júlio</td></tr>
+          <tr><td>Sicula</td><td style="text-align:left">Prospecção Júlio</td></tr>
+          <tr><td>Venmka</td><td style="text-align:left">Prospecção Júlio</td></tr>
+          <tr><td>Impare</td><td style="text-align:left">Prospecção Júlio</td></tr>
+          <tr><td>Data Centrics</td><td style="text-align:left">Prospecção Ina</td></tr>
+          <tr><td>Pequenos Olhares</td><td style="text-align:left">Prospecção Ina</td></tr>
+          <tr><td>SPO</td><td style="text-align:left">—</td></tr>
+          <tr><td>GarraTech</td><td style="text-align:left">—</td></tr>
+          <tr class="total">
+            <td>8 clientes</td>
+            <td class="pos" style="text-align:left">+R$ 20.000 MRR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Churn — R$ 24.775 MRR (10 clientes)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Clientes</th>
+            <th style="text-align:left">Status</th>
+            <th>MRR perdido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zait, Hartmann, São Luiz, WNP, Alumóbil, Origem, Prégio</td>
+            <td style="text-align:left">Já saíram (7)</td>
+            <td class="neg">-R$ 19.600</td>
+          </tr>
+          <tr>
+            <td>Olivas, SPO, Konzen</td>
+            <td style="text-align:left">Confirmados julho (3)</td>
+            <td class="neg">-R$ 5.175</td>
+          </tr>
+          <tr class="total">
+            <td>10 clientes</td>
+            <td style="text-align:left"></td>
+            <td class="neg">-R$ 24.775</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tags">
+      <span class="tag t-moinho">2 ex-Moinho</span>
+      <span class="tag t-grupo">1 Grupo</span>
+      <span class="tag t-bd">7 ex-BD</span>
+    </div>
+
+    <h3>Saldo líquido de MRR</h3>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr>
+            <td>Novas vendas</td>
+            <td class="pos">+R$ 20.000</td>
+          </tr>
+          <tr>
+            <td>Churn total (10 clientes)</td>
+            <td class="neg">-R$ 24.775</td>
+          </tr>
+          <tr class="total">
+            <td>Saldo líquido de MRR</td>
+            <td class="neg">-R$ 4.775</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      O crescimento de faturamento no 1SEM26 (+4,7%) aconteceu mesmo com saldo líquido de MRR negativo — os meses anteriores ao churn dos clientes ex-BD ainda sustentaram a receita do semestre. O impacto real da perda começa a aparecer no 2SEM26.
+    </div>
+  </section>
+
+  <!-- 06 PROPOSTAS ABERTAS -->
+  <section>
+    <div class="section-label">06 — Pipeline</div>
+    <h2>Propostas abertas</h2>
+
+    <div class="placeholder">
+      <p style="font-size:1.1rem; color:#bbb; margin-bottom:6px;">📋</p>
+      <p>Dados de propostas abertas serão adicionados em breve.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Moinho Digital · Documento interno · Gerado em junho de 2026
+</footer>
+
+</body>
+</html>
