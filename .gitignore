@@ -33,3 +33,6 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# Pasta de arquivos confidenciais (financeiro, dados sensíveis) — nunca sobe pro GitHub
+confidencial/
