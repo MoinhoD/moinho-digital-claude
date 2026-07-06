@@ -54,6 +54,15 @@ tráfego pago, evolução da base de assinantes. Sempre comparar com a fase ante
 - PT-BR, comunicação direta.
 - Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com `sicula-`.
 
+## Estilo do relatório
+
+Lido pela skill `relatorio-mensal`. **Ainda não há relatório de tráfego pago** (a mídia começa no lançamento oficial, julho/2026) — o estilo se consolida no primeiro relatório e deve ser registrado aqui depois. Diretrizes iniciais:
+
+- **Fase 1 (base quente):** reportar assinantes da Primeira Turma, taxa de resposta no WhatsApp 1:1, abertura/conversão de email e engajamento no Instagram — leitura de prova social e aprendizado de mensagens.
+- **Fase 2 (público frio / tráfego pago):** investimento, CPC, custo por assinante/lead, taxa de conversão e evolução da base.
+- Tom **próximo e autoral**, coerente com a voz de Bruno e Renato — não corporativo. Interpretar o que os números dizem sobre a saúde do lançamento, comparando com a fase anterior.
+- Assinado por **Vinícius Luiz — Moinho Digital**.
+
 ## Referências (material de origem em E:\moinho\portal-sicula)
 
 Estratégia de lançamento (`alinhamentos-iniciais/estrategia-lancamento-portal-circula.md`),

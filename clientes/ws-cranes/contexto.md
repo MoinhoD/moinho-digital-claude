@@ -32,9 +32,9 @@ anteriores e com a série histórica para identificar tendências e sazonalidade
 - PT-BR, comunicação direta.
 - Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com `ws-cranes-`.
 
-## Formato do relatório (base para skill futura)
+## Estilo do relatório
 
-O relatório mensal segue formato fixo (vira a skill `ws-cranes-relatorio`):
+Lido pela skill `relatorio-mensal`. O relatório mensal segue formato fixo, tom **executivo para diretoria**, sem jargão de mídia. Comparar com meses anteriores e situar na série histórica. Seções:
 
 1. **📆 Período analisado**
 2. **⚙️ Ações do período anterior** — até 5 bullets objetivos, só ações executadas, sem avaliação
