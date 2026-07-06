@@ -77,6 +77,15 @@ com o mês anterior e com a série histórica.
 - PT-BR, comunicação direta.
 - Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com `data-centrics-`.
 
+## Estilo do relatório
+
+Lido pela skill `relatorio-mensal`. **Ainda não há relatório mensal consolidado** — o estilo se firma no primeiro e deve ser registrado aqui depois. Diretrizes iniciais:
+
+- Objetivo é topo/meio de funil (download do e-book → lead na base). O foco da leitura é **volume e custo de lead qualificado**, não venda direta (a venda é fechada pelo comercial, ciclo ~25 dias).
+- Métricas de destaque: downloads/leads captados, **custo por lead**, investimento, impressões, cliques, CPC, taxa de conversão. Quando houver recorte por setor/segmento, comparar o fit dos leads (finanças, saúde, indústria etc.).
+- Leitor é **técnico e B2B**: linguagem precisa e sóbria, sem exagero de marketing. Interpretar o que os números dizem sobre a qualidade da captação, comparando com o mês anterior.
+- Assinado por **Vinícius Luiz — Moinho Digital**.
+
 ## Referências (material de origem em E:\moinho\data-centrics)
 
 Onboarding e reuniões de briefing/kick-off, calendário de marketing, esqueleto da
