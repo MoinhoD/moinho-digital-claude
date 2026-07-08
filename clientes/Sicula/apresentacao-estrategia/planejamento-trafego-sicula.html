@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planejamento de Tráfego Pago — Portal Sicula · Moinho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo: #5A368C;
+      --vermelho: #D23E4F;
+      --salmao: #F0867D;
+      --creme: #EFEEDF;
+      --texto: #1C1C1C;
+      --suave: #666;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; background: #fff; }
+    body { font-family: 'Lexend', 'Calibri', sans-serif; color: var(--texto); line-height: 1.6; }
+
+    .slides-track { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: center; padding: 48px 0 72px; overflow-y: auto;
+      opacity: 0; pointer-events: none; transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(.25,.1,.25,1), opacity 0.35s ease;
+    }
+    .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+    .slide.bg-creme    { background: var(--creme); }
+    .slide.bg-roxo     { background: linear-gradient(135deg,#5A368C 0%,#3d2260 100%); color:#fff; }
+    .slide.bg-dark     { background: linear-gradient(135deg,#3d2260 0%,#2a1845 100%); color:#fff; }
+    .slide.bg-hero     { background: linear-gradient(135deg,#5A368C 0%,#3d2260 60%,#D23E4F 100%); color:#fff; }
+    .slide-tall        { justify-content: flex-start; padding-top: 52px; }
+
+    .carousel-nav {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(20,8,40,.78); backdrop-filter: blur(14px);
+      border-radius: 40px; padding: 9px 22px; z-index: 200;
+    }
+    .nav-btn { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 2px 8px; opacity: .75; transition: opacity .2s; }
+    .nav-btn:hover { opacity: 1; }
+    .nav-btn:disabled { opacity: .22; cursor: default; }
+    .counter { color: rgba(255,255,255,.65); font-size: 11px; letter-spacing: 1.5px; min-width: 36px; text-align: center; }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--salmao); z-index: 200; transition: width .4s ease; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 64px; width: 100%; }
+    .label-tag { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--salmao); margin-bottom: 10px; }
+    h1 { font-family: 'Noto Serif', serif; font-weight: 600; }
+    h2 { font-family: 'Noto Serif', serif; font-size: 30px; font-weight: 600; line-height: 1.2; margin-bottom: 24px; }
+    h4 { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--roxo); margin-bottom: 10px; }
+    p { font-size: 15px; margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    ul { list-style: none; padding: 0; }
+
+    .hero-logo  { height: 60px; width: auto; margin-bottom: 40px; display: block; }
+    .hero-tag   { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--salmao); margin-bottom: 20px; }
+    .hero h1    { font-size: 80px; line-height: 1.0; margin-bottom: 16px; }
+    .hero-meta  { font-size: 14px; color: rgba(255,255,255,.4); font-weight: 300; }
+
+    .pilares-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .pilar-item { display: flex; align-items: flex-start; gap: 20px; padding: 22px 26px; border: 1.5px solid #e4e4e4; border-radius: 12px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .pilar-num { font-family: 'Noto Serif', serif; font-size: 28px; font-weight: 600; color: var(--vermelho); min-width: 32px; line-height: 1; padding-top: 2px; }
+    .pilar-nome { font-weight: 500; font-size: 16px; margin-bottom: 4px; }
+    .pilar-foco { font-size: 13px; color: var(--suave); margin: 0; }
+
+    .objetivo-texto { font-size: 20px; font-weight: 300; line-height: 1.65; color: rgba(255,255,255,.9); max-width: 740px; }
+
+    .estrategia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .estrategia-col { padding: 20px 22px; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .estrategia-col p { font-size: 13px; color: #444; margin: 0; line-height: 1.6; }
+    .estrategia-list { display: flex; flex-direction: column; gap: 8px; }
+    .estrategia-list li { font-size: 13px; color: #444; padding-left: 16px; position: relative; line-height: 1.5; }
+    .estrategia-list li::before { content: '—'; position: absolute; left: 0; color: var(--salmao); }
+
+    .concorrentes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+    .concorrente-card { padding: 20px 22px; background: #fff; border-radius: 10px; box-shadow: 0 2px 14px rgba(0,0,0,.07); display: flex; flex-direction: column; gap: 10px; }
+    .concorrente-nome { font-weight: 500; font-size: 15px; color: var(--roxo); }
+    .concorrente-obs { font-size: 13px; color: #555; line-height: 1.6; }
+    .concorrencia-nota { font-size: 13px; color: var(--suave); font-style: italic; padding: 14px 18px; border-left: 3px solid var(--roxo); background: rgba(90,54,140,.04); border-radius: 0 8px 8px 0; }
+
+    .grupos-grid { display: flex; flex-direction: column; gap: 14px; }
+    .grupo-item { padding: 18px 22px; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .grupo-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .grupo-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--roxo); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+    .grupo-nome { font-weight: 500; font-size: 15px; }
+    .grupo-kw-label { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--suave); margin-bottom: 8px; }
+    .grupo-kw-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .grupo-kw-list li { font-size: 12px; padding: 4px 12px; background: var(--creme); border-radius: 20px; color: var(--texto); }
+
+    .ad-bloco { background: #fff; border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.07); margin-bottom: 16px; overflow: hidden; }
+    .ad-grupo-label { padding: 12px 22px; background: var(--roxo); color: #fff; font-size: 12px; font-weight: 500; }
+    .ad-campos { display: grid; grid-template-columns: 1fr 1fr; }
+    .ad-campo { padding: 18px 22px; border-right: 1px solid #f0f0f0; }
+    .ad-campo:last-child { border-right: none; }
+    .ad-field-label { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--suave); margin-bottom: 10px; }
+    .ad-campo ul { display: flex; flex-direction: column; gap: 6px; }
+    .ad-campo li { font-size: 13px; color: #444; padding-left: 14px; position: relative; line-height: 1.5; }
+    .ad-campo li::before { content: '—'; position: absolute; left: 0; color: var(--salmao); }
+
+    .duvidas-tema { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--roxo); margin: 20px 0 8px; }
+    .duvidas-tema:first-child { margin-top: 0; }
+    .duvidas-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+    .duvidas-list li { font-size: 14px; color: #444; padding: 12px 16px; background: #fff; border-radius: 8px; border-left: 3px solid var(--salmao); line-height: 1.5; box-shadow: 0 1px 6px rgba(0,0,0,.05); }
+
+    .demandas-list { display: flex; flex-direction: column; gap: 10px; }
+    .demandas-list li { font-size: 14px; color: #444; padding: 14px 20px; background: #fff; border-radius: 10px; border-left: 4px solid var(--vermelho); line-height: 1.5; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    .demanda-resp { display: block; font-size: 11px; color: var(--suave); margin-top: 4px; }
+
+    .aprovacoes-list { display: flex; flex-direction: column; gap: 10px; }
+    .aprovacoes-list li { font-size: 15px; color: var(--texto); padding: 16px 22px; background: #fff; border-radius: 10px; display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .aprovacoes-list li::before { content: '→'; color: var(--roxo); font-weight: 600; flex-shrink: 0; }
+
+    .timeline { border-left: 3px solid var(--roxo); padding-left: 28px; display: flex; flex-direction: column; }
+    .timeline-item { position: relative; padding: 14px 0; }
+    .timeline-item::before { content: ''; width: 11px; height: 11px; background: var(--vermelho); border-radius: 50%; position: absolute; left: -34px; top: 19px; }
+    .timeline-item.tl-zero::before { background: var(--salmao); }
+    .timeline-periodo { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--vermelho); margin-bottom: 3px; }
+    .timeline-item.tl-zero .timeline-periodo { color: var(--salmao); }
+    .timeline-label { font-size: 14px; color: var(--texto); }
+
+    .cta-logo { height: 48px; width: auto; opacity: .9; margin-bottom: 28px; display: block; }
+    .cta-h2 { font-family: 'Noto Serif', serif; font-size: 38px; font-weight: 600; line-height: 1.15; margin-bottom: 28px; max-width: 600px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 56px; align-items: start; }
+    .footer-col-title { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--salmao); margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,.65); text-decoration: none; font-size: 14px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-cta { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.65; }
+    .footer-tagline { font-family: 'Noto Serif', serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,.28); margin-top: 16px; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      h2 { font-size: 22px; }
+      .hero h1 { font-size: 48px; }
+      .estrategia-grid, .concorrentes-grid, .ad-campos, .footer-grid { grid-template-columns: 1fr; }
+      .slide-tall { padding-top: 52px; -webkit-overflow-scrolling: touch; }
+    }
+
+    @media print {
+      html, body { height: auto; overflow: visible; }
+      .slides-track { position: static; height: auto; overflow: visible; }
+      .carousel-nav, .progress-bar { display: none !important; }
+      .slide { position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto; height: 100vh; page-break-after: always; overflow: hidden; padding-bottom: 0; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    /* Funil de captação */
+    .funil-intro { font-size: 15px; color: #444; max-width: 760px; margin-bottom: 18px; }
+    .funil { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .funil-etapa { background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); padding: 12px 22px; display: flex; align-items: center; gap: 16px; }
+    .funil-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--roxo); color: #fff; border-radius: 50%; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+    .funil-etapa.f-ads .funil-num { background: var(--vermelho); }
+    .funil-info strong { font-size: 14px; font-weight: 500; display: block; }
+    .funil-info span { font-size: 12px; color: var(--suave); }
+
+    /* Pré-visualização do anúncio (mockup Google) */
+    .serp-wrap { display: flex; flex-direction: column; gap: 16px; }
+    .serp { background: #fff; border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.07); padding: 20px 24px; max-width: 660px; }
+    .serp-grupo { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--suave); margin-bottom: 12px; }
+    .serp-url { font-size: 12px; color: #202124; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+    .serp-url b { font-weight: 700; }
+    .serp-url small { color: #5f6368; font-weight: 400; }
+    .serp-title { font-family: Arial, sans-serif; font-size: 20px; color: #1a0dab; line-height: 1.3; margin: 2px 0 5px; }
+    .serp-desc { font-size: 13px; color: #4d5156; line-height: 1.5; }
+    .serp-sitelinks { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 10px; }
+    .serp-sitelinks a { font-size: 13px; color: #1a0dab; text-decoration: none; }
+    .preview-nota { font-size: 13px; color: var(--suave); font-style: italic; margin-top: 18px; padding: 12px 16px; border-left: 3px solid var(--salmao); background: rgba(240,134,125,.07); border-radius: 0 8px 8px 0; }
+
+    /* Ajustes na landing page */
+    .lp-grid { display: flex; flex-direction: column; gap: 14px; }
+    .lp-item { background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); padding: 18px 22px; border-left: 4px solid var(--vermelho); }
+    .lp-titulo { font-size: 15px; font-weight: 500; color: var(--vermelho); margin-bottom: 8px; }
+    .lp-problema { font-size: 14px; color: #444; line-height: 1.55; margin-bottom: 8px; }
+    .lp-problema b, .lp-sugestao b { font-weight: 500; }
+    .lp-sugestao { font-size: 14px; color: var(--texto); line-height: 1.55; padding-left: 18px; position: relative; }
+    .lp-sugestao::before { content: '→'; position: absolute; left: 0; color: var(--roxo); font-weight: 600; }
+    .lp-sugestao b { color: var(--roxo); }
+
+    /* Observação / nota de grupo */
+    .obs-nota { font-size: 13px; color: var(--suave); margin-top: 16px; padding: 14px 18px; border-left: 3px solid var(--roxo); background: rgba(90,54,140,.05); border-radius: 0 8px 8px 0; line-height: 1.6; }
+  
+    .funil { align-items: flex-start; }
+    .funil-etapa.f-ads { margin-left: 34px; }
+    .cfg-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
+    .cfg-row span { font-size: 13px; background: #fff; border-radius: 20px; padding: 7px 14px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    .cfg-row b { color: var(--roxo); font-weight: 500; margin-right: 4px; }
+    .crv-lbl { font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--vermelho); margin-bottom: 8px; }
+    .crv-hook { font-size: 14px; color: var(--texto); line-height: 1.5; margin: 0; }
+    .publicos-titulo { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--roxo); margin: 24px 0 12px; }
+    .publicos-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .publico-box { background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); padding: 18px 20px; }
+    .publico-box.frio  { border-top: 3px solid var(--roxo); }
+    .publico-box.quente { border-top: 3px solid var(--vermelho); }
+    .grupo-kw-list.quente li { background: rgba(210,62,79,.10); color: var(--vermelho); }
+    @media (max-width: 768px) { .publicos-wrap { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="slides-track">
+
+  <!-- 1. ESTRATÉGIA (visão geral + funil + públicos) -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag" style="color:var(--roxo)">Portal Sicula · por Moinho</p>
+      <h2>Planejamento de Tráfego Pago</h2>
+      <p class="funil-intro">Um funil de anúncios que apresenta a Sicula para quem tem perfil de
+      investidor e conduz os interessados até a <strong>assinatura</strong>: o topo alcança e aproxima;
+      o fundo converte quem já demonstrou interesse.</p>
+      <div class="cfg-row">
+        <span><b>Investimento</b> R$1.200/mês</span>
+        <span><b>Início</b> Até 20/07</span>
+      </div>
+
+      <div class="funil" style="margin-top:20px">
+        <div class="funil-etapa">
+          <span class="funil-num">1</span>
+          <div class="funil-info"><strong>Topo · Alcance — Tráfego para o perfil</strong>
+          <span>Conteúdos amplos (cortes de lives e vídeos) apresentam a Sicula ao público certo.</span></div>
+        </div>
+        <div class="funil-etapa">
+          <span class="funil-num">2</span>
+          <div class="funil-info"><strong>Interação — o público se qualifica sozinho</strong>
+          <span>Quem assiste, visita o portal ou passa a seguir entra na audiência engajada.</span></div>
+        </div>
+        <div class="funil-etapa f-ads">
+          <span class="funil-num">3</span>
+          <div class="funil-info"><strong>Fundo · Conversão — Venda</strong>
+          <span>A audiência quente recebe os anúncios de venda, focados na assinatura.</span></div>
+        </div>
+      </div>
+
+      <p class="publicos-titulo">Para quem anunciamos</p>
+      <div class="publicos-wrap">
+        <div class="publico-box frio">
+          <p class="grupo-kw-label">Topo · interesses (público novo)</p>
+          <ul class="grupo-kw-list">
+            <li>Investimento</li><li>Finanças</li><li>Bolsa de valores</li>
+            <li>Ativos financeiros</li><li>Renda variável</li>
+          </ul>
+        </div>
+        <div class="publico-box quente">
+          <p class="grupo-kw-label">Fundo · público quente (já interagiu)</p>
+          <ul class="grupo-kw-list quente">
+            <li>Assistiu aos vídeos</li><li>Visitou o portal</li><li>Começou a seguir</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="obs-nota">Aquecendo primeiro e vendendo depois, cada real de mídia trabalha para quem
+      já tem interesse real na Sicula — evitando queimar verba com público frio no nicho financeiro.</p>
+    </div>
+  </div>
+
+  <!-- 2. MÉTRICAS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Acompanhamento</p>
+      <h2>Métricas que vamos acompanhar</h2>
+      <p class="funil-intro">Leitura de perto, semana a semana, para otimizar o funil de forma
+      contínua — realocando esforço para o que performa melhor.</p>
+      <div class="estrategia-grid" style="grid-template-columns:1fr 1fr">
+        <div class="estrategia-col">
+          <h4>Topo · Alcance</h4>
+          <ul class="estrategia-list">
+            <li>Retenção dos vídeos — o quanto assistem</li>
+            <li>CTR — taxa de cliques nos anúncios</li>
+            <li>CPM — custo para alcançar mil pessoas</li>
+            <li>Alcance e engajamento</li>
+          </ul>
+        </div>
+        <div class="estrategia-col">
+          <h4>Fundo · Conversão</h4>
+          <ul class="estrategia-list">
+            <li>Cliques — quem segue para o portal</li>
+            <li>Custo por clique — eficiência do investimento</li>
+            <li>Vendas — assinaturas geradas pelo funil</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CRIATIVOS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Produção</p>
+      <h2>Criativos que vamos precisar</h2>
+      <p class="funil-intro">Para o fundo do funil, começamos com <strong>6 criativos de venda</strong>:
+      3 vídeos e 3 estáticos. Todos diretos, com gancho forte e na linguagem da Sicula.</p>
+
+      <h4 style="margin-bottom:12px">3 Vídeos</h4>
+      <div class="estrategia-grid" style="margin-bottom:22px">
+        <div class="estrategia-col"><p class="crv-lbl">Gancho · Dor</p><p class="crv-hook">“Você já perdeu dinheiro seguindo a dica de alguém que nunca te explicou o porquê.”</p></div>
+        <div class="estrategia-col"><p class="crv-lbl">Comportamental</p><p class="crv-hook">“O que te faz perder no mercado não é falta de gráfico. É o medo e a euforia decidindo por você.”</p></div>
+        <div class="estrategia-col"><p class="crv-lbl">Urgência + oferta</p><p class="crv-hook">“Cada semana operando no achismo é uma semana de patrimônio decidida no escuro.”</p></div>
+      </div>
+
+      <h4 style="margin-bottom:12px">3 Estáticos</h4>
+      <div class="estrategia-grid">
+        <div class="estrategia-col"><p class="crv-lbl">Aposta × decisão</p><p class="crv-hook">“Investimento sério não é aposta, é decisão consciente.”</p></div>
+        <div class="estrategia-col"><p class="crv-lbl">Comportamental</p><p class="crv-hook">“Você até entende o gráfico. Mas quem decide: você ou a sua ansiedade?”</p></div>
+        <div class="estrategia-col"><p class="crv-lbl">Anti-guru + oferta</p><p class="crv-hook">“A internet te vende o próximo milagre. A gente te ensina a ler o cenário.”<br><span style="color:var(--suave);font-size:12px">Assine por R$32,33/mês</span></p></div>
+      </div>
+
+      <p class="obs-nota"><b>Vídeos:</b> roteiro e direção pela Moinho, gravados com vocês, e toda a
+      edição e finalização por nossa conta. &nbsp;<b>Estáticos:</b> 100% produzidos pela Moinho.</p>
+    </div>
+  </div>
+
+  <!-- 4. CRONOGRAMA + O QUE PRECISAMOS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Próximos passos</p>
+      <h2>Cronograma</h2>
+      <div class="timeline" style="margin-bottom:26px">
+        <div class="timeline-item tl-zero">
+          <p class="timeline-periodo">Até 20/07</p>
+          <p class="timeline-label">Subida do funil — topo e fundo no ar com os primeiros criativos.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-periodo">Em paralelo</p>
+          <p class="timeline-label">Gravação dos 3 vídeos, com vocês, a partir dos roteiros da Moinho.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-periodo">Quando a nova identidade visual sair</p>
+          <p class="timeline-label">Página de vendas dedicada, já na nova identidade.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-periodo">Primeiros 30 dias</p>
+          <p class="timeline-label">Acompanhamento, otimização e novas demandas do time de conteúdo entrando conforme o plano evolui.</p>
+        </div>
+      </div>
+      <p class="label-tag" style="color:var(--roxo)">O que precisamos de vocês</p>
+      <ul class="aprovacoes-list">
+        <li>Agendar a gravação dos 3 vídeos — a Moinho envia os roteiros e cuida de toda a produção.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<nav class="carousel-nav">
+  <button class="nav-btn" id="prev" aria-label="Anterior">&#8592;</button>
+  <span class="counter" id="counter">1 / 1</span>
+  <button class="nav-btn" id="next" aria-label="Próximo">&#8594;</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prev   = document.getElementById('prev');
+  const next   = document.getElementById('next');
+  const ctr    = document.getElementById('counter');
+  const bar    = document.getElementById('progress');
+  let cur = 0;
+
+  function go(n) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(n, slides.length - 1));
+    slides[cur].classList.add('active');
+    ctr.textContent = (cur + 1) + ' / ' + slides.length;
+    bar.style.width = ((cur + 1) / slides.length * 100) + '%';
+    prev.disabled = cur === 0;
+    next.disabled = cur === slides.length - 1;
+  }
+
+  prev.addEventListener('click', () => go(cur - 1));
+  next.addEventListener('click', () => go(cur + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(cur + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(cur - 1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) go(dx < 0 ? cur + 1 : cur - 1);
+  }, { passive: true });
+  go(0);
+</script>
+</body>
+</html>
