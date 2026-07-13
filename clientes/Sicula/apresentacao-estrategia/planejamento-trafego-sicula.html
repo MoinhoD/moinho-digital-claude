@@ -140,6 +140,7 @@
     }
 
     @media print {
+      @page { size: landscape; margin: 0; }
       html, body { height: auto; overflow: visible; }
       .slides-track { position: static; height: auto; overflow: visible; }
       .carousel-nav, .progress-bar { display: none !important; }
@@ -180,6 +181,10 @@
 
     /* Observação / nota de grupo */
     .obs-nota { font-size: 13px; color: var(--suave); margin-top: 16px; padding: 14px 18px; border-left: 3px solid var(--roxo); background: rgba(90,54,140,.05); border-radius: 0 8px 8px 0; line-height: 1.6; }
+
+    /* Destaque da tese central da estratégia */
+    .tese-central { margin-top: 26px; padding: 24px 28px; background: linear-gradient(135deg, rgba(90,54,140,.08), rgba(210,62,79,.08)); border-left: 4px solid var(--vermelho); border-radius: 0 12px 12px 0; }
+    .tese-central p { font-family: 'Noto Serif', serif; font-size: 21px; font-weight: 600; line-height: 1.45; color: var(--roxo); margin: 0; }
   
     .funil { align-items: flex-start; }
     .funil-etapa.f-ads { margin-left: 34px; }
@@ -195,6 +200,39 @@
     .publico-box.quente { border-top: 3px solid var(--vermelho); }
     .grupo-kw-list.quente li { background: rgba(210,62,79,.10); color: var(--vermelho); }
     @media (max-width: 768px) { .publicos-wrap { grid-template-columns: 1fr; } }
+
+    /* Personas */
+    .personas-grid { display: flex; flex-direction: column; gap: 14px; }
+    .persona-card { padding: 20px 24px; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .persona-nome { font-weight: 500; font-size: 15px; color: var(--roxo); margin-bottom: 2px; }
+    .persona-perfil { font-size: 12px; color: var(--suave); margin-bottom: 8px; }
+    .persona-contexto { font-size: 13px; color: #444; line-height: 1.55; margin-bottom: 10px; }
+    .persona-quote { font-size: 14px; font-style: italic; color: var(--texto); padding-left: 16px; border-left: 3px solid var(--salmao); line-height: 1.5; }
+
+    /* Capa */
+    .capa-titulo { font-family: 'Noto Serif', serif; font-size: 56px; line-height: 1.1; margin-bottom: 20px; max-width: 780px; }
+
+    /* Layouts compactos (evitar scroll) */
+    .pilares-grid.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .pilares-grid.grid-2 .pilar-item { padding: 14px 18px; gap: 12px; }
+    .pilares-grid.grid-2 .pilar-num { font-size: 22px; min-width: 26px; }
+    .pilares-grid.grid-2 .pilar-nome { font-size: 13.5px; margin-bottom: 3px; }
+    .pilares-grid.grid-2 .pilar-foco { font-size: 12px; }
+    .pilares-grid.grid-2 .pilar-item.full { grid-column: 1 / -1; }
+
+    .lp-grid.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .lp-grid.grid-2 .lp-item { padding: 12px 16px; }
+    .lp-grid.grid-2 .lp-titulo { font-size: 13px; margin-bottom: 4px; }
+    .lp-grid.grid-2 .lp-sugestao { font-size: 12.5px; }
+
+    .criativos-compact h4 { margin-bottom: 6px !important; }
+    .criativos-compact .funil-intro { margin-bottom: 12px !important; font-size: 13px; }
+    .criativos-compact .estrategia-grid { gap: 10px; margin-bottom: 14px !important; }
+    .criativos-compact .estrategia-col { padding: 12px 14px; }
+    .criativos-compact .crv-hook { font-size: 12.5px; }
+    .criativos-compact .obs-nota { margin-top: 10px; padding: 10px 14px; font-size: 12px; }
+
+    @media (max-width: 768px) { .pilares-grid.grid-2, .lp-grid.grid-2 { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -203,7 +241,159 @@
 
 <div class="slides-track">
 
-  <!-- 1. ESTRATÉGIA (visão geral + funil + públicos) -->
+  <!-- 1. CAPA -->
+  <div class="slide bg-hero">
+    <div class="container">
+      <p class="hero-tag">Sicula · por Moinho</p>
+      <h1 class="capa-titulo">Estratégia digital: Portal Sicula</h1>
+      <p class="hero-meta">Julho de 2026</p>
+    </div>
+  </div>
+
+  <!-- 2. O OBJETIVO DA ESTRATÉGIA -->
+  <div class="slide bg-roxo">
+    <div class="container">
+      <p class="label-tag">Objetivo da estratégia</p>
+      <h2 style="color:#fff; max-width:820px;">Uma estratégia que posiciona o Portal Sicula como a
+      autoridade que traduz o mercado em fundamentos e conduz o investidor cansado de promessas até a
+      assinatura.</h2>
+      <p class="objetivo-texto">O orgânico constrói a autoridade; o tráfego acelera o alcance. Ambos
+      operam juntos: o conteúdo orgânico vira ativo pago.</p>
+    </div>
+  </div>
+
+  <!-- 3. COMO O CONTEÚDO FUNCIONA (PILARES) -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag" style="color:var(--roxo)">Planejamento conteúdo orgânico</p>
+      <h2>Como o conteúdo funciona: cinco pilares guiam a produção</h2>
+      <p class="funil-intro">Cada peça nasce de um deles, com uma função clara dentro da estratégia.</p>
+      <div class="pilares-grid grid-2">
+        <div class="pilar-item">
+          <span class="pilar-num">30%</span>
+          <div><p class="pilar-nome">Fundamento Técnico (posicionamento)</p><p class="pilar-foco">Desconstrução de jargões e mecanismos do mercado. Gera credibilidade.</p></div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-num">25%</span>
+          <div><p class="pilar-nome">Comportamento e Casos Reais</p><p class="pilar-foco">As escolhas psicológicas que levam ao erro ou ao acerto. Gera identificação.</p></div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-num">20%</span>
+          <div><p class="pilar-nome">Tradução de Cenários</p><p class="pilar-foco">Da macroeconomia ao patrimônio do aluno. Gera recorrência.</p></div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-num">15%</span>
+          <div><p class="pilar-nome">Provocação</p><p class="pilar-foco">Questionamentos sobre dependência de dica, guru e algoritmo. Gera diferenciação.</p></div>
+        </div>
+        <div class="pilar-item full">
+          <span class="pilar-num">10%</span>
+          <div><p class="pilar-nome">Comercial</p><p class="pilar-foco">Convite ao estudo, nunca venda de atalho. Gera assinaturas.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. COMO O CONTEÚDO FUNCIONA (FUNIL) -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Estratégia de conteúdo</p>
+      <h2>Como o conteúdo funciona</h2>
+      <div class="funil" style="margin-top:20px">
+        <div class="funil-etapa">
+          <span class="funil-num">1</span>
+          <div class="funil-info"><strong>Atrair · Fundamento e provocação</strong>
+          <span>Reels e posts de dados apresentam a Sicula ao investidor certo: quem busca entender, não seguir dica.</span></div>
+        </div>
+        <div class="funil-etapa">
+          <span class="funil-num">2</span>
+          <div class="funil-info"><strong>Qualificar · O público se filtra sozinho</strong>
+          <span>Quem se identifica com a exigência fica; quem procura atalho sai. A audiência que permanece já chega madura.</span></div>
+        </div>
+        <div class="funil-etapa f-ads">
+          <span class="funil-num">3</span>
+          <div class="funil-info"><strong>Converter · Convite ao estudo</strong>
+          <span>A audiência aquecida recebe os conteúdos comerciais, sem urgência artificial, no tom da marca: decisão fundamentada vale também para assinar.</span></div>
+        </div>
+      </div>
+      <p class="obs-nota">Cada peça publicada trabalha para uma dessas três funções. Nada entra no calendário sem função definida.</p>
+    </div>
+  </div>
+
+  <!-- 5. PARA QUEM FALAMOS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag" style="color:var(--roxo)">Personas</p>
+      <h2>Para quem falamos</h2>
+      <div class="personas-grid">
+        <div class="persona-card">
+          <p class="persona-nome">Ricardo, 42</p>
+          <p class="persona-perfil">Diretor comercial</p>
+          <p class="persona-contexto">Patrimônio construído, decisões terceirizadas. Cansado de curso de guru que o trata como criança.</p>
+          <p class="persona-quote">"Eu não quero ficar rico rápido. Quero entender o que estou fazendo com o meu dinheiro."</p>
+        </div>
+        <div class="persona-card">
+          <p class="persona-nome">Fernanda, 38</p>
+          <p class="persona-perfil">Sócia de empresa</p>
+          <p class="persona-contexto">Rigorosa no caixa da empresa, passiva no patrimônio pessoal. Quer a mesma disciplina nos dois.</p>
+          <p class="persona-quote">"Não aceito ser tratada como incapaz quando o assunto é o meu dinheiro."</p>
+        </div>
+        <div class="persona-card">
+          <p class="persona-nome">André, 29</p>
+          <p class="persona-perfil">Gerente em ascensão</p>
+          <p class="persona-contexto">Consumiu conteúdo demais, percebeu o padrão: todo mundo vende atalho, ninguém ensina fundamento.</p>
+          <p class="persona-quote">"O que eu preciso agora é de estrutura."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ONDE A SICULA ENTRA -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag" style="color:var(--roxo)">Posicionamento</p>
+      <h2>Onde a Sicula entra</h2>
+      <p class="funil-intro">O nicho opera em dois extremos e o meio está vazio.</p>
+      <div class="concorrentes-grid">
+        <div class="concorrente-card">
+          <p class="concorrente-nome">Primo Rico</p>
+          <p class="concorrente-obs">Promessa e carisma para as massas. A Sicula recebe quem saiu de lá cético.</p>
+        </div>
+        <div class="concorrente-card">
+          <p class="concorrente-nome">Me Poupe!</p>
+          <p class="concorrente-obs">Primeiro degrau (sair do vermelho, poupar). A Sicula é o degrau seguinte.</p>
+        </div>
+        <div class="concorrente-card">
+          <p class="concorrente-nome">Suno</p>
+          <p class="concorrente-obs">Diz o que comprar. A Sicula ensina a construir a própria leitura.</p>
+        </div>
+        <div class="concorrente-card">
+          <p class="concorrente-nome">Clube do Valor</p>
+          <p class="concorrente-obs">Educa para gerir o patrimônio do cliente. A Sicula educa para o aluno assumir o controle.</p>
+        </div>
+      </div>
+      <p class="concorrencia-nota">A lacuna: fundamento + autonomia. Todos os players operam em broadcast — eles falam, a audiência escuta. A Sicula debate.</p>
+    </div>
+  </div>
+
+  <!-- 7. PRODUÇÃO (CONTEÚDO ORGÂNICO) -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Execução</p>
+      <h2>Produção</h2>
+      <div class="cfg-row">
+        <span><b>Cadência inicial</b> 2 posts/semana</span>
+      </div>
+      <ul class="aprovacoes-list" style="margin-top:20px">
+        <li>Reels de fundamento e provocação — gravados com vocês, roteiro e edição da Moinho.</li>
+        <li>Carrosséis e posts de dados — 100% produzidos pela Moinho.</li>
+        <li>Cortes das lives e encontros alimentam tanto o orgânico quanto o topo do funil de tráfego. Edições feitas pela Moinho.</li>
+      </ul>
+      <p class="obs-nota">Bio e centralizador de links reformulados na linguagem da marca, com a
+      assinatura como destino principal.</p>
+    </div>
+  </div>
+
+  <!-- 8. ESTRATÉGIA DE TRÁFEGO PAGO (tese + públicos) -->
   <div class="slide bg-creme slide-tall">
     <div class="container">
       <p class="label-tag" style="color:var(--roxo)">Portal Sicula · por Moinho</p>
@@ -214,24 +404,6 @@
       <div class="cfg-row">
         <span><b>Investimento</b> R$1.200/mês</span>
         <span><b>Início</b> Até 20/07</span>
-      </div>
-
-      <div class="funil" style="margin-top:20px">
-        <div class="funil-etapa">
-          <span class="funil-num">1</span>
-          <div class="funil-info"><strong>Topo · Alcance — Tráfego para o perfil</strong>
-          <span>Conteúdos amplos (cortes de lives e vídeos) apresentam a Sicula ao público certo.</span></div>
-        </div>
-        <div class="funil-etapa">
-          <span class="funil-num">2</span>
-          <div class="funil-info"><strong>Interação — o público se qualifica sozinho</strong>
-          <span>Quem assiste, visita o portal ou passa a seguir entra na audiência engajada.</span></div>
-        </div>
-        <div class="funil-etapa f-ads">
-          <span class="funil-num">3</span>
-          <div class="funil-info"><strong>Fundo · Conversão — Venda</strong>
-          <span>A audiência quente recebe os anúncios de venda, focados na assinatura.</span></div>
-        </div>
       </div>
 
       <p class="publicos-titulo">Para quem anunciamos</p>
@@ -251,56 +423,63 @@
         </div>
       </div>
 
-      <p class="obs-nota">Aquecendo primeiro e vendendo depois, cada real de mídia trabalha para quem
-      já tem interesse real na Sicula — evitando queimar verba com público frio no nicho financeiro.</p>
+      <div class="tese-central">
+        <p>Aquecendo primeiro e vendendo depois, cada real de mídia trabalha para quem
+        já tem interesse real na Sicula — evitando queimar verba com público frio no nicho financeiro.</p>
+      </div>
     </div>
   </div>
 
-  <!-- 2. MÉTRICAS -->
+  <!-- 9. FUNIL -->
   <div class="slide bg-creme slide-tall">
     <div class="container">
-      <p class="label-tag">Acompanhamento</p>
-      <h2>Métricas que vamos acompanhar</h2>
-      <p class="funil-intro">Leitura de perto, semana a semana, para otimizar o funil de forma
-      contínua — realocando esforço para o que performa melhor.</p>
-      <div class="estrategia-grid" style="grid-template-columns:1fr 1fr">
-        <div class="estrategia-col">
-          <h4>Topo · Alcance</h4>
-          <ul class="estrategia-list">
-            <li>Retenção dos vídeos — o quanto assistem</li>
-            <li>CTR — taxa de cliques nos anúncios</li>
-            <li>CPM — custo para alcançar mil pessoas</li>
-            <li>Alcance e engajamento</li>
-          </ul>
+      <p class="label-tag">Como funciona</p>
+      <h2>O funil, passo a passo</h2>
+      <p class="funil-intro">Três etapas que levam o público frio até a assinatura, com anúncios
+      diferentes para cada momento da jornada.</p>
+
+      <div class="funil" style="margin-top:20px">
+        <div class="funil-etapa">
+          <span class="funil-num">1</span>
+          <div class="funil-info"><strong>Topo · Alcance — Tráfego para o perfil</strong>
+          <span>Conteúdos amplos (cortes de lives e vídeos) apresentam a Sicula ao público certo.</span></div>
         </div>
-        <div class="estrategia-col">
-          <h4>Fundo · Conversão</h4>
-          <ul class="estrategia-list">
-            <li>Cliques — quem segue para o portal</li>
-            <li>Custo por clique — eficiência do investimento</li>
-            <li>Vendas — assinaturas geradas pelo funil</li>
-          </ul>
+        <div class="funil-etapa">
+          <span class="funil-num">2</span>
+          <div class="funil-info"><strong>Interação — o público se qualifica sozinho</strong>
+          <span>Quem assiste, visita o portal ou passa a seguir entra na audiência engajada.</span></div>
+        </div>
+        <div class="funil-etapa f-ads">
+          <span class="funil-num">3</span>
+          <div class="funil-info"><strong>Fundo · Conversão — Venda</strong>
+          <span>A audiência quente recebe os anúncios de venda, focados na assinatura.</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. CRIATIVOS -->
+  <!-- 10. CRIATIVOS -->
   <div class="slide bg-creme slide-tall">
-    <div class="container">
+    <div class="container criativos-compact">
       <p class="label-tag">Produção</p>
-      <h2>Criativos que vamos precisar</h2>
-      <p class="funil-intro">Para o fundo do funil, começamos com <strong>6 criativos de venda</strong>:
-      3 vídeos e 3 estáticos. Todos diretos, com gancho forte e na linguagem da Sicula.</p>
+      <h2 style="margin-bottom:14px">Criativos fundo de funil — estratégia inicial</h2>
 
-      <h4 style="margin-bottom:12px">3 Vídeos</h4>
-      <div class="estrategia-grid" style="margin-bottom:22px">
+      <h4>Topo · Alcance — conteúdo já existente</h4>
+      <p class="funil-intro">Cortes de lives e vídeos já gravados — sem produção nova nesse primeiro
+      momento. Foco em alcance, não venda.</p>
+
+      <h4>Fundo · Conversão — 6 criativos novos</h4>
+      <p class="funil-intro">6 criativos de venda: 3 vídeos e 3 estáticos, diretos, com gancho forte
+      na linguagem da Sicula.</p>
+
+      <h4>3 Vídeos</h4>
+      <div class="estrategia-grid">
         <div class="estrategia-col"><p class="crv-lbl">Gancho · Dor</p><p class="crv-hook">“Você já perdeu dinheiro seguindo a dica de alguém que nunca te explicou o porquê.”</p></div>
         <div class="estrategia-col"><p class="crv-lbl">Comportamental</p><p class="crv-hook">“O que te faz perder no mercado não é falta de gráfico. É o medo e a euforia decidindo por você.”</p></div>
         <div class="estrategia-col"><p class="crv-lbl">Urgência + oferta</p><p class="crv-hook">“Cada semana operando no achismo é uma semana de patrimônio decidida no escuro.”</p></div>
       </div>
 
-      <h4 style="margin-bottom:12px">3 Estáticos</h4>
+      <h4>3 Estáticos</h4>
       <div class="estrategia-grid">
         <div class="estrategia-col"><p class="crv-lbl">Aposta × decisão</p><p class="crv-hook">“Investimento sério não é aposta, é decisão consciente.”</p></div>
         <div class="estrategia-col"><p class="crv-lbl">Comportamental</p><p class="crv-hook">“Você até entende o gráfico. Mas quem decide: você ou a sua ansiedade?”</p></div>
@@ -312,23 +491,112 @@
     </div>
   </div>
 
-  <!-- 4. CRONOGRAMA + O QUE PRECISAMOS -->
+  <!-- 11. PÁGINA DE VENDAS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Execução</p>
+      <h2 style="margin-bottom:14px">Página de vendas — o que muda</h2>
+      <p class="funil-intro" style="margin-bottom:16px">Hoje a página de vendas se comporta como um
+      catálogo. Para virar máquina de conversão do fundo de funil, ela precisa de uma estrutura com
+      um único objetivo: <strong>vender a assinatura</strong>.</p>
+
+      <div class="lp-grid grid-2">
+        <div class="lp-item">
+          <p class="lp-titulo">Página dedicada</p>
+          <p class="lp-sugestao">Criar uma nova página focada na venda do produto, separada do catálogo atual.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Hero direto ao ponto</p>
+          <p class="lp-sugestao">Título forte, subtítulo e CTA diretos — assinar. É o coração da operação.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Sem distrações</p>
+          <p class="lp-sugestao">Remover o que tira o visitante do caminho da venda, incluindo o "Aprenda no YouTube", que leva pra fora da página.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Fora da cara de catálogo</p>
+          <p class="lp-sugestao">O acervo completo vai para a área de membros. A landing só vende.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Quem somos</p>
+          <p class="lp-sugestao">Seção de autoridade dos professores, com o diferencial comportamental/psicológico em destaque.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Prova social</p>
+          <p class="lp-sugestao">Depoimentos que reforçam a credibilidade e o resultado de quem já assina.</p>
+        </div>
+        <div class="lp-item">
+          <p class="lp-titulo">Prévia dos cursos</p>
+          <p class="lp-sugestao">Uma amostra do conteúdo, não a grade inteira — desperta interesse sem virar catálogo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. MÉTRICAS -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Acompanhamento</p>
+      <h2>Métricas que vamos acompanhar</h2>
+      <p class="funil-intro">Leitura de perto, semana a semana, para otimizar o funil de forma
+      contínua — realocando esforço para o que performa melhor.</p>
+      <div class="estrategia-grid">
+        <div class="estrategia-col">
+          <h4>Topo · Alcance</h4>
+          <ul class="estrategia-list">
+            <li>Retenção dos vídeos — o quanto assistem</li>
+            <li>CTR — taxa de cliques nos anúncios</li>
+            <li>CPM — custo para alcançar mil pessoas</li>
+            <li>Alcance e engajamento</li>
+            <li>Salvamentos</li>
+          </ul>
+        </div>
+        <div class="estrategia-col">
+          <h4>Comunidade · Retenção</h4>
+          <ul class="estrategia-list">
+            <li>Abandono de carrinho — quem chegou perto e não converteu</li>
+            <li>Seguidores no YouTube — crescimento do canal</li>
+            <li>Entrada na comunidade — quem vira audiência recorrente</li>
+            <li>Comentários</li>
+            <li>Número de seguidores</li>
+          </ul>
+        </div>
+        <div class="estrategia-col">
+          <h4>Fundo · Conversão</h4>
+          <ul class="estrategia-list">
+            <li>Cliques — quem segue para o portal</li>
+            <li>Custo por clique — eficiência do investimento</li>
+            <li>Vendas — assinaturas geradas pelo funil</li>
+          </ul>
+        </div>
+      </div>
+      <p class="obs-nota">Esses sinais de comunidade viram público de remarketing: quem abandonou o
+      carrinho, seguiu o canal ou entrou na comunidade recebe os anúncios de fundo de funil direto —
+      sem depender só do clique no anúncio original.</p>
+    </div>
+  </div>
+
+  <!-- 13. CRONOGRAMA + O QUE PRECISAMOS -->
   <div class="slide bg-creme slide-tall">
     <div class="container">
       <p class="label-tag">Próximos passos</p>
       <h2>Cronograma</h2>
       <div class="timeline" style="margin-bottom:26px">
         <div class="timeline-item tl-zero">
-          <p class="timeline-periodo">Até 20/07</p>
-          <p class="timeline-label">Subida do funil — topo e fundo no ar com os primeiros criativos.</p>
+          <p class="timeline-periodo">Até 13/07</p>
+          <p class="timeline-label">Aprovação da estratégia, Q&amp;A e estrutura da página de vendas.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-periodo">Até 15/07</p>
+          <p class="timeline-label">Envio dos primeiros roteiros para vocês gravarem.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-periodo">Até 22/07</p>
+          <p class="timeline-label">Primeiros conteúdos enviados para aprovação já com a nova identidade visual.</p>
         </div>
         <div class="timeline-item">
           <p class="timeline-periodo">Em paralelo</p>
-          <p class="timeline-label">Gravação dos 3 vídeos, com vocês, a partir dos roteiros da Moinho.</p>
-        </div>
-        <div class="timeline-item">
-          <p class="timeline-periodo">Quando a nova identidade visual sair</p>
-          <p class="timeline-label">Página de vendas dedicada, já na nova identidade.</p>
+          <p class="timeline-label">Execução e aprovação da página de vendas dedicada.</p>
         </div>
         <div class="timeline-item">
           <p class="timeline-periodo">Primeiros 30 dias</p>
@@ -337,7 +605,7 @@
       </div>
       <p class="label-tag" style="color:var(--roxo)">O que precisamos de vocês</p>
       <ul class="aprovacoes-list">
-        <li>Agendar a gravação dos 3 vídeos — a Moinho envia os roteiros e cuida de toda a produção.</li>
+        <li>Gravação dos 3 vídeos — a Moinho envia os roteiros e faz a edição do material bruto.</li>
       </ul>
     </div>
   </div>
