@@ -147,6 +147,10 @@
     .resp-grid li { font-size: 13px; color: #555; padding-left: 16px; position: relative; line-height: 1.45; }
     .resp-grid li::before { content: '—'; position: absolute; left: 0; color: var(--salmao); }
 
+    .chips-list { display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .chips-list li { background: #f4f2fb; border: 1px solid #e3ddf2; border-radius: 20px; padding: 6px 14px; font-size: 12px; color: var(--roxo); line-height: 1.3; }
+    .chips-list li::before { content: none; }
+
     /* ── CRONOGRAMA ── */
     .timeline { border-left: 3px solid var(--roxo); padding-left: 28px; display: flex; flex-direction: column; }
     .timeline-item { position: relative; padding: 16px 0; }
@@ -371,7 +375,7 @@
   <div class="slide bg-roxo">
     <div class="container">
       <h2>Objetivo da proposta</h2>
-      <p class="objetivo-texto">Construir uma operação de anúncios que gere pedidos de orçamento qualificados para a PSJob, começando por São Paulo. A lógica é direta: aparecer para quem já está procurando fornecedor de display, cenografia e material de PDV, e transformar essa busca em conversa com o comercial. Junto disso, entregar uma estrutura digital à altura do novo posicionamento da marca.</p>
+      <p class="objetivo-texto">Construir uma operação de anúncios que gere demanda qualificada para o time comercial da PSJob. A lógica é direta: aparecer para quem já procura fornecedor de display, cenografia e material de PDV, e municiar o comercial com leads qualificados, prontos para o fechamento. Junto disso, entregar uma estrutura digital à altura do novo posicionamento da marca.</p>
     </div>
   </div>
 
@@ -412,19 +416,26 @@
         <div class="pilar-item">
           <span class="pilar-num">1</span>
           <div>
-            <p class="pilar-nome">Google Ads</p>
-            <p class="pilar-foco">Foco: captar quem já procura fornecedor em São Paulo e levar esse contato até o comercial.</p>
-          </div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">2</span>
-          <div>
             <p class="pilar-nome">Site institucional e landing page</p>
             <p class="pilar-foco">Foco: transformar a visita em pedido de orçamento e sustentar o novo posicionamento da marca.</p>
           </div>
         </div>
         <div class="pilar-item">
+          <span class="pilar-num">2</span>
+          <div>
+            <p class="pilar-nome">Google Ads</p>
+            <p class="pilar-foco">Foco: captar quem já procura fornecedor em São Paulo e levar esse contato até o comercial.</p>
+          </div>
+        </div>
+        <div class="pilar-item">
           <span class="pilar-num">3</span>
+          <div>
+            <p class="pilar-nome">Qualificação de leads</p>
+            <p class="pilar-foco">Foco: triar e preparar cada contato antes de chegar ao comercial, para que o time só receba oportunidade real.</p>
+          </div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-num">4</span>
           <div>
             <p class="pilar-nome">Relatórios e acompanhamento</p>
             <p class="pilar-foco">Foco: monitorar resultados, identificar o que funciona e ajustar a estratégia continuamente.</p>
@@ -435,11 +446,57 @@
   </div>
 
   <!-- SLIDES 9+: SERVIÇOS — personalizável (um slide por serviço, ver padrão no SKILL.md) -->
-    <!-- SERVICO 1: GOOGLE ADS -->
-  <div class="slide bg-creme">
+    <!-- SERVICO 1: SITE E LANDING PAGE -->
+  <div class="slide bg-creme slide-tall">
     <div class="container">
       <div class="servico-slide-header">
         <span class="servico-num">1</span>
+        <h2>Site institucional e landing page</h2>
+      </div>
+      <p class="servico-desc">É o item que mais mexe no resultado da campanha. A mesma verba, com uma página de destino bem construída, pode render de duas a três vezes mais contatos. São dois ativos com papéis diferentes, e podem ser executados em fases.</p>
+      <div class="ganhos-grid">
+        <div class="ganho-item">
+          <h3>Landing page de campanha</h3>
+          <p>Destino dos anúncios, uma por frente. Texto orientado à conversão, formulário que já qualifica o contato, WhatsApp de baixo atrito, prova de capacidade e rastreamento completo. É pré-requisito para o go-live e fica pronta antes do site.</p>
+        </div>
+        <div class="ganho-item">
+          <h3>Site institucional</h3>
+          <p>A presença que sustenta o novo posicionamento. Portfólio de projetos, capacidade industrial, as duas linhas de negócio e a narrativa da empresa. É o que o comprador consulta antes de aprovar um orçamento alto.</p>
+        </div>
+      </div>
+      <div class="resp-grid" style="margin-top:16px">
+        <div style="grid-column: 1 / -1">
+          <h4>Recursos previstos no site</h4>
+          <ul class="chips-list">
+            <li>Design autoral, sem template</li>
+            <li>Animações de rolagem e transições</li>
+            <li>Portfólio de projetos gerenciável</li>
+            <li>Arquitetura separada por linha de negócio</li>
+            <li>Experiência adaptada a celular e tablet</li>
+            <li>Performance e SEO técnico</li>
+            <li>Formulários e WhatsApp com rastreamento e CRM</li>
+            <li>Painel de edição para a equipe</li>
+          </ul>
+        </div>
+        <div style="grid-column: 1 / -1">
+          <h4>PSJob</h4>
+          <ul class="chips-list">
+            <li>Fotos dos projetos, textos base e materiais da nova identidade</li>
+            <li>Aprovação do layout em etapas</li>
+            <li>Contratação de hospedagem e domínio</li>
+            <li>Definição do escopo de páginas junto com a Moinho</li>
+          </ul>
+        </div>
+      </div>
+      <p class="invest-nota">O escopo final define o investimento. Número de páginas, profundidade das animações e volume de conteúdo a produzir entram nessa conta, e fechamos o valor junto com vocês.</p>
+    </div>
+  </div>
+
+    <!-- SERVICO 2: GOOGLE ADS -->
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="servico-slide-header">
+        <span class="servico-num">2</span>
         <h2>Google Ads</h2>
       </div>
       <p class="servico-desc">Criamos e otimizamos campanhas de pesquisa mirando quem já digitou no Google o que a PSJob fabrica. Em vez de interromper alguém que não estava procurando nada, aparecemos no momento em que a pessoa levanta a mão. Com verba enxuta e ticket alto, esse é o canal de menor risco.</p>
@@ -523,20 +580,12 @@
         </div>
       </div>
       <div class="resp-grid" style="margin-top:16px">
-        <div>
+        <div style="grid-column: 1 / -1">
           <h4>São Paulo, stands e feiras (sazonal)</h4>
           <ul>
             <li>montagem de stand para feira</li>
             <li>stand personalizado para feira</li>
             <li>empresa de montagem de stand sp</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Rio Grande do Sul, mobiliário para imobiliárias</h4>
-          <ul>
-            <li>mobiliário para stand de vendas</li>
-            <li>móveis para apartamento decorado</li>
-            <li>móveis planejados para escritório porto alegre</li>
           </ul>
         </div>
       </div>
@@ -583,57 +632,39 @@
     </div>
   </div>
 
-  <!-- SERVICO 2: SITE E LANDING PAGE -->
-  <div class="slide bg-creme slide-tall">
+    <!-- SERVICO 3: QUALIFICACAO DE LEADS -->
+  <div class="slide bg-creme">
     <div class="container">
       <div class="servico-slide-header">
-        <span class="servico-num">2</span>
-        <h2>Site institucional e landing page</h2>
+        <span class="servico-num">3</span>
+        <h2>Qualificação de leads</h2>
       </div>
-      <p class="servico-desc">É o item que mais mexe no resultado da campanha. A mesma verba, com uma página de destino bem construída, pode render de duas a três vezes mais contatos. São dois ativos com papéis diferentes, e podem ser executados em fases.</p>
-      <div class="ganhos-grid">
-        <div class="ganho-item">
-          <h3>Landing page de campanha</h3>
-          <p>Destino dos anúncios, uma por frente. Texto orientado à conversão, formulário que já qualifica o contato, WhatsApp de baixo atrito, prova de capacidade e rastreamento completo. É pré-requisito para o go-live e fica pronta antes do site.</p>
-        </div>
-        <div class="ganho-item">
-          <h3>Site institucional</h3>
-          <p>A presença que sustenta o novo posicionamento. Portfólio de projetos, capacidade industrial, as duas linhas de negócio e a narrativa da empresa. É o que o comprador consulta antes de aprovar um orçamento alto.</p>
-        </div>
-      </div>
-      <div class="resp-grid" style="margin-top:16px">
+      <p class="servico-desc">Cada contato que chegar passa por uma triagem antes de virar oportunidade para o comercial: confirmação de que é da região certa, do produto certo e com intenção real de compra. O time da PSJob recebe só quem já está pronto para uma conversa de venda. O processo é estruturado junto com vocês logo no início do contrato.</p>
+      <div class="resp-grid">
         <div>
-          <h4>Recursos previstos no site</h4>
+          <h4>Moinho Digital</h4>
           <ul>
-            <li>Design autoral, desenhado do zero a partir da nova identidade, sem template</li>
-            <li>Animações de rolagem e transições, com elementos que reagem ao scroll, no padrão das referências que vocês trouxeram</li>
-            <li>Portfólio de projetos gerenciável, para a equipe publicar novos cases sem depender de programação</li>
-            <li>Arquitetura separada para as duas linhas de negócio</li>
-            <li>Experiência adaptada a celular e tablet, não apenas reduzida</li>
-            <li>Performance e SEO técnico, que pesam na qualidade do anúncio e no custo por clique</li>
-            <li>Formulários e WhatsApp conectados ao rastreamento e prontos para integrar com CRM</li>
-            <li>Painel de edição para a equipe atualizar textos e imagens</li>
+            <li>Estruturação do processo de triagem junto com o time comercial</li>
+            <li>Primeiro contato e qualificação dos leads recebidos</li>
+            <li>Encaminhamento ao comercial só do que passar nos critérios definidos</li>
           </ul>
         </div>
         <div>
           <h4>PSJob</h4>
           <ul>
-            <li>Fotos dos projetos, textos base e materiais da nova identidade</li>
-            <li>Aprovação do layout em etapas</li>
-            <li>Contratação de hospedagem e domínio</li>
-            <li>Definição do escopo de páginas junto com a Moinho</li>
+            <li>Definição dos critérios de um lead qualificado, junto com a Moinho</li>
+            <li>Retorno sobre o que virou orçamento e venda</li>
           </ul>
         </div>
       </div>
-      <p class="invest-nota">O escopo final define o investimento. Número de páginas, profundidade das animações e volume de conteúdo a produzir entram nessa conta, e fechamos o valor junto com vocês.</p>
     </div>
   </div>
 
-  <!-- SERVICO 3: RELATORIOS -->
+  <!-- SERVICO 4: RELATORIOS -->
   <div class="slide bg-creme">
     <div class="container">
       <div class="servico-slide-header">
-        <span class="servico-num">3</span>
+        <span class="servico-num">4</span>
         <h2>Relatórios e acompanhamento</h2>
       </div>
       <p class="servico-desc">Análise periódica dos resultados com relatório mensal completo. Apresentamos o que funcionou, o que ajustamos e as próximas direções estratégicas. Cada frente tem conta e relatório separados, para que o desempenho de uma nunca mascare o da outra.</p>
@@ -654,6 +685,35 @@
             <li>Participação nas reuniões de alinhamento</li>
             <li>Retorno sobre a qualidade dos leads</li>
             <li>Informação sobre quais contatos viraram orçamento e venda</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICO 5: OUTROS SERVIÇOS -->
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="servico-slide-header">
+        <span class="servico-num">5</span>
+        <h2>Outros serviços que também fazemos</h2>
+      </div>
+      <p class="servico-desc">Além do que está nessa proposta, também executamos outras frentes de comunicação e marketing, para quando fizerem sentido para a PSJob.</p>
+      <div class="resp-grid">
+        <div>
+          <h4>Moinho Digital</h4>
+          <ul>
+            <li>Materiais gráficos (banners, cartazes, folders, conteúdos para WhatsApp)</li>
+            <li>Assessoria de imprensa</li>
+            <li>Produção de vídeos institucionais e de produto</li>
+            <li>Cobertura fotográfica e em vídeo de eventos e feiras</li>
+          </ul>
+        </div>
+        <div>
+          <h4>PSJob</h4>
+          <ul>
+            <li>Definição de prioridade entre essas frentes, conforme a necessidade do momento</li>
+            <li>Escopo e valor fechados à parte, quando fizer sentido</li>
           </ul>
         </div>
       </div>
