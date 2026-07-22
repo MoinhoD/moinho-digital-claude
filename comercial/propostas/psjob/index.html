@@ -151,6 +151,13 @@
     .chips-list li { background: #f4f2fb; border: 1px solid #e3ddf2; border-radius: 20px; padding: 6px 14px; font-size: 12px; color: var(--roxo); line-height: 1.3; }
     .chips-list li::before { content: none; }
 
+    .lp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .lp-screenshot-wrap { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+    .lp-screenshot-label { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--roxo); margin-bottom: 10px; }
+    .lp-screenshot-img { width: 100%; border-radius: 8px; border: 1px solid #eee; display: block; max-height: 260px; object-fit: cover; object-position: top; }
+    .lp-screenshot-link { font-size: 11px; color: #666; margin-top: 8px; margin-bottom: 0; }
+    .lp-screenshot-link a { color: var(--roxo); text-decoration: none; }
+
     /* ── CRONOGRAMA ── */
     .timeline { border-left: 3px solid var(--roxo); padding-left: 28px; display: flex; flex-direction: column; }
     .timeline-item { position: relative; padding: 16px 0; }
@@ -214,7 +221,7 @@
     /* ── RESPONSIVO ── */
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
-      .sobre-grid, .cases-grid, .ganhos-grid, .resp-grid, .depoimentos-grid, .footer-grid { grid-template-columns: 1fr; }
+      .sobre-grid, .cases-grid, .ganhos-grid, .resp-grid, .depoimentos-grid, .footer-grid, .lp-grid { grid-template-columns: 1fr; }
       .stats-col { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,.1); padding-top: 20px; }
       h2 { font-size: 22px; }
       .slide.bg-hero { align-items: center; text-align: center; }
@@ -260,7 +267,7 @@
   </div>
 
   <!-- SLIDE 2: COMO ATUAMOS — fixo -->
-  <div class="slide">
+  <div class="slide bg-creme">
     <div class="container">
       <div class="sobre-grid">
         <div>
@@ -346,7 +353,7 @@
   </div>
 
   <!-- SLIDE 4: O QUE VOCÊ GANHA — fixo -->
-  <div class="slide">
+  <div class="slide bg-creme">
     <div class="container">
       <h2>O que você ganha ao contratar a Moinho Digital</h2>
       <p class="ganhos-intro">Criamos uma estratégia personalizada e baseada em dados, com comprometimento, agilidade e parceria — para facilitar a sua tomada de decisão sobre os próximos passos da comunicação digital da sua empresa.</p>
@@ -375,7 +382,7 @@
   <div class="slide bg-roxo">
     <div class="container">
       <h2>Objetivo da proposta</h2>
-      <p class="objetivo-texto">Construir uma operação de anúncios que gere demanda qualificada para o time comercial da PSJob. A lógica é direta: aparecer para quem já procura fornecedor de display, cenografia e material de PDV, e municiar o comercial com leads qualificados, prontos para o fechamento. Junto disso, entregar uma estrutura digital à altura do novo posicionamento da marca.</p>
+      <p class="objetivo-texto">Construir uma estratégia de captação de leads qualificados para munir o time comercial da PSJob. A lógica é direta: aparecer para quem já procura fornecedor de display, cenografia e material de PDV, e levar esse contato até o comercial já qualificado, pronto para o fechamento. Junto disso, entregar uma estrutura digital à altura do novo posicionamento da marca.</p>
     </div>
   </div>
 
@@ -408,7 +415,7 @@
   </div>
 
   <!-- SLIDE 8: PILARES — personalizável -->
-  <div class="slide">
+  <div class="slide bg-creme">
     <div class="container">
       <h2>Pilares do projeto</h2>
       <div class="pilares-grid">
@@ -468,9 +475,7 @@
           <h4>Recursos previstos no site</h4>
           <ul class="chips-list">
             <li>Design autoral, sem template</li>
-            <li>Animações de rolagem e transições</li>
             <li>Portfólio de projetos gerenciável</li>
-            <li>Arquitetura separada por linha de negócio</li>
             <li>Experiência adaptada a celular e tablet</li>
             <li>Performance e SEO técnico</li>
             <li>Formulários e WhatsApp com rastreamento e CRM</li>
@@ -533,7 +538,7 @@
       <div class="timeline">
         <div class="timeline-item tl-zero">
           <div class="timeline-periodo">Degrau 1, no go-live</div>
-          <div class="timeline-label"><strong>Displays, PDV e cenografia, nas duas praças.</strong> Toda a verba concentrada aqui. É o grupo com maior volume de busca e maior intenção declarada, em São Paulo e Rio Grande do Sul.</div>
+          <div class="timeline-label"><strong>Displays, PDV e cenografia, em São Paulo.</strong> Toda a verba concentrada aqui. É o grupo com maior volume de busca e maior intenção declarada.</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-periodo">Degrau 2, mês 2 ou 3</div>
@@ -662,7 +667,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <p class="label-tag">Qualificação de leads — SDR</p>
-      <h2>Cobertura e investimento</h2>
+      <h2>Cobertura de atendimento</h2>
       <div class="ganhos-grid">
         <div class="ganho-item">
           <h3>Opção 1 — Horário comercial</h3>
@@ -673,27 +678,6 @@
           <p>Qualificação em até 10 minutos no horário comercial e em até 2 horas fora dele, incluindo sábados até 12h. Domingos e feriados seguem o fluxo do próximo dia útil.</p>
         </div>
       </div>
-      <table class="invest-table" style="margin-top:20px">
-        <thead>
-          <tr>
-            <th>Opção</th>
-            <th>Cobertura</th>
-            <th class="valor">Investimento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Opção 1</td>
-            <td>Horário comercial</td>
-            <td class="valor">R$ 1.000/mês</td>
-          </tr>
-          <tr>
-            <td>Opção 2</td>
-            <td>Estendida, com sábados</td>
-            <td class="valor">R$ 1.400/mês</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
@@ -732,8 +716,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="servico-slide-header">
-        <span class="servico-num">5</span>
-        <h2>Outros serviços que também fazemos</h2>
+        <h2>Outros serviços que fazemos</h2>
       </div>
       <p class="servico-desc">Além do que está nessa proposta, também executamos outras frentes de comunicação e marketing, para quando fizerem sentido para a PSJob.</p>
       <div class="resp-grid">
@@ -879,14 +862,14 @@
         </thead>
         <tbody>
           <tr>
+            <td>Landing page</td>
+            <td>Projeto</td>
+            <td class="valor">R$ 2.500</td>
+          </tr>
+          <tr>
             <td>Gestão de anúncios (Google Ads)</td>
             <td>Mensal</td>
             <td class="valor">R$ 2.750 *</td>
-          </tr>
-          <tr>
-            <td>Site institucional e landing page</td>
-            <td>Projeto</td>
-            <td class="valor">a definir</td>
           </tr>
           <tr>
             <td>Verba de mídia, paga direto ao Google</td>
@@ -896,16 +879,17 @@
           <tr>
             <td>Qualificação de leads (SDR) **</td>
             <td>Mensal</td>
-            <td class="valor">R$ 1.000 ou R$ 1.400</td>
+            <td class="valor">R$ 1.000</td>
           </tr>
           <tr class="total">
             <td><strong>Total mensal</strong></td>
             <td></td>
-            <td class="valor"><strong>R$ 5.000/mês</strong></td>
+            <td class="valor"><strong>R$ 8.500/mês</strong></td>
           </tr>
         </tbody>
       </table>
-      <p class="invest-nota">* Contrato mínimo de 6 meses de projeto. ** Opcional, conforme a cobertura escolhida — valor não incluído no total mensal.</p>
+      <p class="invest-nota">* Contrato mínimo de 6 meses de projeto. ** Cobertura em horário comercial. Cobertura estendida disponível por R$ 1.400/mês.</p>
+      <p class="invest-nota" style="margin-top:12px"><strong>Site institucional</strong> — projeto à parte da estratégia de captação, valor a definir conforme escopo.</p>
     </div>
   </div>
 
