@@ -241,6 +241,7 @@
     }
 
     /* ── PRINT (PDF A4 paisagem) ── */
+    @page { size: A4 landscape; margin: 0; }
     @media print {
       html, body { height: auto; overflow: visible; }
       .slides-track { position: static; height: auto; overflow: visible; }
