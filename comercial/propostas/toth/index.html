@@ -130,11 +130,12 @@
     .perda-list li { padding: 16px 22px; background: rgba(255,255,255,.07); border-radius: 10px; font-size: 15px; border-left: 4px solid var(--salmao); line-height: 1.5; color: rgba(255,255,255,.88); }
 
     /* ── PILARES ── */
-    .pilares-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
-    .pilar-item { display: flex; align-items: flex-start; gap: 20px; padding: 22px 26px; border: 1.5px solid #e4e4e4; border-radius: 12px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
-    .pilar-num { font-family: 'Noto Serif', serif; font-size: 28px; font-weight: 600; color: var(--vermelho); min-width: 32px; line-height: 1; padding-top: 2px; }
-    .pilar-nome { font-weight: 500; font-size: 16px; margin-bottom: 4px; }
-    .pilar-foco { font-size: 13px; color: var(--suave); margin: 0; }
+    .pilares-slide h2 { font-size: 24px; margin-bottom: 14px; }
+    .pilares-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 4px; }
+    .pilar-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border: 1.5px solid #e4e4e4; border-radius: 10px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .pilar-num { font-family: 'Noto Serif', serif; font-size: 18px; font-weight: 600; color: var(--vermelho); min-width: 20px; line-height: 1; padding-top: 1px; }
+    .pilar-nome { font-weight: 500; font-size: 13px; margin-bottom: 2px; line-height: 1.3; }
+    .pilar-foco { font-size: 10.5px; color: var(--suave); margin: 0; line-height: 1.35; }
 
     /* ── SERVIÇOS ── */
     .servico-slide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -461,7 +462,7 @@
 
   <!-- SLIDE 8: PILARES — personalizável -->
   <div class="slide slide-tall">
-    <div class="container">
+    <div class="container pilares-slide">
       <h2>Pilares do projeto</h2>
       <div class="pilares-grid">
                 <div class="pilar-item">
@@ -526,7 +527,7 @@
         <span class="servico-num">1</span>
         <h2>Desenvolvimento de site</h2>
       </div>
-      <p class="servico-desc">Site institucional de at&eacute; 3 p&aacute;ginas, com SEO e bot&otilde;es de CTA claros para quem chega at&eacute; a Toth pela busca ou por indica&ccedil;&atilde;o. &Eacute; a base que sustenta todo o resto: um contato qualificado que cai num site desatualizado perde a confian&ccedil;a que o an&uacute;ncio construiu.</p>
+      <p class="servico-desc">Site institucional de at&eacute; 5 p&aacute;ginas, com SEO e bot&otilde;es de CTA claros para quem chega at&eacute; a Toth pela busca ou por indica&ccedil;&atilde;o. &Eacute; a base que sustenta todo o resto: um contato qualificado que cai num site desatualizado perde a confian&ccedil;a que o an&uacute;ncio construiu.</p>
       <div class="resp-grid">
         <div>
           <h4>Moinho Digital</h4>
@@ -575,34 +576,6 @@
           </ul>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- DIVISAO DA VERBA -->
-  <div class="slide">
-    <div class="container">
-      <p class="label-tag">Distribui&ccedil;&atilde;o da m&iacute;dia</p>
-      <h2>Como dividimos os R$ 15.000</h2>
-      <div class="verba-grid">
-        <div class="verba-card">
-          <p class="verba-canal">Google</p>
-          <p class="verba-valor">R$ 10.000</p>
-          <ul class="verba-frentes">
-            <li>Alta inten&ccedil;&atilde;o <span>R$ 8.000</span></li>
-            <li>Concorrentes <span>R$ 1.000</span></li>
-            <li>Remarketing <span>R$ 1.000</span></li>
-          </ul>
-        </div>
-        <div class="verba-card meta">
-          <p class="verba-canal">Meta</p>
-          <p class="verba-valor">R$ 5.000</p>
-          <ul class="verba-frentes">
-            <li>P&uacute;blicos quentes <span>R$ 2.000</span></li>
-            <li>P&uacute;blicos frios <span>R$ 3.000</span></li>
-          </ul>
-        </div>
-      </div>
-      <p class="verba-nota">O Google leva a maior parte porque &eacute; onde a inten&ccedil;&atilde;o de compra j&aacute; existe. Quem digita o nome do equipamento est&aacute; num momento diferente de quem v&ecirc; o an&uacute;ncio no feed. O Meta entra para sustentar a lembran&ccedil;a da marca e alcan&ccedil;ar os segmentos certos com a mensagem certa. Se a pesquisa chegar no teto de exibi&ccedil;&atilde;o, o excedente vai para remarketing em vez de for&ccedil;ar termo amplo, que &eacute; o caminho mais curto para o contato desalinhado.</p>
     </div>
   </div>
 
@@ -1055,22 +1028,12 @@
                     <tr>
             <td>Desenvolvimento de site</td>
             <td>&Uacute;nico</td>
-            <td class="valor">R$ 6.500</td>
+            <td class="valor">R$ 9.500</td>
           </tr>
           <tr>
-            <td>Gest&atilde;o de an&uacute;ncios no Google e no Meta</td>
+            <td>Estrat&eacute;gia de posicionamento e capta&ccedil;&atilde;o digital</td>
             <td>Mensal</td>
-            <td class="valor">R$ 2.750 *</td>
-          </tr>
-          <tr>
-            <td>Produ&ccedil;&atilde;o de conte&uacute;do para redes sociais</td>
-            <td>Mensal</td>
-            <td class="valor">R$ 3.500 *</td>
-          </tr>
-          <tr>
-            <td>Campanhas de remarketing e email marketing (WhatsApp e email)</td>
-            <td>Mensal</td>
-            <td class="valor">R$ 1.200 *</td>
+            <td class="valor">R$ 8.250,00 *</td>
           </tr>
           <tr>
             <td>Verba de m&iacute;dia, investida direto nas plataformas</td>
@@ -1080,7 +1043,7 @@
           <tr class="total">
             <td><strong>Total mensal</strong></td>
             <td></td>
-            <td class="valor"><strong>R$ 22.450/m&ecirc;s</strong></td>
+            <td class="valor"><strong>R$ 23.250/m&ecirc;s</strong></td>
           </tr>
         </tbody>
       </table>
