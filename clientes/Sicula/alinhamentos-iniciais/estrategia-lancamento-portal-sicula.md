@@ -1,4 +1,4 @@
-# Estratégia de lançamento — Portal Circula
+# Estratégia de lançamento — Portal Sicula
 
 **Cliente:** Sicula (Bruno Fernandes + Renato Maeda)
 **Data:** 10/06/2026
@@ -66,7 +66,7 @@ Resultado: dois momentos com propósitos distintos que se somam.
 | Canal | Ação | Descrição |
 |---|---|---|
 | WhatsApp 1:1 | Mensagem pessoal | Bruno e Renato enviam mensagem individual para os contatos mais próximos (lista prioritária). Tom pessoal: "o portal está no ar, você é um dos primeiros a saber" + link |
-| Email | Disparo para a base | "O Portal Circula está no ar. Você faz parte da primeira turma." Apresenta o portal, a oferta da primeira turma e o CTA para assinar |
+| Email | Disparo para a base | "O Portal Sicula está no ar. Você faz parte da primeira turma." Apresenta o portal, a oferta da primeira turma e o CTA para assinar |
 | Instagram | Vídeo de anúncio | Bruno e Renato na câmera, tom de bastidores, contando o que é o portal e por que ele existe. Pode ser o próprio Making Off ou um vídeo específico de 2–3 min |
 
 **Dia 17 a 22**
@@ -74,7 +74,7 @@ Resultado: dois momentos com propósitos distintos que se somam.
 | Canal | Ação | Descrição |
 |---|---|---|
 | Instagram | Reel | Gancho financeiro curto. Sugestão: "Tem 32 milhões de brasileiros guardando dinheiro em conta-corrente sem rendimento. Talvez você seja um deles." CTA: link na bio |
-| Instagram | Carrossel | Apresentação do Portal Circula: o que é, como funciona, o que tem dentro. Serve para quem chegou pelo Reel e quer entender mais antes de clicar |
+| Instagram | Carrossel | Apresentação do Portal Sicula: o que é, como funciona, o que tem dentro. Serve para quem chegou pelo Reel e quer entender mais antes de clicar |
 
 ---
 
