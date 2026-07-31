@@ -116,19 +116,24 @@ A venda é **self-service pelo portal**, sem executivo comercial no meio. O que 
 combinação de conteúdo, live e relacionamento.
 
 1. **Captação.** O anúncio e o conteúdo orgânico levam ao portal ou ao perfil.
-2. **Relacionamento.** Base de contatos por e-mail e WhatsApp. Na fase de Primeira Turma o
+2. **Relacionamento.** Base de contatos por e-mail e WhatsApp, estimada em **cerca de 2.000
+   contatos quentes** que conhecem Bruno e Renato pessoalmente. Na fase de Primeira Turma o
    atendimento foi **WhatsApp 1:1, não broadcast**, e foi isso que converteu a base quente.
 3. **Conversão.** A **live semanal** é o pico de conversão do modelo perpétuo: aula de valor mais
    oferta com escassez.
 4. **Pós-venda.** O assinante entra no grupo de WhatsApp VIP e nas lives de consultoria.
 
-**Acompanhamento de vendas.** O cliente ia criar login e senha do portal para a Moinho acompanhar
-as vendas desde o começo da divulgação. *Confirmar se o acesso foi liberado.*
+**Acompanhamento de vendas.** O cliente liberou login e senha do portal para a Moinho acompanhar
+as vendas. **O acesso está no Drive do cliente, não neste repositório.** Credencial não entra em
+repositório de código, nem em repositório privado. Procurar no Drive da Sícula.
 
 **Pendências deste tópico**
 
-- Acesso ao painel de vendas do portal
-- Tamanho e engajamento reais da base de e-mail e WhatsApp, que é a maior alavanca de curto prazo
+- **Tamanho e engajamento reais da base de e-mail e WhatsApp.** Ninguém tem esse número
+  confirmado, nem o cliente. Os 2.000 acima são estimativa. É a maior alavanca de curto prazo e a
+  maior fonte de erro nas projeções: 5 mil contatos engajados entregam centenas de assinaturas sem
+  mídia, 200 muda a conta inteira. Enquanto não houver o número, tratar qualquer projeção que
+  dependa da base como cenário, não como previsão.
 - Modelo de cobrança das 12x (recorrência no cartão, com churn por inadimplência, ou parcelado fixo)
 
 ## Foco da estratégia
