@@ -58,9 +58,12 @@ e paga parcelado.
 - **Lives de consultoria**
 - **Grupo de WhatsApp VIP**, com dicas e acompanhamento
 
-**Valores.** A Primeira Turma saiu por **R$ 357**, valor travado antes de reajuste. O planejamento
-levado ao cliente anuncia **12x R$ 32,33**. A estratégia interna trabalhou com 12x R$ 35 como
-referência de projeção. *Confirmar qual é o valor vigente antes de usar em peça ou relatório.*
+**Valor vigente: 12x R$ 32,33, ou R$ 387,96 no total.** É esse o número que vai para peça,
+anúncio e relatório.
+
+A Primeira Turma saiu por R$ 357, valor travado antes do reajuste. Fica registrado como
+histórico, não como preço atual. Se aparecer 12x R$ 35 ou R$ 420 em algum material antigo, é
+referência de projeção interna que ficou desatualizada.
 
 **Meta comercial:** 1.000 assinaturas. Ver a ressalva em Foco da estratégia.
 
@@ -142,9 +145,9 @@ depois, para não queimar verba com público frio num nicho caro.
 
 ### A ressalva que precisa estar registrada
 
-A meta de **1.000 assinaturas** não fecha com a verba disponível. A conta é direta: com menos de
-R$ 1.500/mês, seriam cerca de R$ 9.000 em seis meses, o que daria R$ 9 por assinatura num produto
-de R$ 420. Impossível.
+A meta de **1.000 assinaturas** não fecha com a verba disponível. A conta é direta: com R$ 1.200
+a R$ 1.500/mês, seriam cerca de R$ 7.200 a R$ 9.000 em seis meses, o que daria de R$ 7 a R$ 9 por
+assinatura num produto de R$ 387,96. Impossível.
 
 Por isso o anúncio **não é o motor de vendas** aqui. O papel dele é construir lista barata,
 reaquecer lead perto da live e amplificar os melhores vídeos orgânicos. Quem vende em escala é o
