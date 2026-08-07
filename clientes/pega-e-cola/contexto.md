@@ -16,6 +16,11 @@ industrial — o que os grandes fornecedores só entregam para grandes empresas.
 - **Tagline:** "Soluções de grandes empresas para pequenas empresas"
 - **Tom de voz da marca:** direto, confiável e acessível — parceiro do pequeno negócio.
 
+## Serviços contratados com a Moinho
+
+- **Gerenciamento de campanhas no Google Ads (Busca Paga)** — único serviço contratado.
+  Não há gestão de redes sociais nem de outros canais de mídia para esse cliente.
+
 ## Produto
 
 Termocolantes em vinil, pedido mínimo de **100 unidades**, tamanho ilimitado.
@@ -36,7 +41,7 @@ argumento.
 
 Aplicações: vestuário esportivo, lingerie, moda, uniformes, mochilas, calçados, brindes.
 
-## Público / personas
+## Público
 
 - Donos de pequenas confecções e marcas de moda
 - Fábricas de private label, estilistas, setores de criação de grandes marcas
