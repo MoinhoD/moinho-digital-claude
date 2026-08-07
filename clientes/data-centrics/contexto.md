@@ -55,8 +55,9 @@ copy ou palavra-chave negativa.
 - **Gerenciamento de campanhas no Google Ads.** Serviço ativo, é o carro-chefe do contrato.
 - **Criação de landing page.** Entregue: https://datacentrics.cloud/ia-generativa-para-empresas/
   Construída em Elementor sobre o WordPress do cliente, com título e subtítulo carregando as
-  palavras-chave que compramos, para não derrubar o Quality Score. Está pausada, mas fica
-  registrada aqui para resgatar o histórico.
+  palavras-chave que compramos, para não derrubar o Quality Score. Este serviço não é
+  recorrente e é cobrado extra a cada nova LP desenvolvida do zero. Edições na LP atual
+  podem ser pedidas e executadas diretamente pelo time.
 - **Acompanhamento de oportunidades e vendas.** Não paramos no lead. Acompanhamos o que
   acontece com ele depois, porque o ciclo é de ~25 dias e a campanha é de qualidade, não de volume.
 
