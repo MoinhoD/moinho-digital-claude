@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Análise de desempenho — {{CLIENTE}}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: A4; margin: 0; }
+
+    body {
+      font-family: 'Lexend', Calibri, sans-serif;
+      font-size: 10.5pt;
+      color: #2a2a2a;
+      background: #fff;
+      width: 210mm;
+      margin: 0 auto;
+    }
+
+    /* CAPA */
+    .capa {
+      background: #5A368C;
+      color: #EFEEDF;
+      padding: 42px 52px 38px;
+    }
+    .capa img { height: 34px; margin-bottom: 46px; }
+    .capa .lettering {
+      font-family: 'Noto Serif', serif;
+      font-size: 15pt;
+      color: #EFEEDF;
+      margin-bottom: 46px;
+      display: inline-block;
+    }
+    .capa .tipo {
+      font-size: 9pt;
+      font-weight: 300;
+      letter-spacing: 1.2px;
+      color: #F0867D;
+      margin-bottom: 10px;
+    }
+    .capa h1 {
+      font-family: 'Noto Serif', serif;
+      font-size: 26pt;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .capa .periodo {
+      font-size: 12pt;
+      font-weight: 300;
+      color: #EFEEDF;
+      opacity: .9;
+    }
+    .capa .meta {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(239,238,223,.28);
+      font-size: 9pt;
+      font-weight: 300;
+      line-height: 1.7;
+      opacity: .85;
+    }
+
+    /* CONTEUDO */
+    .content { padding: 40px 52px 20px; }
+
+    .secao { margin-bottom: 34px; }
+
+    .secao h2 {
+      font-family: 'Noto Serif', serif;
+      font-size: 15pt;
+      font-weight: 600;
+      color: #5A368C;
+      margin-bottom: 6px;
+    }
+    .secao .subtitulo {
+      font-size: 9pt;
+      color: #8a8a8a;
+      font-weight: 300;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e8e6e0;
+    }
+
+    .secao p {
+      font-size: 10.5pt;
+      line-height: 1.78;
+      color: #333;
+      margin-bottom: 14px;
+    }
+
+    /* APRENDIZADOS */
+    .aprendizado {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      break-inside: avoid;
+    }
+    .aprendizado .num {
+      flex: 0 0 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #EFEEDF;
+      color: #5A368C;
+      font-size: 9.5pt;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .aprendizado h3 {
+      font-family: 'Noto Serif', serif;
+      font-size: 11pt;
+      font-weight: 600;
+      color: #2a2a2a;
+      margin-bottom: 5px;
+    }
+    .aprendizado p { margin-bottom: 0; font-size: 10pt; }
+
+    /* INDICADORES */
+    .bloco-indicador {
+      border-left: 3px solid #5A368C;
+      padding: 4px 0 4px 18px;
+      margin-bottom: 20px;
+      break-inside: avoid;
+    }
+    .bloco-indicador h3 {
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #5A368C;
+      margin-bottom: 7px;
+    }
+    .bloco-indicador p { margin-bottom: 0; font-size: 10pt; }
+    .bloco-indicador.tensao { border-left-color: #D23E4F; }
+    .bloco-indicador.tensao h3 { color: #D23E4F; }
+
+    /* PADROES CONTEUDO x RESULTADO */
+    .padrao {
+      background: #f8f7f2;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      break-inside: avoid;
+    }
+    .padrao h3 {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #5A368C;
+      margin-bottom: 5px;
+    }
+    .padrao p { margin-bottom: 0; font-size: 10pt; }
+
+    /* LACUNA */
+    .lacuna {
+      border-left: 3px solid #D23E4F;
+      background: #fdf8f8;
+      padding: 14px 18px;
+      margin: 16px 0;
+      break-inside: avoid;
+    }
+    .lacuna h3 {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #D23E4F;
+      margin-bottom: 5px;
+    }
+    .lacuna p { margin-bottom: 0; font-size: 10pt; color: #4a4a4a; }
+
+    /* OPORTUNIDADES */
+    .oportunidade {
+      padding: 0 0 14px 0;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #ececec;
+      break-inside: avoid;
+    }
+    .oportunidade:last-child { border-bottom: none; }
+    .oportunidade h3 {
+      font-family: 'Noto Serif', serif;
+      font-size: 11pt;
+      font-weight: 600;
+      color: #2a2a2a;
+      margin-bottom: 5px;
+    }
+    .oportunidade p { margin-bottom: 0; font-size: 10pt; }
+
+    /* RECOMENDACOES */
+    .recomendacao {
+      border: 1px solid #e2ddea;
+      border-top: 3px solid #5A368C;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      break-inside: avoid;
+    }
+    .recomendacao h3 {
+      font-family: 'Noto Serif', serif;
+      font-size: 11.5pt;
+      font-weight: 600;
+      color: #5A368C;
+      margin-bottom: 10px;
+    }
+    .recomendacao .linha { margin-bottom: 7px; }
+    .recomendacao .linha:last-child { margin-bottom: 0; }
+    .recomendacao .rot {
+      display: block;
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: .8px;
+      color: #F0867D;
+      margin-bottom: 2px;
+    }
+    .recomendacao .linha p { margin-bottom: 0; font-size: 10pt; }
+
+    /* RESSALVA */
+    .ressalva {
+      background: #EFEEDF;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: #5a5045;
+      break-inside: avoid;
+    }
+    .ressalva strong { color: #5A368C; }
+
+    /* FOOTER */
+    .doc-footer {
+      background: #5A368C;
+      padding: 16px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .doc-footer img { height: 24px; }
+    .doc-footer .lettering {
+      font-family: 'Noto Serif', serif;
+      font-size: 11pt;
+      color: #EFEEDF;
+    }
+    .doc-footer span {
+      color: #EFEEDF;
+      font-size: 8.5pt;
+      font-weight: 300;
+      text-align: right;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="capa">
+  <img src="{{LOGO_SRC}}" alt="Moinho Digital">
+  <p class="tipo">Análise de desempenho</p>
+  <h1>{{CLIENTE}}</h1>
+  <p class="periodo">{{PERIODO}}</p>
+  <div class="meta">
+    Canais analisados: {{CANAIS}}<br>
+    Análise elaborada em {{DATA}} pela Moinho Digital
+  </div>
+</div>
+
+<div class="content">
+
+  {{RESSALVA}}
+
+  <div class="secao">
+    <h2>Visão geral do período</h2>
+    <p class="subtitulo">Leitura executiva do mês</p>
+    {{VISAO_GERAL}}
+  </div>
+
+  <div class="secao">
+    <h2>Principais aprendizados</h2>
+    <p class="subtitulo">O que o período ensinou sobre a marca e a audiência</p>
+    {{APRENDIZADOS}}
+  </div>
+
+  <div class="secao">
+    <h2>Interpretação dos indicadores</h2>
+    <p class="subtitulo">O que os dados revelam, agrupados por função no funil</p>
+    {{INDICADORES}}
+  </div>
+
+  <div class="secao">
+    <h2>Relação entre conteúdo e resultado</h2>
+    <p class="subtitulo">Padrões identificados e as hipóteses que os explicam</p>
+    {{CONTEUDO_RESULTADO}}
+  </div>
+
+  <div class="secao">
+    <h2>Relação com o posicionamento da marca</h2>
+    <p class="subtitulo">Coerência entre o que a marca diz ser e o que ela comunicou</p>
+    {{POSICIONAMENTO}}
+  </div>
+
+  <div class="secao">
+    <h2>Oportunidades</h2>
+    <p class="subtitulo">Movimentos estratégicos para o próximo período</p>
+    {{OPORTUNIDADES}}
+  </div>
+
+  <div class="secao">
+    <h2>Recomendações práticas</h2>
+    <p class="subtitulo">Ordenadas por relação entre impacto e esforço</p>
+    {{RECOMENDACOES}}
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <img src="{{LOGO_SRC}}" alt="Moinho Digital">
+  <span>inaiara@moinhod.com.br · moinhod.com.br</span>
+</div>
+
+</body>
+</html>
