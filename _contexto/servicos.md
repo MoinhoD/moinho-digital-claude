@@ -24,6 +24,7 @@
 | Enxoval de redes sociais | R$ 2.950 |
 | LinkedIn p/ executivos | R$ 2.200/mês |
 | Consultoria comercial | R$ 9.000 |
+| Sucesso do Cliente (CS por Ciclos) | Setup R$ 3.000 (meses 1-2) + R$ 1.000/mês (3º ao 6º mês) |
 | Agente de IA para atendimento ao público | R$ 10.000 |
 
 ---
@@ -57,6 +58,8 @@
 **LinkedIn executivos:** Otimização do perfil, conexões estratégicas e 7 conteúdos/mês. — Cliente: interação com as conexões.
 
 **Consultoria comercial:** Revisão do processo comercial, definição de ICP, scripts de vendas e CRM. Acompanhamento por 3 meses. — Cliente: disponibilidade do time.
+
+**Sucesso do Cliente (CS por Ciclos):** Fecha o lado pós-venda da jornada de receita. Fase 1 (diagnóstico e desenho, 4 a 6 semanas): mapeamento da jornada pós-venda, segmentação da carteira por perfil de atendimento, Health Score, critérios de passagem entre etapas e desenho dos rituais de cadência. Fase 2 (operação contínua, mínimo 6 meses): onboarding estruturado, gestão de saúde da carteira, rotina de pós-venda por ciclo de vida do produto, programa de expansão e dashboard de acompanhamento com os indicadores da jornada. — Cliente: disponibilidade para os 3 encontros de diagnóstico e acesso a dados históricos da carteira.
 
 **Indexação em IA:** Estratégia para a marca aparecer nas respostas de ferramentas de IA (ChatGPT, Gemini, etc.).
 
