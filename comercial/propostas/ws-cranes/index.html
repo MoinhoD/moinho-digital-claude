@@ -105,6 +105,11 @@
     .servico-slide-header h2 { margin: 0; }
     .servico-desc { font-size: 14px; color: #444; margin-bottom: 20px; line-height: 1.6; }
 
+    /* ── ENTREGAS (lista corrida, não índice) ── */
+    .entregas-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 4px 0 4px; }
+    .entregas-list li { padding: 15px 20px; background: #fff; border-radius: 10px; font-size: 14px; border-left: 4px solid var(--roxo); line-height: 1.55; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    .entregas-list li strong { color: var(--roxo); }
+
     /* ── RITMO / CADÊNCIA ── */
     .ritmo-table { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
     .ritmo-table th { text-align: left; font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--suave); padding: 8px 14px; border-bottom: 2px solid #ddd; }
@@ -210,58 +215,40 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: FASE 1 -->
+  <!-- SLIDE 3: FASE 1 (parte 1) -->
   <div class="slide bg-creme slide-tall">
     <div class="container">
-      <div class="servico-slide-header">
-        <span class="servico-num">1</span>
-        <h2>Diagnóstico e desenho da jornada de Sucesso do Cliente</h2>
-      </div>
-      <p class="servico-desc">Prazo: 4 a 6 semanas. Momentos síncronos: 3 encontros previstos (captação de briefing, debriefing e apresentação dos entregáveis).</p>
-      <div class="pilares-grid">
-        <div class="pilar-item">
-          <span class="pilar-num">1</span>
-          <div><p class="pilar-nome">Inteligência de dados</p><p class="pilar-foco">Com relação a histórico e perfil dos clientes atuais.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">2</span>
-          <div><p class="pilar-nome">Mapa da jornada pós-venda</p><p class="pilar-foco">Do cliente da WS Cranes.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">3</span>
-          <div><p class="pilar-nome">Segmentação da carteira</p><p class="pilar-foco">Por perfil de atendimento — High Touch, Tech Touch, Low Touch — com base em ticket, criticidade e potencial de expansão.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">4</span>
-          <div><p class="pilar-nome">Health Score</p><p class="pilar-foco">Combinação de uso, engajamento e sinais de risco.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">5</span>
-          <div><p class="pilar-nome">Critérios de passagem entre as etapas da jornada</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">6</span>
-          <div><p class="pilar-nome">Desenho dos rituais de cadência</p><p class="pilar-foco">Diário, semanal, mensal e trimestral.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">7</span>
-          <div><p class="pilar-nome">Estrutura mínima de time e papéis</p><p class="pilar-foco">Necessários do lado da WS Cranes e da Moinho.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">8</span>
-          <div><p class="pilar-nome">Registro de decisão</p><p class="pilar-foco">Documento executivo com tudo isso fechado e aprovado.</p></div>
-        </div>
-      </div>
+      <p class="label-tag">Fase 1</p>
+      <h2>Diagnóstico e desenho (SPICED aplicado ao pós-venda)</h2>
+      <p class="servico-desc">Prazo: 4 a 6 semanas.<br><strong>Momentos síncronos:</strong> 3 encontros previstos (captação de briefing + debriefing + apresentação dos entregáveis).<br><br>Entregas que serão mapeadas e estruturadas:</p>
+      <ul class="entregas-list">
+        <li><strong>Inteligência de dados</strong> com relação a histórico e perfil dos clientes atuais</li>
+        <li><strong>Mapa da jornada pós-venda</strong> do cliente</li>
+        <li><strong>Segmentação da carteira</strong> por perfil de atendimento — High Touch, Tech Touch, Low Touch — com base em ticket, criticidade e potencial de expansão</li>
+        <li><strong>Health Score</strong>: combinação de uso, engajamento e sinais de risco (silêncio repentino, picos de chamado, ausência de atividade)</li>
+      </ul>
     </div>
   </div>
 
-  <!-- SLIDE 4: FASE 2 -->
+  <!-- SLIDE 3b: FASE 1 (parte 2) -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Fase 1</p>
+      <h2>Diagnóstico e desenho (continuação)</h2>
+      <ul class="entregas-list">
+        <li><strong>Critérios de passagem entre as etapas da jornada</strong></li>
+        <li><strong>Desenho dos rituais de cadência</strong> (diário, semanal, mensal, trimestral)</li>
+        <li><strong>Estrutura mínima de time e papéis</strong> necessários do lado do cliente e da Moinho</li>
+        <li><strong>Registro de decisão</strong>: documento executivo com tudo isso fechado e aprovado</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: FASE 2 (parte 1) -->
   <div class="slide slide-tall">
     <div class="container">
-      <div class="servico-slide-header">
-        <span class="servico-num">2</span>
-        <h2>Operação contínua</h2>
-      </div>
+      <p class="label-tag">Fase 2</p>
+      <h2>Operação contínua</h2>
       <p class="servico-desc">Prazo: recorrente, contrato mínimo de 6 meses.</p>
       <table class="ritmo-table">
         <thead><tr><th>Ritmo</th><th>O que acontece</th></tr></thead>
@@ -272,46 +259,30 @@
           <tr><td>Trimestral</td><td>Checkpoint de metas, capacidade e prioridades; revisão da segmentação</td></tr>
         </tbody>
       </table>
-      <div class="pilares-grid">
-        <div class="pilar-item">
-          <span class="pilar-num">1</span>
-          <div><p class="pilar-nome">Onboarding estruturado</p><p class="pilar-foco">Com marcos em 30, 60 e 90 dias.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">2</span>
-          <div><p class="pilar-nome">Gestão de saúde da carteira</p><p class="pilar-foco">Com alertas de risco.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">3</span>
-          <div><p class="pilar-nome">Rotina de pós-venda por ciclo de vida do produto</p><p class="pilar-foco">Gatilhos automáticos de contato para manutenção e reposição de peças.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">4</span>
-          <div><p class="pilar-nome">Programa de expansão</p><p class="pilar-foco">Upsell e cross-sell baseado em sinais de oportunidade.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">5</span>
-          <div><p class="pilar-nome">Dashboard de acompanhamento (placar)</p><p class="pilar-foco">Detalhado a seguir.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">6</span>
-          <div><p class="pilar-nome">Pesquisa de satisfação</p><p class="pilar-foco">NPS/CSAT, com ciclo de melhoria contínua.</p></div>
-        </div>
-        <div class="pilar-item">
-          <span class="pilar-num">7</span>
-          <div><p class="pilar-nome">Relatório executivo mensal</p><p class="pilar-foco">Mais revisão trimestral.</p></div>
-        </div>
-      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4b: FASE 2 (parte 2) -->
+  <div class="slide slide-tall">
+    <div class="container">
+      <p class="label-tag">Fase 2</p>
+      <h2>Entregas recorrentes</h2>
+      <ul class="entregas-list">
+        <li>Onboarding estruturado com marcos em 30/60/90 dias</li>
+        <li>Gestão de saúde da carteira com alertas de risco</li>
+        <li>Rotina de pós-venda por ciclo de vida do produto — no caso de equipamento técnico, gatilhos automáticos de contato pra manutenção e reposição de peças</li>
+        <li>Programa de expansão (upsell/cross-sell) baseado em sinais de oportunidade</li>
+        <li>Dashboard de acompanhamento (placar) — detalhado a seguir</li>
+        <li>Pesquisa de satisfação (NPS/CSAT) com ciclo de melhoria contínua</li>
+        <li>Relatório executivo mensal + revisão trimestral</li>
+      </ul>
     </div>
   </div>
 
   <!-- SLIDE 5: PLACAR -->
   <div class="slide bg-creme">
     <div class="container">
-      <div class="servico-slide-header">
-        <span class="servico-num">3</span>
-        <h2>Placar: dashboard de acompanhamento</h2>
-      </div>
+      <h2>Placar (dashboard de acompanhamento)</h2>
       <p class="servico-desc">Não é um relatório estático: é um dashboard onde a WS Cranes acompanha, em tempo real, como a jornada de Sucesso do Cliente está performando.</p>
       <div class="ganhos-grid">
         <div class="ganho-item">
