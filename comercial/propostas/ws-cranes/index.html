@@ -141,6 +141,9 @@
     .invest-table tr.total td { border-bottom: none; border-top: 2px solid #ddd; font-size: 17px; font-weight: 500; color: var(--roxo); padding-top: 18px; }
     .invest-table .valor { text-align: right; font-weight: 500; color: var(--roxo); white-space: nowrap; }
     .invest-nota { margin-top: 16px; font-size: 12px; color: var(--suave); }
+    .valor-original { text-decoration: line-through; color: var(--suave); font-weight: 400; font-size: 13px; margin-right: 8px; }
+    .valor-final { color: var(--roxo); font-weight: 600; }
+    .desconto-badge { display: inline-block; background: var(--vermelho); color: #fff; font-size: 10px; font-weight: 500; letter-spacing: .5px; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
 
     /* ── GARANTIA ── */
     .garantia-texto { font-size: 19px; font-weight: 300; line-height: 1.65; max-width: 740px; }
@@ -357,13 +360,13 @@
         <tbody>
           <tr>
             <td>Setup — Diagnóstico e desenho (Fase 1)</td>
-            <td>Único, meses 1 e 2</td>
-            <td class="valor">R$ 3.000,00 *</td>
+            <td>Único, meses 1 e 2 (R$ 1.500,00/mês)</td>
+            <td class="valor"><span class="valor-original">R$ 6.000,00</span><span class="valor-final">R$ 3.000,00 *</span><span class="desconto-badge">-50%</span></td>
           </tr>
           <tr>
             <td>Operação contínua (Fase 2)</td>
             <td>Mensal, 3º ao 6º mês</td>
-            <td class="valor">R$ 1.000,00/mês *</td>
+            <td class="valor"><span class="valor-original">R$ 2.000,00/mês</span><span class="valor-final">R$ 1.000,00/mês *</span><span class="desconto-badge">-50%</span></td>
           </tr>
           <tr class="total">
             <td><strong>Total do contrato (6 meses)</strong></td>
@@ -372,7 +375,7 @@
           </tr>
         </tbody>
       </table>
-      <p class="invest-nota">* Contrato mínimo de 6 meses de projeto.</p>
+      <p class="invest-nota">* 50% de desconto especial para clientes Moinho. Contrato mínimo de 6 meses de projeto.</p>
     </div>
   </div>
 
