@@ -198,6 +198,21 @@ gh release create v1.0.0
 
 ---
 
+## Relatorios e dashboards
+
+### Reportei API
+**O que faz:** Le metricas de marketing (Google Ads, Meta Ads, GA4 e outras integracoes) ja conectadas na conta Reportei da agencia, por cliente/projeto. Serve pra montar dashboards e relatorios com dado real sem entrar em cada plataforma de anuncio separada.
+**Precisa de conta:** Sim, conta Reportei (a agencia ja tem)
+**Configurar:** Gerar token em app.reportei.com > Configuracoes da Empresa > API Reportei. Salvar `REPORTEI_API_TOKEN` no `.env`
+**Como usar numa skill:**
+```bash
+curl -s -H "Authorization: Bearer $REPORTEI_API_TOKEN" "https://app.reportei.com/api/v2/projects?q=NOME_CLIENTE"
+```
+**Quando usar:** Skills de dashboard, relatorio de performance, qualquer entrega que precise puxar numero real de campanha em vez de pedir print pro cliente. Ver skill `/dashboard-reportei` pro fluxo completo (inclui um gotcha de encoding BOM no Windows/PowerShell que vale ler antes de montar o payload).
+**Docs:** https://developers.reportei.com/
+
+---
+
 ## Trafego pago e analytics
 
 > Pra Meta Ads, Google Ads e GA4 a recomendacao e usar as skills da Ratos de IA, que ja embrulham as APIs em comandos prontos com as melhores praticas (benchmarks BR, Quality Gates, Health Score). Listadas tambem em `templates/skills/catalogo.md`.
