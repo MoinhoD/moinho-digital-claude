@@ -137,20 +137,27 @@
   .assinatura { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: #999; max-width: 900px; }
   .assinatura strong { color: var(--suave); }
 
-  /* ── FECHAMENTO ── */
+  /* ── PRÓXIMOS PASSOS ── */
   .cta-h2 { font-family: 'Noto Serif', serif; font-size: 38px; font-weight: 600; line-height: 1.15; margin-bottom: 28px; }
   .proximos-list { list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 720px; margin-bottom: 40px; }
   .proximos-list li { display: flex; gap: 14px; padding: 16px 20px; background: rgba(255,255,255,.07); border-radius: 10px; border-left: 3px solid var(--salmao); font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.9); }
   .proximos-num { font-family: 'Noto Serif', serif; font-weight: 600; color: var(--salmao); flex-shrink: 0; }
-  .fechamento-footer { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.15); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
-  .fechamento-assinatura { font-size: 14px; color: rgba(255,255,255,.85); }
-  .fechamento-assinatura strong { color: #fff; }
-  .fechamento-tagline { font-family: 'Noto Serif', serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,.4); }
+
+  /* ── FECHAMENTO (mesmo padrão do slide final da proposta) ── */
+  .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 56px; align-items: start; }
+  .footer-col-title { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--salmao); margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,.65); text-decoration: none; font-size: 14px; }
+  .footer-links a:hover { color: #fff; }
+  .footer-cta { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.65; }
+  .footer-cta strong { color: #fff; }
+  .footer-tagline { font-family: 'Noto Serif', serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,.4); margin-top: 4px; }
 
   /* ── RESPONSIVO ── */
   @media (max-width: 900px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .callout-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .container { padding: 0 24px; }
     .hero h1 { font-size: 48px; }
   }
@@ -168,6 +175,7 @@
     .chart-scroll svg { min-width: 0; width: 100%; }
     .kpi-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
     .callout-row { grid-template-columns: 1fr 1fr !important; }
+    .footer-grid { grid-template-columns: 1.2fr 1fr 1fr !important; }
     .tile { padding: 14px 16px 12px; }
     .tile .value { font-size: 21px; }
   }
@@ -341,10 +349,30 @@
         <li><span class="proximos-num">2</span><span>Revisar os termos de pesquisa das últimas duas semanas e reforçar as negativas de conta, pra recuperar a eficiência que a campanha tinha em julho.</span></li>
         <li><span class="proximos-num">3</span><span>Acompanhar mais um ciclo antes de fechar leitura sobre volume de leads — a campanha ainda é nova e a base de comparação é curta.</span></li>
       </ul>
+    </div>
+  </div>
 
-      <div class="fechamento-footer">
-        <div class="fechamento-assinatura"><strong>Vinícius Luiz</strong> — Moinho Digital<br>Qualquer dúvida sobre esses números, é só chamar.</div>
-        <div class="fechamento-tagline">Tração para negócios que importam.</div>
+  <!-- SLIDE 6: FECHAMENTO -->
+  <div class="slide bg-dark">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="brand-tag">Moinho Digital</p>
+          <p class="cta-h2">Seguimos juntos.</p>
+          <p class="footer-tagline">Tração para negócios que importam.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Contato</p>
+          <ul class="footer-links">
+            <li><a href="mailto:contato@moinhod.com.br" target="_blank">contato@moinhod.com.br</a></li>
+            <li><a href="https://wa.me/5551999790598" target="_blank">(51) 9 9979-0598</a></li>
+            <li><a href="https://instagram.com/marketingmoinho" target="_blank">@marketingmoinho</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Responsável pela conta</p>
+          <p class="footer-cta"><strong>Vinícius Luiz</strong> — Moinho Digital<br>Dúvidas sobre esse relatório? É só chamar.</p>
+        </div>
       </div>
     </div>
   </div>
