@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — DataCentrics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #5A368C;
+    --vermelho: #D23E4F;
+    --salmao: #F0867D;
+    --creme: #EFEEDF;
+    --texto: #1C1C1C;
+    --suave: #666;
+
+    --good: #0ca30c;
+    --warning: #b8860f;
+    --serious: #c1522f;
+    --critical: #b0312f;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; overflow: hidden; background: #fff; }
+
+  body { font-family: 'Lexend', 'Calibri', sans-serif; color: var(--texto); line-height: 1.6; }
+
+  /* ── CAROUSEL ENGINE (mesmo padrão da skill /proposta) ── */
+  .slides-track { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 0 72px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(.25,.1,.25,1), opacity 0.35s ease;
+  }
+
+  .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+  .slide-tall { justify-content: flex-start; padding-top: 64px; }
+
+  .slide.bg-creme { background: var(--creme); }
+  .slide.bg-hero  { background: linear-gradient(135deg,#5A368C 0%,#3d2260 60%,#D23E4F 100%); color:#fff; }
+
+  /* ── NAV ── */
+  .carousel-nav {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(20,8,40,.78); backdrop-filter: blur(14px);
+    border-radius: 40px; padding: 9px 22px; z-index: 200;
+  }
+
+  .nav-btn {
+    background: none; border: none; color: #fff; font-size: 18px;
+    cursor: pointer; padding: 2px 8px; opacity: .75; transition: opacity .2s; line-height: 1;
+  }
+  .nav-btn:hover { opacity: 1; }
+  .nav-btn:disabled { opacity: .22; cursor: default; }
+
+  .counter { color: rgba(255,255,255,.65); font-size: 11px; letter-spacing: 1.5px; min-width: 36px; text-align: center; }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--salmao); z-index: 200; transition: width .4s ease;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 64px; width: 100%; }
+
+  .label-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--salmao); margin-bottom: 10px;
+  }
+  .slide:not(.bg-hero) .label-tag { color: var(--vermelho); }
+
+  h1 { font-family: 'Noto Serif', serif; font-weight: 600; }
+  h2 { font-family: 'Noto Serif', serif; font-size: 28px; font-weight: 600; line-height: 1.2; margin-bottom: 22px; color: var(--roxo); }
+
+  /* ── CAPA ── */
+  .brand-tag { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 20px; }
+  .hero h1 { font-size: 80px; line-height: 1.0; margin-bottom: 18px; }
+  .hero-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,.85); margin-bottom: 28px; max-width: 640px; }
+  .hero-meta { font-size: 14px; color: rgba(255,255,255,.5); font-weight: 300; }
+  .hero-meta strong { color: rgba(255,255,255,.9); font-weight: 500; }
+
+  /* ── KPI GRID ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 4px; }
+
+  .tile { background: #fff; border-radius: 12px; padding: 20px 20px 18px; box-shadow: 0 3px 14px rgba(0,0,0,.06); }
+
+  .tile .label { font-size: 12.5px; color: var(--suave); margin: 0 0 8px; }
+  .tile .value { font-family: 'Lexend', sans-serif; font-weight: 700; font-size: 25px; color: var(--texto); margin: 0 0 8px; }
+
+  .delta { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+  .delta.critical { color: var(--critical); background: rgba(176,49,47,0.10); }
+  .delta.serious  { color: var(--serious);  background: rgba(193,82,47,0.10); }
+  .delta.neutral  { color: var(--suave);    background: rgba(0,0,0,0.05); }
+
+  .tile .vs { font-size: 11px; color: #999; margin-top: 6px; }
+
+  .callout-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .callout { background: #fff; border-radius: 10px; padding: 16px 18px; border-left: 4px solid var(--salmao); box-shadow: 0 3px 14px rgba(0,0,0,.06); }
+  .callout .callout-label { font-size: 11.5px; color: #999; margin: 0 0 4px; }
+  .callout .callout-value { font-size: 15px; font-weight: 500; color: var(--texto); margin: 0; }
+
+  /* ── CHART ── */
+  .chart-card { background: #fff; border-radius: 12px; padding: 26px 30px 14px; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  .chart-card .chart-title { font-size: 15px; font-weight: 500; color: var(--texto); margin: 0 0 2px; }
+  .chart-card .chart-sub { font-size: 12.5px; color: #999; margin: 0 0 10px; }
+  .chart-scroll { overflow-x: auto; }
+  .chart-scroll svg { display: block; min-width: 640px; width: 100%; }
+
+  details.table-toggle { margin-top: 4px; font-size: 13px; }
+  details.table-toggle summary { cursor: pointer; color: var(--roxo); font-weight: 500; padding: 10px 0; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
+  table.data-table th, table.data-table td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #eee; }
+  table.data-table th { color: #999; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; }
+
+  /* ── ANÁLISE ── */
+  .analise-lead { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--roxo); margin-bottom: 20px; max-width: 780px; }
+  .aviso-volume {
+    background: rgba(240,134,125,.16); border: 1px solid rgba(240,134,125,.45);
+    border-radius: 8px; padding: 12px 16px; font-size: 12.5px; color: var(--texto); margin-bottom: 18px; max-width: 900px;
+  }
+  .analise p { font-size: 14px; line-height: 1.7; color: #333; margin: 0 0 14px; max-width: 900px; }
+  .analise strong { color: var(--roxo); }
+
+  .assinatura { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: #999; max-width: 900px; }
+  .assinatura strong { color: var(--suave); }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .callout-row { grid-template-columns: 1fr; }
+    .container { padding: 0 24px; }
+    .hero h1 { font-size: 48px; }
+  }
+
+  /* ── PRINT (PDF A4 paisagem) ── */
+  @media print {
+    html, body { height: auto; overflow: visible; }
+    .slides-track { position: static; height: auto; overflow: visible; }
+    .carousel-nav, .progress-bar { display: none !important; }
+    .slide { position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto; height: 100vh; page-break-after: always; overflow: hidden; padding-bottom: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    details.table-toggle { display: none; }
+    .chart-scroll { overflow-x: visible; }
+    .chart-scroll svg { min-width: 0; width: 100%; }
+    .kpi-grid { gap: 10px; }
+    .tile { padding: 14px 16px 12px; }
+    .tile .value { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="slides-track">
+
+  <!-- SLIDE 1: CAPA -->
+  <div class="slide bg-hero">
+    <div class="container">
+      <p class="brand-tag">Moinho Digital · Dashboard de performance</p>
+      <h1 class="hero">DataCentrics</h1>
+      <p class="hero-sub">Google Ads — campanha de Pesquisa. Leitura do investimento, eficiência e leads captados no período.</p>
+      <p class="hero-meta"><strong>1–19 de agosto de 2026</strong> · comparado a julho/2026</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: VISÃO GERAL -->
+  <div class="slide slide-tall">
+    <div class="container">
+      <p class="label-tag">Visão geral</p>
+      <h2>KPIs do período</h2>
+
+      <div class="kpi-grid">
+        <div class="tile">
+          <p class="label">Investimento</p>
+          <p class="value">R$ 1.557,07</p>
+          <span class="delta neutral">▲ 208,1%</span>
+          <p class="vs">vs R$ 505,30 em julho*</p>
+        </div>
+        <div class="tile">
+          <p class="label">Cliques</p>
+          <p class="value">198</p>
+          <span class="delta critical">▼ 44,8%</span>
+          <p class="vs">vs 359 em julho*</p>
+        </div>
+        <div class="tile">
+          <p class="label">Impressões</p>
+          <p class="value">4.542</p>
+          <span class="delta neutral">▲ 48,8%</span>
+          <p class="vs">vs 3.053 em julho*</p>
+        </div>
+        <div class="tile">
+          <p class="label">CTR</p>
+          <p class="value">4,36%</p>
+          <span class="delta critical">▼ 62,9%</span>
+          <p class="vs">vs 11,76% em julho</p>
+        </div>
+        <div class="tile">
+          <p class="label">CPC médio</p>
+          <p class="value">R$ 7,86</p>
+          <span class="delta critical">▲ 458,7%</span>
+          <p class="vs">vs R$ 1,41 em julho</p>
+        </div>
+        <div class="tile">
+          <p class="label">Leads (formulário)</p>
+          <p class="value">2</p>
+          <span class="delta serious">▼ 50%</span>
+          <p class="vs">vs 4 em julho*</p>
+        </div>
+        <div class="tile">
+          <p class="label">Custo por lead</p>
+          <p class="value">R$ 778,53</p>
+          <span class="delta critical">▲ 516,3%</span>
+          <p class="vs">vs R$ 126,33 em julho</p>
+        </div>
+      </div>
+
+      <div class="callout-row">
+        <div class="callout">
+          <p class="callout-label">Campanha ativa</p>
+          <p class="callout-value">DC | IA Generativa — Rede de Pesquisa</p>
+        </div>
+        <div class="callout">
+          <p class="callout-label">Conversão rastreada</p>
+          <p class="callout-value">Enviar formulário de lead (única ação configurada)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: GRÁFICO -->
+  <div class="slide">
+    <div class="container">
+      <p class="label-tag">Tendência</p>
+      <h2>Cliques por dia</h2>
+
+      <div class="chart-card">
+        <p class="chart-title">Cliques diários — agosto de 2026</p>
+        <p class="chart-sub">1 a 19 de agosto · dias sem barra = sem cliques registrados</p>
+        <div class="chart-scroll">
+          <svg viewBox="0 0 800 300" width="100%" height="300" role="img" aria-label="Gráfico de linha mostrando cliques por dia em agosto de 2026, variando de 0 a 25 cliques por dia">
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="180" x2="760" y2="180" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="20" x2="760" y2="20" stroke="#e1e0d9" stroke-width="1"/>
+            <text x="32" y="264" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#999">0</text>
+            <text x="32" y="184" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#999">10</text>
+            <text x="32" y="104" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#999">20</text>
+            <text x="32" y="24" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#999">30</text>
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#c3c2b7" stroke-width="1"/>
+            <polyline fill="none" stroke="#5A368C" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              points="40,252 80,260 120,132 160,116 200,180 240,132 280,212 320,236 360,260 400,236 440,260 480,100 520,60 560,164 600,148 640,260 680,92 720,100 760,156" />
+            <circle cx="520" cy="60" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="520" y="46" text-anchor="middle" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">25</text>
+            <circle cx="760" cy="156" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="748" y="142" text-anchor="end" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">13</text>
+            <text x="40" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#999">01/08</text>
+            <text x="200" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#999">05/08</text>
+            <text x="400" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#999">10/08</text>
+            <text x="600" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#999">15/08</text>
+            <text x="760" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#999">19/08</text>
+          </svg>
+        </div>
+
+        <details class="table-toggle">
+          <summary>Ver dados em tabela</summary>
+          <table class="data-table">
+            <thead><tr><th>Data</th><th>Cliques</th></tr></thead>
+            <tbody>
+              <tr><td>01/08</td><td>1</td></tr><tr><td>02/08</td><td>0</td></tr><tr><td>03/08</td><td>16</td></tr>
+              <tr><td>04/08</td><td>18</td></tr><tr><td>05/08</td><td>10</td></tr><tr><td>06/08</td><td>16</td></tr>
+              <tr><td>07/08</td><td>6</td></tr><tr><td>08/08</td><td>3</td></tr><tr><td>09/08</td><td>0</td></tr>
+              <tr><td>10/08</td><td>3</td></tr><tr><td>11/08</td><td>0</td></tr><tr><td>12/08</td><td>20</td></tr>
+              <tr><td>13/08</td><td>25</td></tr><tr><td>14/08</td><td>12</td></tr><tr><td>15/08</td><td>14</td></tr>
+              <tr><td>16/08</td><td>0</td></tr><tr><td>17/08</td><td>21</td></tr><tr><td>18/08</td><td>20</td></tr>
+              <tr><td>19/08</td><td>13</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: LEITURA DO PERÍODO -->
+  <div class="slide bg-creme slide-tall">
+    <div class="container">
+      <p class="label-tag">Leitura do período</p>
+      <h2>O que os números dizem</h2>
+
+      <div class="aviso-volume">
+        * Julho teve só 11 dias de campanha ativa (a partir de 21/07). A comparação de investimento, cliques e leads totais contra agosto não é 1 para 1 — os indicadores de eficiência (CTR, CPC, custo por lead) são proporcionais e valem mais a leitura.
+      </div>
+
+      <div class="analise">
+        <p>Agosto começou com uma campanha mais cara. O <strong>CPC médio subiu de R$ 1,41 para R$ 7,86</strong> e o <strong>custo por lead foi de R$ 126,33 para R$ 778,53</strong> na comparação com julho. Uma hipótese é o fim da bonificação de conta nova do Google Ads (cerca de R$ 1.200) mencionada no onboarding, que reduzia o custo efetivo em julho — o valor investido agora provavelmente já reflete o custo real da praça, sem o desconto inicial. Vale confirmar isso direto na conta.</p>
+        <p>O volume segue baixo: <strong>2 leads em agosto</strong> (até dia 19), contra 4 em julho. Com uma única campanha ativa ("DC | IA Generativa", em Pesquisa) e pouco mais de 10 cliques por dia em média, o volume ainda não sustenta uma leitura definitiva sobre a qualidade da captação — é cedo para tirar conclusão de tendência.</p>
+        <p>O que dá pra dizer com mais confiança é que a <strong>eficiência caiu</strong>: CTR foi de 11,76% para 4,36% e o custo por clique mais que quintuplicou. Isso pode vir de leilão mais concorrido no termo "IA generativa", de anúncios menos relevantes pro público que está clicando agora, ou da combinação dos dois. Recomendo revisar os termos de pesquisa das últimas duas semanas e checar se as negativas de conta seguem cobrindo o tráfego não qualificado.</p>
+        <p>Sem dado de CRM neste dashboard, não dá pra dizer o que desses 2 leads virou reunião ou oportunidade comercial — isso segue dependendo do que o time comercial reportar no funil, separando o que é eficiência de mídia do que é eficiência comercial.</p>
+      </div>
+
+      <div class="assinatura">
+        <div><strong>Vinícius Luiz</strong> — Moinho Digital</div>
+        <div>Dados via Reportei (Google Ads) · Gerado em 21/08/2026</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slides-track -->
+
+<nav class="carousel-nav">
+  <button class="nav-btn" id="prevBtn" aria-label="Anterior">←</button>
+  <span class="counter" id="counter">1 / 1</span>
+  <button class="nav-btn" id="nextBtn" aria-label="Próximo">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let busy = false;
+
+  function goTo(n) {
+    if (busy || n === current || n < 0 || n >= total) return;
+    busy = true;
+    const dir = n > current ? 1 : -1;
+    const out = slides[current];
+    const into = slides[n];
+    into.style.transition = 'none';
+    into.style.transform = 'translateX(' + (dir * 100) + '%)';
+    into.style.opacity = '0';
+    into.classList.add('active');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        into.style.transition = '';
+        out.style.transform = 'translateX(' + (-dir * 100) + '%)';
+        out.style.opacity = '0';
+        into.style.transform = 'translateX(0)';
+        into.style.opacity = '1';
+        setTimeout(function() {
+          out.classList.remove('active');
+          out.style.cssText = '';
+          current = n;
+          busy = false;
+          sync();
+        }, 450);
+      });
+    });
+  }
+
+  function sync() {
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = (((current + 1) / total) * 100) + '%';
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    var diff = tx - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  slides[0].classList.add('active');
+  sync();
+</script>
+
+</body>
+</html>
