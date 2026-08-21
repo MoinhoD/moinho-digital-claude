@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataCentrics — Dashboard de Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #5A368C;
+    --rosa: #D23E4F;
+    --salmao: #F0867D;
+    --creme: #EFEEDF;
+    --branco: #FFFFFF;
+
+    --surface: #FFFFFF;
+    --page: var(--creme);
+    --text-primary: #221933;
+    --text-secondary: #5c5468;
+    --text-muted: #8b8593;
+    --hairline: #e4e0ea;
+
+    --good: #0ca30c;
+    --warning: #b8860f;
+    --serious: #c1522f;
+    --critical: #b0312f;
+
+    --font-title: 'Noto Serif', Calibri, serif;
+    --font-body: 'Lexend', Calibri, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--roxo);
+  }
+
+  .brand-tag {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 30px;
+    margin: 0 0 6px;
+    color: var(--roxo);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* ── SELETOR DE PERÍODO ── */
+  .periodo-seletor {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .periodo-btn {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    padding: 9px 18px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+
+  .periodo-btn:hover { border-color: var(--roxo); color: var(--roxo); }
+
+  .periodo-btn.active {
+    background: var(--roxo);
+    border-color: var(--roxo);
+    color: #fff;
+  }
+
+  .periodo-painel { display: none; }
+  .periodo-painel.active { display: block; }
+
+  .periodo-datas {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: -20px 0 28px;
+  }
+
+  section { margin-bottom: 40px; }
+
+  h2 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+  }
+
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+  }
+
+  .tile .label { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; }
+  .tile .value { font-family: var(--font-body); font-weight: 700; font-size: 28px; color: var(--text-primary); margin: 0 0 8px; }
+
+  .delta {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12.5px; font-weight: 600; padding: 3px 8px; border-radius: 20px;
+  }
+  .delta.good { color: var(--good); background: rgba(12,163,12,0.09); }
+  .delta.critical { color: var(--critical); background: rgba(176,49,47,0.10); }
+  .delta.serious { color: var(--serious); background: rgba(193,82,47,0.10); }
+  .delta.neutral { color: var(--text-secondary); background: rgba(92,84,104,0.08); }
+
+  .tile .vs { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
+  .tile .sem-comparacao { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+
+  .callout-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+  .callout { background: var(--surface); border: 1px solid var(--hairline); border-left: 4px solid var(--salmao); border-radius: 8px; padding: 14px 16px; }
+  .callout .callout-label { font-size: 12px; color: var(--text-muted); margin: 0 0 4px; }
+  .callout .callout-value { font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 0; }
+
+  .chart-card { background: var(--surface); border: 1px solid var(--hairline); border-radius: 10px; padding: 20px 20px 8px; }
+  .chart-card .chart-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin: 0 0 2px; }
+  .chart-card .chart-sub { font-size: 12.5px; color: var(--text-muted); margin: 0 0 8px; }
+  .chart-scroll { overflow-x: auto; }
+  .chart-scroll svg { display: block; min-width: 700px; }
+
+  .analise { background: var(--surface); border: 1px solid var(--hairline); border-radius: 10px; padding: 24px 26px; }
+  .analise p { font-size: 14.5px; line-height: 1.7; color: var(--text-primary); margin: 0 0 14px; }
+  .analise p:last-child { margin-bottom: 0; }
+  .analise strong { color: var(--roxo); }
+
+  .aviso-volume {
+    background: rgba(240,134,125,0.14); border: 1px solid rgba(240,134,125,0.4);
+    border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--text-primary); margin-bottom: 14px;
+  }
+
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 12.5px; color: var(--text-muted);
+  }
+  footer .assinatura strong { color: var(--text-secondary); }
+
+  @media (max-width: 560px) {
+    header.top { flex-direction: column; align-items: flex-start; }
+    h1 { font-size: 24px; }
+  }
+
+  @media print {
+    .periodo-seletor { display: none; }
+    .periodo-painel { display: none !important; }
+    .periodo-painel.active { display: block !important; }
+    @page { size: A4 landscape; margin: 12mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .chart-scroll { overflow-x: visible; }
+    .chart-scroll svg { min-width: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <p class="brand-tag">Moinho Digital · Tração para negócios que importam</p>
+      <h1>DataCentrics</h1>
+      <p class="subtitle">Dashboard de performance — Google Ads (campanha de Pesquisa)</p>
+    </div>
+  </header>
+
+  <div class="periodo-seletor" role="tablist" aria-label="Selecionar período">
+    <button class="periodo-btn" data-periodo="julho" role="tab">Julho 2026</button>
+    <button class="periodo-btn active" data-periodo="agosto" role="tab" aria-selected="true">Agosto 2026</button>
+    <button class="periodo-btn" data-periodo="desde_inicio" role="tab">Desde o início</button>
+  </div>
+
+  <!-- ═══════════════ PAINEL: JULHO ═══════════════ -->
+  <div class="periodo-painel" data-painel="julho">
+    <p class="periodo-datas">21 a 31 de julho de 2026 · início da campanha, sem período anterior pra comparar</p>
+
+    <section>
+      <h2>Visão geral</h2>
+      <div class="kpi-grid">
+        <div class="tile"><p class="label">Investimento</p><p class="value">R$ 505,30</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">Cliques</p><p class="value">359</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">Impressões</p><p class="value">3.053</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">CTR</p><p class="value">11,76%</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">CPC médio</p><p class="value">R$ 1,41</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">Leads (formulário)</p><p class="value">4</p><p class="sem-comparacao">primeiro período</p></div>
+        <div class="tile"><p class="label">Custo por lead</p><p class="value">R$ 126,33</p><p class="sem-comparacao">primeiro período</p></div>
+      </div>
+      <div class="callout-row">
+        <div class="callout"><p class="callout-label">Campanha ativa</p><p class="callout-value">DC | IA Generativa — Rede de Pesquisa</p></div>
+        <div class="callout"><p class="callout-label">Conversão rastreada</p><p class="callout-value">Enviar formulário de lead (única ação configurada)</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cliques por dia</h2>
+      <div class="chart-card">
+        <p class="chart-title">Cliques diários — 21 a 31 de julho de 2026</p>
+        <p class="chart-sub">período completo, sem dias faltando</p>
+        <div class="chart-scroll">
+          <svg viewBox="0 0 800 300" width="100%" height="300" role="img" aria-label="Gráfico de linha mostrando cliques por dia de 21 a 31 de julho de 2026, variando de 6 a 83 cliques por dia">
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="180" x2="760" y2="180" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="20" x2="760" y2="20" stroke="#e1e0d9" stroke-width="1"/>
+            <text x="32" y="264" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">0</text>
+            <text x="32" y="184" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">30</text>
+            <text x="32" y="104" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">60</text>
+            <text x="32" y="24" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">90</text>
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#c3c2b7" stroke-width="1"/>
+            <polyline fill="none" stroke="#5A368C" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              points="40,167 112,39 184,209 256,201 328,199 400,191 472,180 544,177 616,148 688,148 760,244" />
+            <circle cx="112" cy="39" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="112" y="25" text-anchor="middle" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">83</text>
+            <circle cx="760" cy="244" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="748" y="230" text-anchor="end" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">6</text>
+            <text x="40" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">21/07</text>
+            <text x="328" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">25/07</text>
+            <text x="544" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">28/07</text>
+            <text x="760" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">31/07</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Leitura do período</h2>
+      <div class="analise">
+        <p>Julho foi o início da campanha — ela entrou no ar em 21/07, então esse período mostra só 11 dias de veiculação. Os números foram os melhores que a campanha teve até agora: <strong>CTR de 11,76% e CPC médio de R$ 1,41</strong>, bem abaixo do que costuma ser saudável pra um termo concorrido como "IA generativa". Isso provavelmente reflete o efeito da bonificação de conta nova do Google Ads (cerca de R$ 1.200, mencionada no onboarding), que reduz o custo efetivo enquanto dura.</p>
+        <p>Com R$ 505,30 investidos, a campanha gerou <strong>4 leads via formulário</strong>, a um custo por lead de R$ 126,33. É a base mais barata que a campanha teve até agora — vale tratar como efeito da bonificação, não como o patamar normal de operação.</p>
+        <p>Sem período anterior pra comparar (a campanha não existia antes de 21/07), esse é o ponto de partida da leitura, não uma tendência confirmada.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════ PAINEL: AGOSTO ═══════════════ -->
+  <div class="periodo-painel active" data-painel="agosto">
+    <p class="periodo-datas">1 a 20 de agosto de 2026 · comparado a julho/2026 (mês parcial, 11 dias de campanha ativa)</p>
+
+    <section>
+      <h2>Visão geral</h2>
+      <div class="kpi-grid">
+        <div class="tile"><p class="label">Investimento</p><p class="value">R$ 1.736,28</p><span class="delta neutral">▲ 243,6%</span><p class="vs">vs R$ 505,30 em julho*</p></div>
+        <div class="tile"><p class="label">Cliques</p><p class="value">217</p><span class="delta critical">▼ 39,6%</span><p class="vs">vs 359 em julho*</p></div>
+        <div class="tile"><p class="label">Impressões</p><p class="value">4.998</p><span class="delta neutral">▲ 63,7%</span><p class="vs">vs 3.053 em julho*</p></div>
+        <div class="tile"><p class="label">CTR</p><p class="value">4,34%</p><span class="delta critical">▼ 63,1%</span><p class="vs">vs 11,76% em julho</p></div>
+        <div class="tile"><p class="label">CPC médio</p><p class="value">R$ 8,00</p><span class="delta critical">▲ 468,5%</span><p class="vs">vs R$ 1,41 em julho</p></div>
+        <div class="tile"><p class="label">Leads (formulário)</p><p class="value">3</p><span class="delta serious">▼ 25%</span><p class="vs">vs 4 em julho*</p></div>
+        <div class="tile"><p class="label">Custo por lead</p><p class="value">R$ 578,76</p><span class="delta critical">▲ 358,1%</span><p class="vs">vs R$ 126,33 em julho</p></div>
+      </div>
+      <div class="callout-row">
+        <div class="callout"><p class="callout-label">Campanhas ativas</p><p class="callout-value">DC | IA Generativa (principal) + DC | IA Setor Financeiro (nova, volume mínimo)</p></div>
+        <div class="callout"><p class="callout-label">Conversão rastreada</p><p class="callout-value">Enviar formulário de lead (única ação configurada)</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cliques por dia</h2>
+      <div class="chart-card">
+        <p class="chart-title">Cliques diários — agosto de 2026</p>
+        <p class="chart-sub">1 a 20 de agosto · dias sem barra = sem cliques registrados</p>
+        <div class="chart-scroll">
+          <svg viewBox="0 0 800 300" width="100%" height="300" role="img" aria-label="Gráfico de linha mostrando cliques por dia de 1 a 20 de agosto de 2026, variando de 0 a 25 cliques por dia">
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="180" x2="760" y2="180" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="20" x2="760" y2="20" stroke="#e1e0d9" stroke-width="1"/>
+            <text x="32" y="264" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">0</text>
+            <text x="32" y="184" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">10</text>
+            <text x="32" y="104" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">20</text>
+            <text x="32" y="24" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">30</text>
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#c3c2b7" stroke-width="1"/>
+            <polyline fill="none" stroke="#5A368C" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              points="40,252 78,260 116,132 154,116 192,180 230,132 267,212 305,236 343,260 381,236 419,260 457,100 495,60 533,164 571,148 608,260 646,92 684,100 722,156 760,108" />
+            <circle cx="495" cy="60" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="495" y="46" text-anchor="middle" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">25</text>
+            <circle cx="760" cy="108" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="748" y="94" text-anchor="end" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">19</text>
+            <text x="40" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">01/08</text>
+            <text x="192" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">05/08</text>
+            <text x="381" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">10/08</text>
+            <text x="571" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">15/08</text>
+            <text x="760" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">20/08</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Leitura do período</h2>
+      <div class="analise">
+        <div class="aviso-volume">* Julho teve só 11 dias de campanha ativa (a partir de 21/07). A comparação de investimento, cliques e leads totais contra agosto não é 1 para 1 — os indicadores de eficiência (CTR, CPC, custo por lead) são proporcionais e valem mais a leitura.</div>
+        <p>Agosto confirma o que já parecia se desenhar: a campanha ficou mais cara depois que a bonificação de conta nova deve ter se esgotado. O <strong>CPC médio subiu de R$ 1,41 para R$ 8,00</strong> e o <strong>custo por lead foi de R$ 126,33 para R$ 578,76</strong> na comparação com julho. CTR caiu de 11,76% para 4,34% — uma queda grande, embora as impressões tenham subido 63,7%, sinal de que o anúncio está aparecendo mais, mas convertendo menos clique por impressão.</p>
+        <p>O volume segue baixo: <strong>3 leads em agosto</strong> (até dia 20), contra 4 em julho — mas julho teve só 11 dias de campanha, então a base de comparação de totais não é limpa.</p>
+        <p>Uma novidade: apareceu uma segunda campanha, <strong>"DC | IA Setor Financeiro"</strong>, ainda com volume mínimo (3 cliques, R$ 64,40 investidos, zero conversões). Vale confirmar com o time se é uma expansão planejada ou um teste em andamento — não estava na estrutura original registrada no início do projeto.</p>
+        <p>Recomendo revisar os termos de pesquisa das últimas duas semanas, checar se as negativas de conta seguem cobrindo o tráfego não qualificado, e confirmar direto na conta se a bonificação já foi totalmente consumida.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════ PAINEL: DESDE O INÍCIO ═══════════════ -->
+  <div class="periodo-painel" data-painel="desde_inicio">
+    <p class="periodo-datas">21 de julho a 20 de agosto de 2026 · acumulado desde o início da campanha (31 dias), sem comparação</p>
+
+    <section>
+      <h2>Visão geral</h2>
+      <div class="kpi-grid">
+        <div class="tile"><p class="label">Investimento</p><p class="value">R$ 2.241,58</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">Cliques</p><p class="value">576</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">Impressões</p><p class="value">8.051</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">CTR</p><p class="value">7,15%</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">CPC médio</p><p class="value">R$ 3,89</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">Leads (formulário)</p><p class="value">7</p><p class="sem-comparacao">acumulado</p></div>
+        <div class="tile"><p class="label">Custo por lead</p><p class="value">R$ 320,23</p><p class="sem-comparacao">acumulado</p></div>
+      </div>
+      <div class="callout-row">
+        <div class="callout"><p class="callout-label">Campanhas ativas</p><p class="callout-value">DC | IA Generativa (principal) + DC | IA Setor Financeiro (nova, volume mínimo)</p></div>
+        <div class="callout"><p class="callout-label">Conversão rastreada</p><p class="callout-value">Enviar formulário de lead (única ação configurada)</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cliques por dia</h2>
+      <div class="chart-card">
+        <p class="chart-title">Cliques diários — 21/07 a 20/08 de 2026</p>
+        <p class="chart-sub">31 dias · dias sem barra = sem cliques registrados</p>
+        <div class="chart-scroll">
+          <svg viewBox="0 0 800 300" width="100%" height="300" role="img" aria-label="Gráfico de linha mostrando cliques por dia de 21 de julho a 20 de agosto de 2026, variando de 0 a 83 cliques por dia">
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="180" x2="760" y2="180" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="100" x2="760" y2="100" stroke="#e1e0d9" stroke-width="1"/>
+            <line x1="40" y1="20" x2="760" y2="20" stroke="#e1e0d9" stroke-width="1"/>
+            <text x="32" y="264" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">0</text>
+            <text x="32" y="184" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">30</text>
+            <text x="32" y="104" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">60</text>
+            <text x="32" y="24" text-anchor="end" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">90</text>
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#c3c2b7" stroke-width="1"/>
+            <polyline fill="none" stroke="#5A368C" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              points="40,167 64,39 88,209 112,201 136,199 160,191 184,180 208,177 232,148 256,148 280,244 304,257 328,260 352,217 376,212 400,233 424,217 448,244 472,252 496,260 520,252 544,260 568,207 592,193 616,228 640,223 664,260 688,204 712,207 736,225 760,209" />
+            <circle cx="64" cy="39" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="64" y="25" text-anchor="middle" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">83</text>
+            <circle cx="760" cy="209" r="4" fill="#5A368C" stroke="#FFFFFF" stroke-width="2"/>
+            <text x="748" y="199" text-anchor="end" font-family="Lexend, sans-serif" font-size="12" font-weight="600" fill="#221933">19</text>
+            <text x="40" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">21/07</text>
+            <text x="280" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">31/07</text>
+            <text x="520" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">10/08</text>
+            <text x="760" y="282" text-anchor="middle" font-family="Lexend, sans-serif" font-size="11" fill="#8b8593">20/08</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Leitura do período</h2>
+      <div class="analise">
+        <p>No acumulado desde que a campanha entrou no ar (21/07 a 20/08, 31 dias), foram <strong>R$ 2.241,58 investidos, 576 cliques, 8.051 impressões e 7 leads</strong> captados via formulário — um custo médio de R$ 320,23 por lead.</p>
+        <p>Essa média esconde uma mudança de patamar real: os primeiros 11 dias (julho, com a bonificação de conta nova provavelmente ainda ativa) foram muito mais baratos que os 20 dias seguintes (agosto). Se a tendência de agosto continuar, o custo médio acumulado tende a subir mês a mês — por isso vale olhar julho e agosto separados, não só o total. Use as abas acima pra comparar.</p>
+        <p>A leitura de qualidade segue a mesma dos outros períodos: volume ainda baixo pra tirar conclusão definitiva, ciclo comercial de cerca de 25 dias significa que os leads mais recentes ainda não tiveram tempo de virar reunião ou oportunidade, e a prioridade agora é recuperar a eficiência que a campanha tinha no início.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="assinatura"><strong>Vinícius Luiz</strong> — Moinho Digital</div>
+    <div>Dados via Reportei (Google Ads) · Gerado em 21/08/2026</div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.periodo-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var alvo = btn.getAttribute('data-periodo');
+
+      document.querySelectorAll('.periodo-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.removeAttribute('aria-selected');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      document.querySelectorAll('.periodo-painel').forEach(function(p) {
+        p.classList.toggle('active', p.getAttribute('data-painel') === alvo);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
