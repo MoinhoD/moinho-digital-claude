@@ -166,7 +166,8 @@
     details.table-toggle { display: none; }
     .chart-scroll { overflow-x: visible; }
     .chart-scroll svg { min-width: 0; width: 100%; }
-    .kpi-grid { gap: 10px; }
+    .kpi-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
+    .callout-row { grid-template-columns: 1fr 1fr !important; }
     .tile { padding: 14px 16px 12px; }
     .tile .value { font-size: 21px; }
   }
