@@ -296,6 +296,23 @@
     .periodo { text-align: left; }
     h1 { font-size: 24px; }
   }
+
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    body { background: var(--page); }
+    .wrap { max-width: 100%; padding: 0; }
+
+    .chart-scroll { overflow-x: visible; }
+    .chart-scroll svg { min-width: 0; width: 100%; }
+
+    details.table-toggle { display: none; }
+
+    .tile, .callout, .chart-card, .analise { break-inside: avoid; }
+    section { break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
