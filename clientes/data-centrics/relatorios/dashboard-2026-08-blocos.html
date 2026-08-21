@@ -49,6 +49,7 @@
 
   .slide.bg-creme { background: var(--creme); }
   .slide.bg-hero  { background: linear-gradient(135deg,#5A368C 0%,#3d2260 60%,#D23E4F 100%); color:#fff; }
+  .slide.bg-dark  { background: linear-gradient(135deg,#3d2260 0%,#2a1845 100%); color:#fff; }
 
   /* ── NAV ── */
   .carousel-nav {
@@ -136,6 +137,16 @@
   .assinatura { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: #999; max-width: 900px; }
   .assinatura strong { color: var(--suave); }
 
+  /* ── FECHAMENTO ── */
+  .cta-h2 { font-family: 'Noto Serif', serif; font-size: 38px; font-weight: 600; line-height: 1.15; margin-bottom: 28px; }
+  .proximos-list { list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 720px; margin-bottom: 40px; }
+  .proximos-list li { display: flex; gap: 14px; padding: 16px 20px; background: rgba(255,255,255,.07); border-radius: 10px; border-left: 3px solid var(--salmao); font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.9); }
+  .proximos-num { font-family: 'Noto Serif', serif; font-weight: 600; color: var(--salmao); flex-shrink: 0; }
+  .fechamento-footer { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.15); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .fechamento-assinatura { font-size: 14px; color: rgba(255,255,255,.85); }
+  .fechamento-assinatura strong { color: #fff; }
+  .fechamento-tagline { font-family: 'Noto Serif', serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,.4); }
+
   /* ── RESPONSIVO ── */
   @media (max-width: 900px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
@@ -146,6 +157,7 @@
 
   /* ── PRINT (PDF A4 paisagem) ── */
   @media print {
+    @page { size: A4 landscape; margin: 0; }
     html, body { height: auto; overflow: visible; }
     .slides-track { position: static; height: auto; overflow: visible; }
     .carousel-nav, .progress-bar { display: none !important; }
@@ -313,6 +325,25 @@
       <div class="assinatura">
         <div><strong>Vinícius Luiz</strong> — Moinho Digital</div>
         <div>Dados via Reportei (Google Ads) · Gerado em 21/08/2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: FECHAMENTO -->
+  <div class="slide bg-dark">
+    <div class="container">
+      <p class="label-tag">Próximos passos</p>
+      <h1 class="cta-h2">O que vem a seguir</h1>
+
+      <ul class="proximos-list">
+        <li><span class="proximos-num">1</span><span>Confirmar com o Google Ads se a bonificação de conta nova (cerca de R$ 1.200) já foi totalmente consumida — isso explicaria boa parte da alta no CPC e no custo por lead.</span></li>
+        <li><span class="proximos-num">2</span><span>Revisar os termos de pesquisa das últimas duas semanas e reforçar as negativas de conta, pra recuperar a eficiência que a campanha tinha em julho.</span></li>
+        <li><span class="proximos-num">3</span><span>Acompanhar mais um ciclo antes de fechar leitura sobre volume de leads — a campanha ainda é nova e a base de comparação é curta.</span></li>
+      </ul>
+
+      <div class="fechamento-footer">
+        <div class="fechamento-assinatura"><strong>Vinícius Luiz</strong> — Moinho Digital<br>Qualquer dúvida sobre esses números, é só chamar.</div>
+        <div class="fechamento-tagline">Tração para negócios que importam.</div>
       </div>
     </div>
   </div>
