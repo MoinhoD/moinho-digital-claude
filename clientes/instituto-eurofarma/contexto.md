@@ -65,7 +65,7 @@ As linhas de formação que a mídia divulga hoje, uma campanha por linha:
 | Enfermagem | Multiunidade |
 | Bolsa de Estudos | Multiunidade |
 | **PETE** — Preparatório para o Ensino Técnico em Enfermagem | Jurubatuba |
-| **PEV** | `[a confirmar]` — a sigla aparece como campanha em 2026 e não está expandida em nenhum material |
+| **PEV** — Preparatório para Vestibular | Multiunidade |
 
 Os cursos têm carga horária declarada e certificado ao concluir. O Instituto abre turmas em
 janelas de inscrição, com data de início definida, então **a comunicação de curso é sazonal e
@@ -168,7 +168,7 @@ Nomenclatura em uso: `[AUTO] [F] - Nome da campanha`.
 | Tráfego para o perfil | Fixa. Crescimento de base de seguidores |
 | Campanha 20 Anos | Eixo comemorativo, reaproveitada nas fixas |
 | Inscrições nos Cursos | Conversão, segmentada por unidade |
-| PETE e PEV | Conversão, uma campanha por programa, com janela de inscrição própria |
+| PETE e PEV | Conversão, uma campanha por preparatório, com janela de inscrição própria |
 
 Quatro objetivos fixos acompanhados todo mês: **alcance, engajamento em vídeo, tráfego para o
 perfil e tráfego para o site**. Cada um tem meta própria, definida no planejamento.
@@ -196,6 +196,13 @@ Regras que valem para toda campanha nova de Ad Grants:
 - **Localização por presença**, nunca por interesse, porque o curso é presencial
 - **Negativas de conta** cobrindo intenção paga (`pago`, `preço`, `mensalidade`), concorrente
   (`senac`, `senai`), emprego, material para download e ensino superior
+- **Conflito a verificar entre as negativas e as campanhas de preparatório.** Os dois briefings de
+  Montes Claros listam `enem`, `vestibular` e `preparatório` como negativas **no nível da conta**,
+  e a conta tem uma PMax de Preparatório, além das campanhas de PETE e PEV. Negativa de conta
+  vale para toda campanha: se essa lista foi aplicada como está, ela bloqueia o preparatório nos
+  próprios termos dele. **Conferir o escopo dessas três negativas antes de subir campanha nova de
+  PEV ou de PETE** — se estiverem mesmo na conta, o certo é descê-las para o nível das campanhas
+  de curso profissionalizante, onde o objetivo era filtrar intenção de ensino superior
 - **PMax leva de uma a duas semanas para otimizar.** Não mexer grande nesse período
 
 ## KPIs que acompanhamos
