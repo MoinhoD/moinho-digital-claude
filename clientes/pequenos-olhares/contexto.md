@@ -1,4 +1,4 @@
-# Projeto Pequenos Olhares: contexto do cliente
+# Projeto Pequenos Olhares — Contexto do cliente
 
 Cliente da Moinho Digital. Estratégia, gestão de mídia e relatórios por **Vinícius Luiz**.
 Ler este arquivo antes de qualquer tarefa do cliente (relatório, briefing, campanha, proposta).
@@ -16,7 +16,7 @@ crianças matriculadas na rede pública de ensino.
 - **Como quer ser percebido:** projeto sério, próximo e real. A direção de fotografia do brandbook
   pede situação real e expressão natural, e proíbe apelo à vulnerabilidade e excesso de produção
 - **Dado que a marca usa em comunicação:** entre 20% e 30% das crianças têm algum problema visual
-- **Concorrentes:** não se aplica no sentido comercial. O projeto disputa atenção, não mercado
+- **Concorrentes:** não se aplica no sentido comercial — o projeto disputa atenção, não mercado
 - **Site próprio:** `[a confirmar]`. O link da bio do Instagram leva a um localizador de lojas
   participantes, que é o destino real do tráfego que a mídia gera
 
@@ -68,7 +68,7 @@ comportamento "Pais" e dispositivo (só Android).
 No primeiro ciclo, **quem faz o trabalho de classe é o criativo**. A peça diz "rede pública",
 "comprovante de matrícula" e "10x de R$ 5,90", então quem não é o público não engaja e o algoritmo
 aprende com isso. Com verba baixa, essa autosseleção entrega mais que segmentação manual e não
-custa alcance. SP inteiro delimita mercado, não classe: o estado vai do Jardim Europa à periferia
+custa alcance. SP inteiro delimita mercado, não classe — o estado vai do Jardim Europa à periferia
 de Guarulhos.
 
 Definição em uso: **SP inteiro, 25 a 45 anos, todos os gêneros, sem segmentação detalhada, todos
@@ -97,7 +97,7 @@ onde a pessoa não consegue ser atendida.
 
 **Franqueado.** O caminho **ainda não existe**. Não está definido quem atende o franqueado que se
 interessa, nem por qual canal (pessoa direta ou franqueadora, e-mail, WhatsApp, link de inscrição).
-Enquanto isso não fechar, a Frente 1 não sobe: anúncio que gera interesse sem ter onde recebê-lo
+Enquanto isso não fechar, a Frente 1 não sobe — anúncio que gera interesse sem ter onde recebê-lo
 queima verba e queima a oportunidade.
 
 ## Foco da estratégia
@@ -108,11 +108,11 @@ gente encontre um perfil com movimento quando chegar. Não há meta de conversã
 
 O que vem depois, na ordem em que as travas caírem:
 
-1. **Frente 2, o benefício.** Anúncio do óculos acessível geolocalizado nas regiões já atendidas
+1. **Frente 2, o benefício** — anúncio do óculos acessível geolocalizado nas regiões já atendidas
    por franqueado participante. Depende da lista de cidades.
-2. **Frente 1, mutirões e depoimentos.** Prova social geolocalizada em regiões com franqueado
+2. **Frente 1, mutirões e depoimentos** — prova social geolocalizada em regiões com franqueado
    fora do programa. Depende do ponto de contato.
-3. **Collabs com franqueado local.** Uma campanha por franqueado, com verba própria. Depende de
+3. **Collabs com franqueado local** — uma campanha por franqueado, com verba própria. Depende de
    definir quem paga, como paga e quantos rodam por vez (a sugestão feita ao cliente foi começar
    com 2 ou 3 e ler o resultado).
 
@@ -125,8 +125,8 @@ relatório de 15/09.
 > *Última atualização: 25/08/2026. Este tópico muda a cada ciclo. Revisar sempre que subir, pausar
 > ou renomear campanha.*
 
-Duas campanhas com **orçamento vitalício**, não diário: o ciclo tem 31 dias e não 30, e só o
-vitalício faz o valor fechar exato. **Um conjunto por campanha**: com R$ 11 a R$ 17 por dia,
+Duas campanhas com **orçamento vitalício**, não diário — o ciclo tem 31 dias e não 30, e só o
+vitalício faz o valor fechar exato. **Um conjunto por campanha** — com R$ 11 a R$ 17 por dia,
 fragmentar em vários conjuntos deixa cada um abaixo do mínimo para sair da fase de aprendizado.
 
 | Campanha | Objetivo | Otimização | % | Verba | Por dia | Anúncios |
@@ -140,7 +140,7 @@ Na de engajamento, Stories fica de fora, porque engajamento em publicação rend
 Públicos-alvo Advantage+ ativado, sem sugestão de interesse.
 
 **A sobreposição de público entre as duas campanhas é intencional.** Não excluir público entre
-elas: quem engaja na publicação é justamente quem deve ser reimpactado pela campanha de tráfego.
+elas — quem engaja na publicação é justamente quem deve ser reimpactado pela campanha de tráfego.
 
 Nomenclatura, que é o que permite comparar ciclo a ciclo no relatório:
 
@@ -213,7 +213,7 @@ público pequeno demais, e a saída é ampliar geografia ou faixa etária.
   apresentação da agência, não para peça do cliente.
 - **Tom.** É projeto social: falar de acesso e de saúde visual, com dado quando houver. Sem apelo
   à vulnerabilidade e sem promessa.
-- **Relatórios** assinados por **Vinícius Luiz, Moinho Digital**.
+- **Relatórios** assinados por **Vinícius Luiz — Moinho Digital**.
 - PT-BR, comunicação direta.
 - Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com
   `pequenos-olhares-`.
@@ -235,9 +235,9 @@ depois. Diretrizes iniciais:
 - **Registrar a variação de seguidores do ciclo** (Insights em 11/08 e em 11/09), que não sai do
   Gerenciador de Anúncios.
 - Fechar com recomendação para o ciclo seguinte, ligada ao que os números mostraram.
-- Leitor é o time do projeto e a franqueadora: linguagem clara, sem jargão de mídia. Explicar o que
+- Leitor é o time do projeto e a franqueadora — linguagem clara, sem jargão de mídia. Explicar o que
   a métrica significa para o projeto em vez de descrever o número.
-- Assinado por **Vinícius Luiz, Moinho Digital**.
+- Assinado por **Vinícius Luiz — Moinho Digital**.
 
 ## Referências
 
