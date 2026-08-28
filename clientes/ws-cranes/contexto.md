@@ -105,8 +105,7 @@ sai de OPEX e não precisa de aprovação de diretoria.
 | Conteúdo | 8 conteúdos institucionais por mês, em Instagram, Facebook e LinkedIn | Sarah Matos |
 | Relatórios | Relatório mensal, mais os fechamentos de trimestre, semestre e ano | Vinícius Luiz e Sarah |
 
-A verba de mídia gerida gira em torno de **R$ 4.300 por mês** desde julho/2026, quando a campanha
-de Manutenção e Reforma entrou com R$ 912 sobre os R$ 3.404 que a conta investia em junho.
+A verba de mídia gerida gira em torno de **R$ 3.000 por mês**, valor investido desde junho de 2023.
 
 ## Produtos/Serviços
 
