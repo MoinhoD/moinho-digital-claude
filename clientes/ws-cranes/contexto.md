@@ -1,4 +1,4 @@
-# WS Cranes: contexto do cliente
+# WS Cranes — Contexto do cliente
 
 Cliente da Moinho Digital. A conta tem duas frentes: **gestão de mídia e relatórios por Vinícius
 Luiz** e **produção de conteúdo institucional por Sarah Matos** (8 conteúdos por mês nas redes).
@@ -38,8 +38,8 @@ agroindustrial, alimentação e produção de sementes.
 
 ### Diferenciais
 
-- **Fabricação 100% nacional.** É o contraponto direto à concorrência chinesa em talhas
-- **Engenharia própria.** Diagnóstico, peças e execução com um só fornecedor
+- **Fabricação 100% nacional** — o contraponto direto à concorrência chinesa em talhas
+- **Engenharia própria** — diagnóstico, peças e execução com um só fornecedor
 - **Equipe técnica própria em campo**, com técnicos certificados, uniforme, EPI e ferramenta
   própria
 - **Projeto sob medida**, incluindo capacidade e trajeto personalizados
@@ -164,7 +164,7 @@ segurança, enrolador de cabo, limitador eletrônico, barramento blindado e elet
 ### Serviços
 
 Prestados sob a marca **Schwanke**, em equipamento de movimentação de cargas **de diversas marcas**,
-não só os próprios. É a frente de pós-venda, com equipe própria e diferente da equipe de projetos.
+não só os próprios — é a frente de pós-venda, com equipe própria e diferente da equipe de projetos.
 
 - Montagem de equipamentos
 - Manutenção preventiva e corretiva
@@ -190,7 +190,7 @@ assina.
 
 **Como falar com esse público.** Informal, direto e sem entrave, mas sem abrir mão da formalidade
 quando a situação pede. Linguagem que qualquer cargo entende, do chão de fábrica à diretoria, sem
-depender de jargão técnico. A comunicação da WS se orgulha de ser fácil: o cliente não precisa
+depender de jargão técnico. A comunicação da WS se orgulha de ser fácil — o cliente não precisa
 passar por várias pessoas até receber retorno.
 
 **O que esse público precisa pensar da WS:** que é segura, confiável e está entre as melhores em
@@ -226,7 +226,7 @@ a complexidade do processo de compra B2B industrial.
 O movimento atual, aberto em julho/2026, é **abrir a frente de pós-venda**. A conta trabalhava
 apenas a ponta de aquisição, que é ciclo longo, verba de CAPEX e decisão colegiada, e o custo disso
 apareceu em conversão qualificada em queda e custo por lead em alta. Manutenção, conserto e reforma
-atacam um mercado diferente: ciclo de dias, urgência real e verba de OPEX que não passa por
+atacam um mercado diferente — ciclo de dias, urgência real e verba de OPEX que não passa por
 diretoria. É também porta de entrada, porque o cliente de serviço conhece a WS por dentro e vira
 comprador de equipamento depois.
 
@@ -239,7 +239,7 @@ Três frentes de trabalho em aberto:
    eficientes, Talha Elétrica e Pórtico Rolante, mantendo presença defensiva no termo principal
 3. **Reduzir a Institucional** ao mínimo de defesa de marca e realocar a verba para aquisição
 
-**PMAX foi testado e descartado:** confirmou que volume bruto não resolve nesta conta.
+**PMAX foi testado e descartado** — confirmou que volume bruto não resolve nesta conta.
 
 ## Estrutura das campanhas
 
@@ -267,7 +267,7 @@ nova sem remanejar as campanhas que já convertem.
   do mesmo ativo é a mesma pessoa em estágios diferentes. Fragmentar por serviço dividiria uma
   verba enxuta e nenhum grupo acumularia histórico
 - **30 palavras, todas em correspondência de frase.** Nenhuma ampla. "Conserto", "reparo" e
-  "manutenção preventiva" nunca entram soltos: sem âncora no equipamento, abrem a campanha para
+  "manutenção preventiva" nunca entram soltos — sem âncora no equipamento, abrem a campanha para
   elevador, ar condicionado e empilhadeira
 - **82 negativas**, concentradas em intenção de curso e certificação (NR-11) e em intenção
   informativa
@@ -275,7 +275,7 @@ nova sem remanejar as campanhas que já convertem.
 - **Agendamento:** segunda a sexta, 7h às 19h. Manutenção é decisão de horário comercial
 - **Lances:** Maximizar cliques com teto de CPC de R$ 10 nos primeiros 30 dias, migrando para
   Maximizar conversões depois de 15 conversões acumuladas
-- **Talha elétrica ficou fora** de propósito: já tem campanha própria com o menor CPA da conta, e
+- **Talha elétrica ficou fora** de propósito — já tem campanha própria com o menor CPA da conta, e
   incluir manutenção de talha aqui criaria disputa interna de leilão
 
 ## KPIs que acompanhamos
