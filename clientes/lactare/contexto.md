@@ -5,6 +5,9 @@ Cliente da Moinho Digital. Estratégia, mídia paga, produção de conteúdo e r
 Ler este arquivo antes de qualquer tarefa do cliente (relatório, briefing, campanha, conteúdo,
 proposta).
 
+> **Este arquivo é diretriz, não desempenho.** Número de campanha, de post e de mês vivem nos
+> relatórios e nos planejamentos. Aqui fica o que não muda de um mês para o outro.
+
 > **Conta sensível.** Projeto social ligado ao Grupo Eurofarma, com um episódio de repercussão
 > negativa em maio/2026 ainda recente. Ler "Como trabalhar aqui" antes de escrever qualquer peça
 > ou análise.
@@ -12,25 +15,23 @@ proposta).
 ## Quem é
 
 **Lactare** é um banco de leite humano sem fins lucrativos, projeto social filantrópico do
-**Grupo Eurofarma**. Existe para incentivar a doação gratuita, segura e consciente de leite
-humano e manter abastecido o estoque que alimenta bebês prematuros internados em UTI neonatal.
+**Grupo Eurofarma**, fundado em **2019**. Existe para incentivar a doação gratuita, segura e
+consciente de leite humano e manter abastecido o estoque que alimenta bebês prematuros
+internados em UTI neonatal.
 
 - **Segmento:** terceiro setor, saúde materno-infantil, ligado ao braço filantrópico de uma
   farmacêutica
-- **Canal principal:** Instagram, perfil `@lactarebr`. Fechou julho/2026 com 7.490 seguidores,
-  contra 5.036 em junho/2025
-- **Área de atuação:** Grande São Paulo e região oeste. O crescimento de base se concentra em
-  São Paulo, Itapevi e Carapicuíba, que é onde a doação pode acontecer de fato
+- **Site:** https://lactare.com.br
+- **Canal principal:** Instagram, perfil `@lactarebr`. É onde a comunicação acontece e de onde
+  sai o resultado de mídia
+- **Área de atuação:** Grande São Paulo e região oeste. A operação é presencial e de porta em
+  porta, então a área geográfica é limite real de atendimento, não preferência de mídia
 - **Vínculo institucional:** a associação com o Grupo Eurofarma é explícita na comunicação e é,
   ao mesmo tempo, fonte de credibilidade e de exposição a risco reputacional
 - **Tom de voz da marca:** humano, empático e respeitoso, educativo sem ser técnico. Nunca
   corporativo frio, nunca infantilizante
 - **Concorrentes:** não se aplica no sentido comercial — o projeto disputa atenção, não mercado.
   O concorrente real é o desconhecimento sobre doação de leite humano
-- **Ano de fundação:** `[a confirmar]`. Os carrosséis institucionais citam a data, mas ela não
-  está registrada em nenhum material nosso
-- **Site próprio:** `[a confirmar]`. Todo o tráfego que a mídia gera termina em conversa no
-  WhatsApp, não em site, então nunca precisou entrar no relatório
 
 ## Serviços contratados com a Moinho
 
@@ -43,21 +44,9 @@ Quatro entregas, todas conduzidas pelo Vinícius Luiz.
 | Conteúdo | Produção do conteúdo orgânico do perfil `@lactarebr` |
 | Relatórios | Relatório mensal, mais os fechamentos de trimestre, semestre e ano |
 
-**Volume contratado de conteúdo:** `[a confirmar]`. A cadência que os relatórios registram é de
-12 a 14 publicações no feed por mês em ritmo normal, com 3 a 8 Reels. O 1º semestre de 2026
-fechou com 74 publicações e 20 Reels.
-
-**Verba de mídia**, apurada dos relatórios e não de contrato:
-
-| Período | Investimento |
-|---|---|
-| 1º semestre 2025 | R$ 2.084,54 |
-| 1º semestre 2026 | R$ 3.049,41 |
-| Julho/2026 | R$ 676,09 |
-
-A verba oscila entre cerca de R$ 600 e R$ 800 por mês em operação normal. **O fee da Moinho e o
-modelo de contratação estão `[a confirmar]`** — não há contrato nem proposta no material de
-origem.
+**Verba de mídia, fee, modelo de contratação e volume contratado de conteúdo:
+`[a confirmar com a Ina]`.** Não há contrato nem proposta no material de origem, e a parte
+contratual e de escopo de entrega é com ela.
 
 **Canais fora do escopo hoje.** O material de 2025 lista Facebook, TikTok e LinkedIn como canais
 orgânicos acompanhados. Nenhum dos três aparece nos relatórios de 2026. **O escopo atual é só
@@ -65,80 +54,84 @@ Instagram**, e o relatório não deve reintroduzir os outros três sem alinhamen
 
 ## Produtos/Serviços
 
-O que o Lactare entrega para o público dele. O material que temos é de comunicação, não
-operacional, então o detalhe do processo interno do banco de leite fica `[a confirmar]`.
+O que o Lactare entrega para o público dele.
 
 **Recebimento de leite humano doado.** Doação gratuita e segura, feita por mãe lactante com leite
-excedente. A mensagem central da comunicação é que um único potinho alimenta até dez bebês, e é
-ela que sustenta o criativo de maior alcance de todo o histórico.
+excedente. A mensagem central da comunicação é que um único potinho alimenta até dez bebês.
 
-**Abastecimento do estoque de leite humano.** O leite doado alimenta bebês prematuros e
-recém-nascidos internados em UTI neonatal. A dor que resolve é de vida ou morte e é permanente:
-o estoque não se acumula, precisa ser reposto o ano inteiro. É esse argumento que permite captar
-fora das datas temáticas.
+**Logística completa de coleta.** O Lactare entrega o kit na casa da doadora e busca o leite lá
+depois. A doadora não sai de casa e não leva o leite a lugar nenhum. **Esse é o argumento que
+derruba a maior objeção de quem tem leite excedente e não doa**, e por isso é matéria-prima de
+campanha, não só detalhe operacional.
 
-**Cadastro e acompanhamento da doadora.** Quem inicia conversa é qualificado pela equipe do
-Lactare e cadastrado como doadora. O que acontece depois do cadastro, como coleta, triagem e
-periodicidade, não está registrado no nosso material.
+**Abastecimento de hospitais neonatais.** O leite doado é armazenado na sede e distribuído para
+hospitais conforme a demanda deles. A necessidade é permanente e o estoque não se acumula, o que
+sustenta a captação o ano inteiro, fora das datas temáticas.
 
 ## Público
 
-### Quem doa
+O público tem duas pontas, e as duas são intencionais na segmentação.
 
-Definição do público aberto da campanha de doação, registrada em setembro/2025 e ainda a base do
-que roda hoje:
+### A doadora
 
-| Critério | Definição |
-|---|---|
-| Gênero | Mulheres |
-| Idade | 20 a 45 anos |
-| Interesses | Maternidade, criação de filhos, bebê, gestação |
-| Cargo | Enfermeira chefe, pediatra, enfermeira do trabalho, enfermagem neonatal e pediátrica, assistente social |
-| Comportamento | Pais, mães ou responsáveis de criança de até 12 meses |
-| Localização | 18 cidades da Grande São Paulo e região oeste |
-| Plataforma | Somente Instagram |
+Mulher lactante com leite excedente, de 20 a 45 anos, mãe ou responsável por criança de até 12
+meses, nas cidades atendidas. Interesses de maternidade, criação de filhos, bebê e gestação.
 
-As cidades: Araçariguama, Barueri, Caieiras, Cajamar, Carapicuíba, Cotia, Embu, Embu Guaçu
-(mais 1 mi), Francisco Morato, Itapevi, Jandira, Mairinque, Osasco, Pirapora do Bom Jesus,
-Santana de Parnaíba, São Roque, Taboão da Serra e Vargem Grande Paulista.
+### O profissional de saúde
 
-**A segmentação por cargo abre um segundo público dentro da mesma campanha:** profissional de
-saúde materno-infantil. Não está registrado se a intenção é alcançar essa pessoa como doadora em
-potencial ou como quem indica a doação para a paciente. **Vale confirmar antes de reescrever a
-segmentação** — a resposta muda o criativo, não só o público.
+Enfermagem, pediatria, neonatologia, enfermagem do trabalho e serviço social. **Não é sobra de
+segmentação: faz parte do ecossistema da causa.** É quem dá assistência a bebê prematuro, a UTI
+neonatal e a mulher com recém-nascido, quem convive com a falta de leite no estoque e quem chega
+à doadora antes de qualquer anúncio. Falar com essa pessoa é falar com quem indica a doação.
+
+### Alcance geográfico da campanha
+
+Araçariguama, Barueri, Caieiras, Cajamar, Carapicuíba, Cotia, Embu, Embu Guaçu (mais 1 mi),
+Francisco Morato, Itapevi, Jandira, Mairinque, Osasco, Pirapora do Bom Jesus, Santana de
+Parnaíba, São Roque, Taboão da Serra e Vargem Grande Paulista.
+
+A lista acompanha a área em que a coleta presencial acontece. **Anunciar fora dela é gastar
+impressão com quem não pode ser atendida.**
 
 ### Ganchos que funcionam com esse público
 
 Ordenados pelo que o histórico mostra, não por opinião:
 
-- **Depoimento real de família atendida.** O Reel do Kaio registrou 7,97% de taxa de interação e
-  o do Julio, pai da Liz, alcançou 22.618 pessoas. É o formato de maior conexão emocional
-- **Carrossel institucional e educativo.** O que conta a história do Lactare fez 9,39% de
-  interação e o de abertura do Agosto Dourado, 11,44%, a maior taxa registrada em 2026
-- **A conta que traduz o impacto.** "Cada gota conta, um potinho alimenta até 10 bebês" é o
-  conteúdo de maior alcance do 1º semestre de 2026, com 26.667 pessoas e 367 compartilhamentos
-- **Parceria com profissional de saúde.** O Reel com a odontopediatra Dra. Ivy Bassoukou somou
-  51 compartilhamentos, acima da média do perfil. Empresta autoridade técnica ao tema
+1. **Depoimento real de família atendida.** O formato de maior conexão emocional do perfil
+2. **Carrossel institucional e educativo.** O que explica quem é o Lactare e como a doação
+   funciona é o que mais aproxima gente nova do propósito
+3. **A conta que traduz o impacto.** Traduzir volume doado em número de bebês alimentados
+4. **Parceria com profissional de saúde.** Empresta autoridade técnica ao tema e conversa com a
+   segunda ponta do público
 
-Compartilhamento é o gesto que mais importa nesse público. É o que leva a mensagem a quem ainda
-não conhece o projeto, e é ele que o relatório precisa acompanhar de perto.
+**Compartilhamento é o gesto que mais importa nesse público.** É o que leva a mensagem a quem
+ainda não conhece o projeto. Vale pedir compartilhamento de forma explícita nos conteúdos de
+maior alcance.
 
 ## Processo de vendas/atendimento
 
-Não há venda. O equivalente comercial aqui é a captação de doadora, e o funil é curto:
+Não há venda. O equivalente comercial aqui é a captação de doadora.
 
-```
-anúncio → clique → conversa no WhatsApp → qualificação pela equipe do Lactare → cadastro como doadora
-```
+**O que a mídia entrega:** anúncio → clique → conversa iniciada no WhatsApp.
 
-- **A Moinho entrega até a conversa iniciada.** O atendimento no WhatsApp, a qualificação e o
-  cadastro são da equipe do Lactare. Por isso o relatório fala em conversas iniciadas e nunca em
-  doadoras cadastradas: **não temos o dado do outro lado do funil**
-- **Taxa de conversa:** cerca de 36% a 38% de quem clica chega a abrir conversa. Custo por
-  conversa entre R$ 2,36 e R$ 3,31
+**O que o Lactare faz a partir da conversa:**
+
+1. **Cadastro** da interessada
+2. **Viabilidade** — a equipe verifica se ela cumpre os requisitos de doadora
+3. **Kit de coleta** entregue na casa dela
+4. **Coleta e congelamento** feitos pela própria doadora, em casa
+5. **Busca do leite** na casa da doadora, pelo Lactare
+6. **Armazenamento** na sede
+7. **Distribuição** para hospitais neonatais conforme a demanda
+
+- **A Moinho entrega até a conversa iniciada.** Atendimento, qualificação e cadastro são da
+  equipe do Lactare. Por isso o relatório fala em conversas iniciadas e nunca em doadoras
+  cadastradas: **não temos o dado do outro lado do funil**
 - **Pendência aberta desde abril/2026:** mapear com a equipe de atendimento os pontos de abandono
-  no fluxo do WhatsApp. A recomendação se repete em três relatórios seguidos e não teve retorno.
-  É o maior ganho disponível na conta, porque melhora a conversão sem custar verba
+  no fluxo do WhatsApp. A recomendação se repete em relatórios seguidos e não teve retorno. É o
+  maior ganho disponível na conta, porque melhora a conversão sem custar verba
+- **Só a etapa 2 filtra.** Nem toda conversa vira doadora, e a reprovação de viabilidade não é
+  falha de mídia. Nunca tratar conversa iniciada como doação garantida no texto do relatório
 
 ## Foco da estratégia
 
@@ -152,50 +145,46 @@ ENGAJAMENTO trouxe movimento real para o perfil e feedback positivo da equipe do
 estrutura que segue no ar. **Não reabrir campanha de alcance puro sem um motivo novo** — isso já
 foi testado e descartado.
 
-**Momento atual, agosto/2026.** Operação normalizada depois do episódio de maio. Julho foi o
-primeiro mês completo de veiculação e todos os indicadores responderam. Agosto é a janela do
-Agosto Dourado, mês do aleitamento materno, quando a causa tem o pico de atenção pública do ano.
-A conta chega nele com o CPM recuperado, criativos renovados e audiência reengajada.
+**Sazonalidade que importa.** Agosto Dourado, mês do aleitamento materno, é o pico de atenção
+pública da causa no ano e a janela em que vale concentrar verba e produção. O Dia Mundial da
+Doação de Leite Humano, em 19/05, é a segunda data do calendário.
 
-O que está encaminhado para os próximos ciclos:
+Diretrizes permanentes de produção:
 
-1. **Elevar a cadência de Reels** para o patamar de abril/2026, de 6 a 8 por mês. A taxa de
-   interação do formato é alta e estável, o que falta é volume
-2. **Consolidar os Stories como rotina diária.** O canal saiu de 2 interações em junho para 55 em
-   julho assim que foi reativado, mas ainda está longe da média de cerca de 190 por mês do 1º
-   semestre
-3. **Recuperar os compartilhamentos no feed**, que caíram 24% em julho, com chamada explícita de
-   compartilhamento nos conteúdos de maior alcance
+1. **Vídeo é o motor de alcance do perfil.** Reel é o formato que sustenta a maior parte da
+   distribuição orgânica, e o que costuma faltar é volume, não qualidade
+2. **Stories são o canal de conversa diária** com quem já acompanha. Respondem rápido quando
+   ativados e é rotina, não campanha: enquete, caixa de perguntas e bastidor do banco de leite
+3. **Orgânico e pago se alimentam.** A campanha de engajamento move o perfil, o perfil sustenta a
+   campanha de mensagem. Ler as duas frentes separadas, mas planejar junto
 
 ## Estrutura das campanhas
 
-> *Última atualização: 28/08/2026, com base no relatório de julho/2026. Este tópico muda com
-> frequência. Revisar sempre que campanha ou criativo subir, pausar ou for renomeado.*
+> *Última atualização: 28/08/2026. Este tópico muda com frequência. Revisar sempre que campanha
+> subir, pausar ou for renomeada. Desempenho de campanha e de criativo fica no relatório do mês,
+> não aqui.*
 
 Duas campanhas de Meta Ads, ambas só no Instagram.
 
-| Campanha | Papel na conta | Situação em julho/2026 |
-|---|---|---|
-| `[TF] Engajamento no Post (Doação Leite)` | Topo de funil. Amplia alcance e movimenta o perfil | R$ 368,62, 56.843 pessoas alcançadas, 30.607 engajamentos a R$ 0,01 cada |
-| `[FF] Mensagem no Wpp (Doação Leite)` | Fundo de funil. Capta doadora por conversa no WhatsApp | R$ 307,47, 12.289 pessoas alcançadas, 93 conversas a R$ 3,31 cada |
+| Campanha | Papel na conta |
+|---|---|
+| `[TF] Engajamento no Post (Doação Leite)` | Topo de funil. Amplia alcance e movimenta o perfil |
+| `[FF] Mensagem no Wpp (Doação Leite)` | Fundo de funil. Capta doadora por conversa no WhatsApp |
 
-A campanha de engajamento fica com a maior parte do alcance e a de mensagem com a maior parte do
-custo por resultado. É a divisão esperada, e as duas são lidas por objetivos diferentes.
+As duas são lidas por objetivos diferentes. Não cobrar conversa da campanha de engajamento nem
+alcance da campanha de mensagem.
 
 ### Criativos
 
 Nomenclatura em uso: `[ADnn] [FORMATO] [data de publicação] [código do post]`. Anúncio marcado
 como `[DARK]` é peça que não existe no feed.
 
-- **`[AD01]` Collab, vídeo de 31/10/2025** — o ativo mais forte do histórico. Sozinho respondeu
-  por 91.161 dos engajamentos do 1º semestre, com o menor CPM da conta. Não pausar sem
-  substituto testado
-- **`[AD01]` imagem de 03/07/2025**, na campanha de mensagem — a peça que mais capta conversa.
-  Fez 375 das 713 conversas do semestre, a R$ 2,50 cada
-- **`[AD37]` de 30/04/2026 e `[AD40]` de 20/07/2026** — a renovação em vídeo do engajamento. O
-  caminho é continuar por aí, para não saturar a audiência nos dois ativos históricos
-- **`[AD08]`, imagem de 20/01/2026** — fechou julho com custo por conversa de R$ 8,77, quase o
-  triplo da média da campanha. **Estava marcado para revisão no relatório de julho**
+- **A conta tem dois ativos históricos**, um em cada campanha, que sustentam a maior parte do
+  resultado desde 2025. **Não pausar nenhum dos dois sem substituto já testado**
+- **Renovar o banco de anúncios em vídeo de forma contínua**, para não saturar a audiência nos
+  ativos antigos. Anúncio novo entra ao lado do consolidado, não no lugar dele
+- **Revisar criativo com custo por resultado muito acima da média da própria campanha** e
+  realocar a verba, em vez de deixar rodando
 
 ## KPIs que acompanhamos
 
@@ -211,27 +200,10 @@ totais, alcance dos últimos 30 dias, visitas ao perfil, número de publicaçõe
 feed e Reels, o alcance, as visualizações, as interações e a taxa de interação, com o
 detalhamento em curtidas, comentários, compartilhamentos e salvamentos.
 
-**Metas**, calculadas sobre o desempenho real de 2025:
-
-| Campanha | Meta mensal | Meta semestral |
-|---|---|---|
-| Engajamento | 15.209 engajamentos | 91.254 |
-| Mensagem no WhatsApp | 38 contatos | 228 |
-
-As duas vêm sendo superadas com folga: 201% e 244% em julho/2026, 187% e 312% no 1º semestre.
-**Meta batida com essa margem já não informa nada** — vale recalcular a referência sobre 2026
-quando o ano fechar.
-
-**Referência de eficiência**, medida em julho/2026:
-
-| Indicador | Referência |
-|---|---|
-| CPM | R$ 5,72 |
-| Custo por engajamento | R$ 0,02 |
-| CPC | R$ 1,19 |
-| CTR | 0,75% |
-| Custo por conversa | R$ 3,31 |
-| Taxa de conversa | 35,91% |
+**Metas.** As duas campanhas têm meta mensal e semestral, recalculadas sobre o desempenho real do
+ano anterior. **Os números vivem no planejamento e no relatório do período**, não neste arquivo.
+Quando a meta é superada com muita folga por vários meses seguidos, o sinal é de que a referência
+envelheceu e precisa ser recalculada, não de que o mês foi excepcional.
 
 ## Como trabalhar aqui
 
@@ -241,15 +213,16 @@ quando o ano fechar.
 - **Interpretar, não descrever.** Nunca repetir número que já está visível na tabela, nunca
   descrever gráfico ou imagem. Conectar sempre a ação executada, o efeito na métrica e o
   significado do resultado
-- **Traduzir métrica em impacto social.** 93 conversas não são 93 conversas, são 93 potenciais
-  doadoras. É essa leitura que faz o relatório servir para essa equipe
+- **Traduzir métrica em impacto social.** Conversa iniciada não é conversa iniciada, é doadora em
+  potencial. É essa leitura que faz o relatório servir para essa equipe
 - **O episódio de maio/2026 exige cuidado permanente.** Uma decisão do Grupo Eurofarma no México,
   sobre um mercado e um público sem relação com o que o Lactare atende em São Paulo, gerou
   críticas direcionadas ao perfil. A equipe reduziu a produção, as campanhas ficaram pausadas de
   27/05 a 14/06 e houve uma manifestação breve em 28/05. **Ao citar o episódio, tratar como
   contexto que explica número, nunca como assunto em si**, e não reabrir o mérito da decisão
-- **Cuidado com o pico de maio.** As 2.901 visitas ao perfil daquele mês vieram em boa parte de
-  curiosidade pela polêmica. Não usar maio como base de comparação sem dizer isso
+- **Maio/2026 não serve de base de comparação.** O pico de visitas ao perfil daquele mês veio de
+  curiosidade pela polêmica, não de interesse pelo projeto. Comparar com maio sem dizer isso
+  distorce a leitura
 - **Nunca prometer resultado de saúde** nem falar em nome do banco de leite sobre procedimento
   clínico. A comunicação incentiva a doação, quem orienta a doadora é a equipe
 - **Nunca julgar resultado ruim com dureza.** Mês fraco tem explicação, e a explicação vem antes
