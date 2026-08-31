@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo site Moinho Digital — estrutura e conteúdo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20fill='%23D2334F'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(90%20100%20100)'%20fill='%235A368C'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(180%20100%20100)'%20fill='%235A368C'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(270%20100%20100)'%20fill='%235A368C'/%3E%3C/svg%3E">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+:root{
+  --ink:#1c1c1c; --ink-2:#555; --ink-3:#6e6e6e;
+  --line:#c4c4c4; --line-2:#dcdcdc;
+  --fill:#ececec; --fill-2:#f5f5f5; --paper:#fff;
+  --note:#2b5c8a; --note-bg:#eef4fa;
+  --flag:#8a5a00; --flag-bg:#fdf4e3;
+  --gut: clamp(20px, 4vw, 64px);
+  --maxw: 1180px;
+}
+html{ scroll-behavior:smooth; }
+body{
+  margin:0; background:#e8e8e6; color:var(--ink);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation:none !important; transition:none !important; } }
+
+.doc{ max-width:1320px; margin:0 auto; padding:24px var(--gut) 80px; }
+.page{ background:var(--paper); border:1px solid var(--line); margin:0 auto; max-width:var(--maxw); }
+.brief{ max-width:var(--maxw); margin:0 auto 28px; background:var(--paper); border:1px solid var(--line); padding:clamp(20px,3vw,32px); }
+.brief h1{ font-size:clamp(20px,2.6vw,28px); margin:0 0 6px; letter-spacing:-.01em; }
+.brief .sub{ color:var(--ink-2); margin:0 0 18px; font-size:15px; }
+.brief h2{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:22px 0 10px; }
+
+.toc{ display:flex; flex-wrap:wrap; gap:6px; }
+.toc a{ font-size:13px; text-decoration:none; color:var(--ink-2); border:1px solid var(--line); padding:5px 10px; background:var(--fill-2); }
+.toc a:hover{ background:var(--fill); color:var(--ink); }
+.toc a:focus-visible{ outline:2px solid var(--note); outline-offset:2px; }
+
+.sec{ border-bottom:1px solid var(--line); padding:clamp(28px,4vw,52px) clamp(20px,3.4vw,48px); }
+.sec:last-of-type{ border-bottom:none; }
+.sec--alt{ background:#fafafa; }
+.tag{ display:inline-block; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:3px 8px; margin-bottom:18px; background:var(--paper); }
+
+.box{ border:1px solid var(--line); background:var(--fill-2); padding:16px; }
+.box--dash{ border-style:dashed; background:transparent; }
+.ph{
+  border:1px solid var(--line); background:var(--fill);
+  background-image:repeating-linear-gradient(45deg,#dedede 0 5px,transparent 5px 10px);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  color:var(--ink-3); font-size:12px; letter-spacing:.06em; text-transform:uppercase; padding:12px; min-height:120px;
+}
+
+.h-hero{ font-size:clamp(30px,5.2vw,56px); line-height:1.06; letter-spacing:-.025em; margin:0 0 20px; font-weight:700; }
+.h-sec{ font-size:clamp(22px,3.2vw,36px); line-height:1.15; letter-spacing:-.015em; margin:0 0 14px; font-weight:700; }
+.h-card{ font-size:17px; margin:0 0 8px; font-weight:700; }
+.eyebrow{ font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px; }
+.lead{ font-size:clamp(15px,1.5vw,17.5px); color:var(--ink-2); max-width:62ch; margin:0 0 20px; }
+p{ margin:0 0 12px; }
+.muted{ color:var(--ink-2); font-size:14.5px; }
+
+.grifo{
+  background:var(--fill); color:var(--ink);
+  padding:.04em .22em; box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  box-shadow:0 0 0 1px var(--line);
+}
+
+
+/* gravata borboleta da operacao de receita */
+.bowtie{ width:100%; height:auto; display:block; margin:6px 0 4px; }
+.bowtie .seg{ fill:var(--fill); stroke:var(--line); stroke-width:1.5; }
+.bowtie .seg.mid{ fill:#e2e2e2; }
+.bowtie .knot{ fill:var(--ink); }
+.bowtie .st{ font:600 12px ui-sans-serif,system-ui,sans-serif; fill:var(--ink); text-anchor:middle; }
+.bowtie .ar{ font:700 11px ui-sans-serif,system-ui,sans-serif; fill:var(--ink-2); text-anchor:middle; letter-spacing:.09em; }
+.bowtie .kn{ font:700 12px ui-sans-serif,system-ui,sans-serif; fill:var(--paper); text-anchor:middle; }
+.bowtie .rule{ stroke:var(--line); stroke-width:1; }
+.bowtie-wrap{ overflow-x:auto; border:1px solid var(--line); background:var(--paper); padding:18px 16px 10px; }
+.deliver{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:20px; }
+@media (max-width:700px){ .deliver{ grid-template-columns:1fr; } }
+.deliver div{ border-left:2px solid var(--ink); padding:2px 0 2px 13px; }
+.deliver b{ display:block; font-size:14.5px; margin-bottom:2px; }
+.deliver span{ font-size:13.5px; color:var(--ink-2); }
+.eco ul{ margin:10px 0 0; padding:0; list-style:none; }
+.eco li{ font-size:13.5px; color:var(--ink-2); margin-bottom:5px; padding-left:13px; position:relative; }
+.eco li::before{ content:""; position:absolute; left:0; top:.55em; width:5px; height:5px; background:var(--ink-3); }
+.closing{ border:1px solid var(--ink); background:var(--fill-2); padding:16px 18px; margin-top:20px; font-size:15px; }
+
+.btns{ display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0; }
+.btn{ border:1.5px solid var(--ink); padding:11px 20px; font-size:14.5px; font-weight:600; background:var(--paper); }
+.btn--primary{ background:var(--ink); color:var(--paper); }
+
+.grid{ display:grid; gap:16px; }
+.g3{ grid-template-columns:repeat(3,1fr); }
+@media (max-width:860px){ .g3{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .g3{ grid-template-columns:1fr; } }
+
+.note{ border-left:3px solid var(--note); background:var(--note-bg); color:var(--note); font-size:13.5px; line-height:1.5; padding:11px 14px; margin:16px 0 0; }
+.flag{ border-left:3px solid var(--flag); background:var(--flag-bg); color:var(--flag); font-size:13.5px; line-height:1.5; padding:11px 14px; margin:16px 0 0; }
+
+.wf-nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line); padding:14px clamp(20px,3.4vw,48px); background:var(--paper); position:sticky; top:0; z-index:20; }
+.wf-logo{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; }
+.wf-logo .mark{ width:26px; height:26px; border:1.5px solid var(--ink); }
+.wf-menu{ display:flex; gap:18px; font-size:14px; color:var(--ink-2); flex-wrap:wrap; }
+.wf-nav .btn{ padding:9px 15px; font-size:13.5px; }
+@media (max-width:820px){ .wf-menu{ display:none; } .wf-nav::after{ content:"☰"; font-size:19px; } }
+
+.hero-grid{ display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(20px,3vw,44px); align-items:center; }
+@media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } }
+
+.stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.stats div{ background:var(--paper); padding:18px 14px; text-align:center; }
+.stats b{ display:block; font-size:clamp(20px,3vw,30px); font-weight:800; letter-spacing:-.02em; }
+.stats span{ font-size:12.5px; color:var(--ink-2); }
+@media (max-width:700px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+
+.pillar ul{ margin:10px 0 0; padding:0 0 0 18px; }
+.pillar li{ font-size:14px; color:var(--ink-2); margin-bottom:5px; }
+
+.cases{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:860px){ .cases{ grid-template-columns:1fr; } }
+.case{ border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; }
+.case .art{ position:relative; aspect-ratio:4/5; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; background:var(--fill); background-image:repeating-linear-gradient(45deg,#dedede 0 5px,transparent 5px 10px); }
+.case .art::before{ content:"foto"; position:absolute; top:13px; left:18px; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); }
+.case .num{ font-size:clamp(40px,5.4vw,60px); font-weight:800; line-height:.86; letter-spacing:-.03em; }
+.case .num-lab{ font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2); margin-top:7px; }
+.case .body{ padding:16px 18px 18px; }
+.case .cli{ font-size:17px; font-weight:700; margin:0 0 3px; }
+.case .desc{ font-size:13.5px; color:var(--ink-2); margin:0 0 12px; }
+.case .sub{ border-top:1px solid var(--line-2); padding-top:11px; display:grid; gap:7px; }
+.case .sub div{ display:flex; justify-content:space-between; gap:10px; align-items:baseline; }
+.case .sub b{ font-size:15px; font-weight:800; letter-spacing:-.01em; }
+.case .sub span{ color:var(--ink-2); text-align:right; font-size:12.5px; }
+.case .sub .none{ font-size:12.5px; color:var(--ink-3); text-align:left; font-style:italic; }
+
+.quote p{ font-size:14.5px; color:var(--ink-2); }
+.quote footer{ font-size:13px; font-weight:600; border-top:1px solid var(--line-2); padding-top:10px; margin-top:12px; }
+.quote footer span{ display:block; font-weight:400; color:var(--ink-3); }
+
+.logos{ display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+@media (max-width:860px){ .logos{ grid-template-columns:repeat(3,1fr); } }
+.logos .ph{ min-height:62px; font-size:11px; }
+
+.diag{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(20px,3vw,44px); align-items:center; }
+@media (max-width:800px){ .diag{ grid-template-columns:1fr; } }
+.steps{ margin:0 0 6px; padding:0; list-style:none; counter-reset:st; }
+.steps li{ counter-increment:st; position:relative; padding-left:38px; margin-bottom:12px; font-size:14.5px; color:var(--ink-2); }
+.steps li::before{ content:counter(st); position:absolute; left:0; top:-1px; width:25px; height:25px; border:1.5px solid var(--ink); color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; }
+.steps b{ color:var(--ink); }
+
+.field{ margin-bottom:14px; }
+.field label{ display:block; font-size:13.5px; font-weight:600; margin-bottom:6px; }
+.field input{ width:100%; padding:11px 12px; font:inherit; font-size:15px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); }
+.field input:focus-visible{ outline:2px solid var(--note); outline-offset:1px; border-color:var(--note); }
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:640px){ .form-grid{ grid-template-columns:1fr; } }
+.span2{ grid-column:1/-1; }
+textarea{ width:100%; padding:11px 12px; font:inherit; font-size:15px; border:1.5px solid var(--line); background:var(--paper); min-height:110px; resize:vertical; }
+textarea:focus-visible{ outline:2px solid var(--note); outline-offset:1px; border-color:var(--note); }
+
+.contact-cols{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(20px,3vw,44px); }
+@media (max-width:860px){ .contact-cols{ grid-template-columns:1fr; } }
+.addr{ font-size:14px; color:var(--ink-2); margin-bottom:14px; }
+.addr b{ color:var(--ink); display:block; font-size:14px; }
+.wf-footer{ background:#f0f0f0; padding:clamp(24px,3.4vw,44px); border-top:1px solid var(--line); }
+.foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:24px; }
+@media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; } }
+.foot-grid ul{ list-style:none; margin:0; padding:0; font-size:14px; color:var(--ink-2); }
+.foot-grid li{ margin-bottom:6px; }
+
+.wpp{ position:sticky; bottom:20px; margin-left:auto; margin-right:20px; width:max-content; border:1.5px solid var(--ink); background:var(--paper); padding:11px 16px; font-size:14px; font-weight:600; display:flex; align-items:center; gap:8px; z-index:15; }
+.wpp .dot{ width:20px; height:20px; border:1.5px solid var(--ink); border-radius:50%; flex:none; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--note); outline-offset:2px; }
+details{ border:1px solid var(--line); padding:13px 16px; margin-bottom:9px; background:var(--paper); }
+summary{ cursor:pointer; font-weight:600; font-size:15px; }
+details p{ margin:10px 0 0; font-size:14.5px; color:var(--ink-2); }
+
+.ask{ counter-reset:q; margin:0; padding:0; list-style:none; }
+.ask li{ counter-increment:q; position:relative; padding-left:34px; margin-bottom:13px; font-size:14.5px; color:var(--ink-2); }
+.ask li::before{ content:counter(q); position:absolute; left:0; top:0; width:23px; height:23px; border:1.5px solid var(--ink-3); color:var(--ink-2); display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; }
+.ask b{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <div class="brief">
+    <h1>Novo site institucional da Moinho Digital</h1>
+    <p class="sub">Estrutura e conteúdo para aprovação. Agosto de 2026.</p>
+    <p class="muted" style="max-width:76ch;margin:0 0 12px">
+      Este documento mostra como o novo site vai ser organizado: quais seções existem, em que ordem,
+      o que cada uma comunica e qual texto entra em cada bloco. Todas as seções obrigatórias do
+      briefing estão contempladas.
+    </p>
+    <p class="muted" style="max-width:76ch;margin:0">
+      Está em escala de cinza de propósito. Cor, tipografia e movimento entram na etapa seguinte,
+      depois que a estrutura e o texto estiverem aprovados. Assim a conversa aqui é sobre o que o
+      site diz, sem a discussão visual atrapalhar.
+    </p>
+
+    <h2>Seções</h2>
+    <nav class="toc">
+      <a href="#s1">1. Abertura</a>
+      <a href="#s2">2. Números</a>
+      <a href="#s3">3. Operação de receita</a>
+      <a href="#s4">4. Diferenciais</a>
+      <a href="#s5">5. Ecossistema Atlantar</a>
+      <a href="#s6">6. Manifesto</a>
+      <a href="#s7">7. Cases</a>
+      <a href="#s8">8. Marcas atendidas</a>
+      <a href="#s9">9. Depoimentos</a>
+      <a href="#s10">10. Diagnóstico</a>
+      <a href="#s11">11. Contato</a>
+      <a href="#s12">12. Rodapé</a>
+    </nav>
+  </div>
+
+  <div class="page">
+
+    <div class="wf-nav">
+      <div class="wf-logo"><span class="mark"></span> moinho digital</div>
+      <nav class="wf-menu">
+        <span>Diferenciais</span><span>Serviços</span><span>Cases</span><span>Diagnóstico</span><span>Contato</span>
+      </nav>
+      <span class="btn btn--primary">Conversar no WhatsApp</span>
+    </div>
+
+    <!-- 1 -->
+    <section class="sec" id="s1">
+      <span class="tag">Seção 1 · Abertura</span>
+      <div class="hero-grid">
+        <div>
+          <h2 class="h-hero">
+            Consolidamos marcas, construímos <span class="grifo">receita</span>,
+            entregamos <span class="grifo">resultados</span>
+          </h2>
+          <p class="lead">
+            A Moinho estrutura e instala cadência na receita: executando e integrando Marketing,
+            Vendas e Sucesso do Cliente para gerar crescimento recorrente com previsibilidade.
+          </p>
+          <div class="btns">
+            <span class="btn btn--primary">Conversar no WhatsApp</span>
+            <span class="btn">Fazer diagnóstico gratuito</span>
+          </div>
+        </div>
+        <div class="ph" style="min-height:300px">Imagem de abertura<br>a definir</div>
+      </div>
+      <div class="note">
+        <b>Por que esse título.</b> A primeira dobra precisa dizer, em poucos segundos, o que a Moinho é
+        e o que ela entrega. Marca, venda e resultado numa frase só, em três tempos. Nada de frase
+        genérica de agência, como o briefing pede. A última parte fica em contorno, que é o tratamento
+        tipográfico usado em todos os títulos do site.
+      </div>
+      <div class="note">
+        <b>Os dois botões.</b> O principal abre o WhatsApp. O segundo leva ao diagnóstico.
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec sec--alt" id="s2">
+      <span class="tag">Seção 2 · Números</span>
+      <div class="stats">
+        <div><b>10 anos</b><span>de atuação no mercado</span></div>
+        <div><b>70+</b><span>marcas atendidas</span></div>
+        <div><b>R$ 3 mi+</b><span>em anúncios gerenciados</span></div>
+        <div><b>150+</b><span>perfis gerenciados</span></div>
+      </div>
+      <div class="note">
+        <b>Aqui mora o tempo de mercado.</b> O briefing pede que os 10 anos fiquem visualmente evidentes.
+        Ao lado das 70+ marcas e dos R$ 3 mi+ em mídia, o número deixa de ser só idade e passa a
+        comunicar tamanho de operação. Fica logo abaixo da abertura, para quem só bateu o olho já sair
+        com essa noção.
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec" id="s3">
+      <span class="tag">Seção 3 · Operação de receita</span>
+      <p class="eyebrow">Arquitetura de receita</p>
+      <h2 class="h-sec">Transformamos esforço em <span class="grifo">receita previsível</span></h2>
+      <p class="lead">
+        Nós operamos a jornada de receita, Marketing, Vendas e Sucesso do Cliente, com atenção diária,
+        cadência semanal, revisão mensal e checkpoints trimestrais, para que o crescimento deixe de
+        depender de picos e passe a ser sustentado por rotina, critérios e melhoria contínua.
+      </p>
+
+      <div class="bowtie-wrap">
+          <svg class="bowtie" viewBox="0 0 900 330" role="img"
+               aria-label="Jornada de receita em formato de gravata borboleta: Marketing e Vendas afunilam até o cliente, e Sucesso do Cliente expande a partir dele">
+            <text class="ar" x="160" y="18">MARKETING</text>
+            <text class="ar" x="380" y="18">VENDAS</text>
+            <text class="ar" x="690" y="18">SUCESSO DO CLIENTE</text>
+            <line class="rule" x1="20" y1="26" x2="295" y2="26"/>
+            <line class="rule" x1="315" y1="26" x2="440" y2="26"/>
+            <line class="rule" x1="470" y1="26" x2="880" y2="26"/>
+
+            <polygon class="seg"     points="20,50 157,83 157,257 20,290"/>
+            <polygon class="seg mid" points="157,83 294,117 294,223 157,257"/>
+            <polygon class="seg"     points="294,117 430,150 430,190 294,223"/>
+            <polygon class="seg"     points="470,150 606,117 606,223 470,190"/>
+            <polygon class="seg mid" points="606,117 743,83 743,257 606,223"/>
+            <polygon class="seg"     points="743,83 880,50 880,290 743,257"/>
+
+            <circle class="knot" cx="450" cy="170" r="34"/>
+            <text class="kn" x="450" y="167">CLIENTE</text>
+            <text class="kn" x="450" y="182" style="font-size:9px;font-weight:400">fechado</text>
+
+            <text class="st" x="88"  y="175">Alcance</text>
+            <text class="st" x="225" y="175">Interesse</text>
+            <text class="st" x="362" y="175">Decisão</text>
+            <text class="st" x="538" y="175">Entrega</text>
+            <text class="st" x="674" y="175">Retenção</text>
+            <text class="st" x="811" y="175">Expansão</text>
+
+            <text class="ar" x="225" y="320" style="font-size:10px">DEMANDA QUALIFICADA</text>
+            <text class="ar" x="674" y="320" style="font-size:10px">RECEITA RECORRENTE</text>
+          </svg>
+        </div>
+
+      <h3 class="h-card" style="margin-top:24px">O que entregamos na prática</h3>
+      <div class="deliver">
+        <div><b>Demanda qualificada</b><span>Com conteúdo e mídia orientados a receita.</span></div>
+        <div><b>Conversão consistente</b><span>Com processo, cadências e padrões de vendas.</span></div>
+        <div><b>Retenção e expansão</b><span>Com estrutura de sucesso do cliente e rotinas de saúde da carteira.</span></div>
+        <div><b>Governança por ciclos</b><span>Com indicadores executivos e decisões registradas.</span></div>
+      </div>
+
+      <div class="closing">
+        <b>O resultado:</b> mais previsibilidade, mais eficiência e mais controle. A empresa reduz
+        improviso, encurta ciclos, protege margem e fortalece a base. Mês a mês.
+      </div>
+
+      <div class="note">
+        <b>Por que essa seção existe e por que ela vem aqui.</b> Operação de receita é o conceito que
+        sustenta todo o resto do site, e quase ninguém que chega sabe o que o termo significa. Ela vem
+        logo depois dos números porque precisa explicar o modelo antes de a página falar de
+        diferenciais, pilares e cases. O desenho mostra as três áreas trabalhando na mesma jornada:
+        Marketing e Vendas afunilam até o cliente, e Sucesso do Cliente expande a partir dele.
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec sec--alt" id="s4">
+      <span class="tag">Seção 4 · Diferenciais</span>
+      <p class="eyebrow">Por que a Moinho</p>
+      <h2 class="h-sec">Nós já vivenciamos <span class="grifo">o que você está passando</span></h2>
+      <p class="lead">
+        Em dez anos atendendo mais de setenta marcas, quase todo cenário que chega até nós já apareceu
+        antes de alguma forma. Isso encurta o caminho até colher os primeiros resultados, porque a
+        estratégia não começa do zero, começa do que já funcionou e está medido.
+      </p>
+      <div class="grid g3">
+        <div class="box">
+          <h3 class="h-card">Time multidisciplinar</h3>
+          <p class="muted">Estrategistas de comunicação, marketing e vendas, analistas, redatores,
+          designers, especialistas em CS e especialistas em tráfego.</p>
+        </div>
+        <div class="box">
+          <h3 class="h-card">Estratégia antes da entrega</h3>
+          <p class="muted">Cada entrega, direcionamento, campanha ou conteúdo sai de uma decisão de
+          estratégia, com motivo declarado. Nada é produzido só para cumprir volume mensal.</p>
+        </div>
+        <div class="box">
+          <h3 class="h-card">Decisão baseada em números</h3>
+          <p class="muted">Você acompanha todas as ações que foram feitas, o que foi investido, o que
+          voltou e o que muda no próximo ciclo. Cada passo é definido em cima de resultados atingidos.</p>
+        </div>
+        <div class="box box--dash" style="grid-column:1/-1">
+          <h3 class="h-card">Quarto diferencial, a incluir</h3>
+          <p class="muted">Espaço reservado para o diferencial enviado na imagem do retorno, sem o
+          trecho “sobre o digital”. O texto entra aqui assim que chegar em formato de texto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec sec--alt" id="s5">
+      <span class="tag">Seção 5 · Ecossistema Atlantar</span>
+      <p class="eyebrow">Ecossistema Atlantar</p>
+      <h2 class="h-sec">Você contrata um parceiro e acessa uma <span class="grifo">rede focada no crescimento</span> do seu negócio</h2>
+      <p class="lead">
+        A Moinho faz parte do Atlantar, ao lado da BD&amp;Co, que cuida de branding e desenho de marca,
+        e da SPO, que cuida de tecnologia, desenvolvimento de software e IA. Dentro do ecossistema,
+        somos o pilar de tração: estratégia de marketing digital, geração de oportunidades e captação
+        de clientes. Na prática, você resolve marca, tecnologia e performance no mesmo lugar, sem juntar
+        fornecedores que não conversam entre si.
+      </p>
+      <div class="grid g3 eco">
+        <div class="box" style="border-width:2px;border-color:var(--ink)">
+          <p class="eyebrow" style="margin:0 0 8px">Moinho Digital · você está aqui</p>
+          <h3 class="h-card">Marketing e geração de demanda</h3>
+          <ul>
+            <li>Marketing inteligente</li>
+            <li>Comunicação estratégica</li>
+            <li>Performance comercial</li>
+            <li>Posicionamento de mercado</li>
+          </ul>
+        </div>
+        <div class="box">
+          <p class="eyebrow" style="margin:0 0 8px">SPO Tecnologia</p>
+          <h3 class="h-card">Inovação e modernização da operação</h3>
+          <ul>
+            <li>Agentes de IA</li>
+            <li>Automação</li>
+            <li>Eficiência operacional</li>
+            <li>Inovação aplicada</li>
+          </ul>
+        </div>
+        <div class="box">
+          <p class="eyebrow" style="margin:0 0 8px">BD&amp;Co. Studio</p>
+          <h3 class="h-card">Branding e identidade estratégica</h3>
+          <ul>
+            <li>Branding e reposicionamento</li>
+            <li>Identidade visual e verbal</li>
+            <li>Embalagens e rótulos</li>
+            <li>Design com consistência</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">
+        <b>Os cards vão crescer.</b> O descritivo completo de cada empresa, enviado no retorno, entra
+        no lugar das linhas curtas atuais, junto com os logos da BD&amp;Co, da Moinho e da SPO.
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec" id="s6">
+      <span class="tag">Seção 6 · Manifesto</span>
+      <p class="eyebrow">No que acreditamos</p>
+      <h2 class="h-sec">Crescimento não é um acontecimento. <span class="grifo">É disciplina</span></h2>
+
+      <div class="manif">
+        <p>
+          O mercado geralmente celebra picos: uma campanha que funciona, um bom mês, um vendedor fora
+          da curva. Isso dá sensação de avanço, mas a sensação não sustenta o caixa. O que sustenta é a
+          cadência: uma operação que gira com consistência e melhora continuamente.
+        </p>
+        <p class="destaque">A Moinho existe para colocar a jornada de receita em ritmo.</p>
+        <p>
+          Não vendemos conteúdo, mídia, marketing ou vendas como fins. Isso são meios. O que entregamos
+          é receita previsível ao integrar Marketing, Vendas e Sucesso do Cliente em uma única
+          engrenagem: gerar demanda qualificada, converter com disciplina, reter e expandir a base.
+        </p>
+        <p>
+          Porque o problema raramente é falta de esforço. É falta de método. Quando cada área opera
+          isolada, a empresa até se movimenta, mas perde eficiência, alonga ciclos, encarece aquisição
+          e fragiliza retenção. A pressão aumenta. O improviso vira rotina.
+        </p>
+        <p class="destaque">Nós fazemos o oposto: operamos em ciclos.</p>
+        <p>
+          Todo dia um ajuste. Toda semana uma decisão clara sobre o principal gargalo. Todo mês, ajustes
+          orientados por indicadores. Todo trimestre, alinhamento para escalar com controle.
+          Menos pico, mais previsibilidade. Menos heroísmo, mais padrão.
+        </p>
+        <p class="fecho">
+          Receita previsível não se promete. Se constrói em ciclos.<br>
+          <b>Moinho Digital. Cadência que vira receita.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <b>O que saiu daqui.</b> Esta seção era a lista dos três pilares de serviço. O manifesto ocupa o
+        lugar dela. Vale registrar a consequência: o site deixa de listar em algum ponto o que a Moinho
+        faz na prática. Quem chega procurando saber se vocês fazem SEO, e-mail ou CRM não encontra mais
+        essa resposta. Uma saída é levar a lista de serviços para uma página interna, ligada pelo menu,
+        mantendo a home no nível do manifesto.
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec sec--alt" id="s7">
+      <span class="tag">Seção 7 · Cases</span>
+      <p class="eyebrow">Resultado real</p>
+      <h2 class="h-sec">Empresas que já <span class="grifo">cresceram conosco</span></h2>
+      <div class="cases">
+        <article class="case">
+          <div class="art"><span class="num">90</span><span class="num-lab">leads por mês</span></div>
+          <div class="body">
+            <h3 class="cli">Pedro Janot</h3>
+            <p class="desc">Ex-presidente da Azul e ex-CEO da Zara Brasil.</p>
+            <div class="sub">
+              <div><b>4 mi</b><span>de pessoas alcançadas</span></div>
+              <div><b>1 a cada 3 dias</b><span>orçamento aberto</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="art"><span class="num">R$ 6 mi</span><span class="num-lab">em vendas por canais digitais</span></div>
+          <div class="body">
+            <h3 class="cli">WS Cranes</h3>
+            <p class="desc">Indústria gaúcha com 20 anos de mercado.</p>
+            <div class="sub">
+              <div><b>46%</b><span>de qualificação, ante 20 a 30% do mercado</span></div>
+              <div><b>181</b><span>de ROAS</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="art"><span class="num">2,5 mi</span><span class="num-lab">de pessoas alcançadas</span></div>
+          <div class="body">
+            <h3 class="cli">Instituto Eurofarma</h3>
+            <p class="desc">Braço social da Eurofarma.</p>
+            <div class="sub"><span class="none">Sem métricas de apoio disponíveis até aqui.</span></div>
+          </div>
+        </article>
+      </div>
+      <div class="note">
+        <b>Um número por case, em destaque.</b> Ele ocupa mais espaço que o nome do cliente e fica sobre a foto.
+        As outras métricas viram apoio no rodapé do card. Isso exige escolher, em cada case, qual número
+        carrega a história: na WS ficou o faturamento, que qualquer pessoa entende, com o ROAS 181 logo
+        abaixo. No case da WS entra também o comparativo com o mercado, porque 46% sozinho não diz nada
+        para quem é de fora.
+      </div>
+      <div class="note">
+        <b>A grade vai crescer.</b> Na versão final entram também os cases do 1º semestre de 2026 com
+        Pega&amp;Cola, Lactare e WS, levando o bloco de três para cinco ou seis casos. As fotos de cada
+        card também entram nessa etapa.
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec" id="s8">
+      <span class="tag">Seção 8 · Marcas atendidas</span>
+      <h2 class="h-sec">Algumas das marcas que já <span class="grifo">passaram por aqui</span></h2>
+      <div class="logos">
+        <div class="ph">Instituto Eurofarma</div><div class="ph">CORA</div><div class="ph">Lactare</div>
+        <div class="ph">Smark</div><div class="ph">Dallasanta</div><div class="ph">WS Cranes</div>
+        <div class="ph">Wolensinc</div><div class="ph">Pedro Janot</div><div class="ph">Zait Gravataí</div>
+        <div class="ph">Ipa Farma</div><div class="ph">Elosul</div><div class="ph">Colégio Anchieta</div>
+        <div class="ph">Haxea</div><div class="ph">Pearson Animal</div><div class="ph">Tríade School</div>
+      </div>
+      <div class="note">
+        <b>Seção opcional, sugerimos manter.</b> São os 12 logos do site atual. Ela sustenta o
+        “70+ marcas atendidas” da faixa de números, em versão discreta e logo depois dos cases, para
+        não competir com eles.
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec sec--alt" id="s9">
+      <span class="tag">Seção 9 · Depoimentos</span>
+      <p class="eyebrow">Na palavra de quem contratou</p>
+      <h2 class="h-sec">O que os clientes <span class="grifo">falam sobre nós</span></h2>
+      <div class="grid g3">
+        <div class="box quote">
+          <p>“Em 15 anos de mercado, nunca vi uma qualificação tão boa e um resultado tão assertivo.
+          Já vi muito volume, mas qualificação assim não. Vendemos duas unidades do nosso lançamento
+          já nos primeiros dois meses de trabalho. Isso foi um fato inédito na Dallasanta.”</p>
+          <footer>Raquel Pereira <span>Gerente de marketing, Dallasanta</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“A Moinho é uma empresa pronta. Especialista e focada nos resultados dos seus clientes.
+          A equipe de profissionais são super qualificados, o que traz segurança pra nós, clientes.”</p>
+          <footer>Joyce Grings <span>Pega e Cola Personalizações</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“O processo com a Moinho Digital tem sido muito gratificante. Eles não apenas entregaram
+          resultados tangíveis, mas também demonstraram um nível de profissionalismo e dedicação que é
+          raro encontrar.”</p>
+          <footer>Thaís Motta <span>Supervisora de vendas, WS Cranes</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Trabalho em conjunto com a Moinho há praticamente 2 anos e o resultado nunca parou de crescer.
+          Sentimos que é como se fosse uma extensão da empresa, mesmo com a distância física.”</p>
+          <footer>Caio Angarten <span>Marketing, Labgard</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Começamos a trabalhar com a Moinho no início do ano e desde então temos recebido elogios e
+          reconhecimento sobre como as redes sociais de nossa organização melhoraram.”</p>
+          <footer>Júlio Lima <span>Gerente, Instituto Eurofarma</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Já no primeiro mês de parceria deu pra perceber que a pegada do pessoal é diferente.
+          Sempre próximos à empresa, criando conteúdos com nossa participação e aprovação,
+          gerando bons resultados.”</p>
+          <footer>Ricardo Schwanke <span>Sócio-diretor, WS Cranes</span></footer>
+        </div>
+      </div>
+      <div class="grid g3" style="margin-top:16px">
+        <div class="box quote">
+          <p>“Time empenhado em entender as necessidades do cliente com foco nos resultados positivos!
+          Continuem com essa garra e determinação, fazem a diferença no resultado e é perceptível pelo
+          cliente.”</p>
+          <footer>Sayonara <span>Lactare</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“A Moinho tem sido uma grande parceira na nossa estratégia de crescimento e comunicação
+          com o mercado. Tem uma equipe muito dedicada e responsável sempre pronta para nos ajudar.”</p>
+          <footer>Leandro Ceccato <span>CEO, Smark</span></footer>
+        </div>
+        <div class="box quote" style="border-style:dashed;background:transparent">
+          <p class="muted">Ainda disponíveis, se quiserem ampliar: Giovanna Biase (CORA).</p>
+        </div>
+      </div>
+      <div class="note">
+        <b>Ordenados por força, não por ordem de cliente.</b> O da Raquel abre porque é o único que cita
+        venda fechada, e é o que mais converte. O da Joyce, vindo do NPS, entra em segundo.
+        <br><br>
+        <b>Sobre o carrossel:</b> sim, é possível, e é o formato certo aqui. Com oito depoimentos, a
+        grade estática ocupa altura demais e faz a pessoa rolar muito antes de chegar no diagnóstico.
+        No carrossel eles ficam em uma faixa arrastável, com os cards navegáveis por teclado e sem
+        rotação automática, que atrapalha quem está lendo.
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec" id="s10">
+      <span class="tag">Seção 10 · Diagnóstico</span>
+      <div class="diag">
+        <div>
+          <p class="eyebrow">Diagnóstico gratuito</p>
+          <h2 class="h-sec">Descubra quanto o seu negócio <span class="grifo">deixa na mesa</span> todo mês</h2>
+          <p class="lead">
+            Você informa dados simples do seu negócio e a ferramenta estima quanto de receita você deixa
+            de faturar por não investir em estratégias de marketing e captação digital. Leva menos de um minuto
+            e o resultado sai na hora.
+          </p>
+          <ol class="steps">
+            <li><b>Você informa</b> ticket médio e quantas vendas fecha por mês.</li>
+            <li><b>A ferramenta calcula</b> quanto você deixa de faturar sem investir em captação digital.</li>
+            <li><b>Você recebe o resultado</b> e nós explicamos o que dá para fazer a respeito.</li>
+          </ol>
+          <div class="btns"><span class="btn btn--primary">Fazer diagnóstico gratuito ↗</span></div>
+          <p class="muted" style="font-size:13px;margin-top:12px">Leva menos de um minuto.</p>
+        </div>
+        <div class="ph" style="min-height:260px">Prévia da ferramenta</div>
+      </div>
+      <div class="note">
+        <b>De link escondido a seção própria.</b> Hoje o diagnóstico é um item no menu que quase ninguém
+        encontra. Aqui ele vira bloco de destaque, no ponto da página em que a pessoa já viu cases e
+        depoimentos e está mais propensa a agir. Os três passos reduzem o atrito de clicar num link que
+        leva para fora do site: ela já sabe o que vai encontrar do outro lado.
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec" id="s11">
+      <span class="tag">Seção 11 · Contato</span>
+      <div class="contact-cols">
+        <div>
+          <h2 class="h-sec">Vamos agendar nossa <span class="grifo">primeira conversa?</span></h2>
+          <p class="lead">Respondemos em até um dia útil. Se preferir resolver agora, chame no WhatsApp.</p>
+          <div class="form-grid">
+            <div class="field"><label for="f-nome">Nome</label><input type="text" id="f-nome"></div>
+            <div class="field"><label for="f-emp">Empresa</label><input type="text" id="f-emp"></div>
+            <div class="field"><label for="f-mail">E-mail corporativo</label><input type="email" id="f-mail"></div>
+            <div class="field"><label for="f-tel">Telefone</label><input type="tel" id="f-tel"></div>
+            <div class="field span2"><label for="f-msg">Mensagem</label><textarea id="f-msg"></textarea></div>
+            <div class="span2 muted" style="font-size:13px">☐ Autorizo o envio de e-mails da Moinho.</div>
+          </div>
+          <div class="btns"><span class="btn btn--primary">Receber contato</span></div>
+        </div>
+        <div>
+          <div class="box">
+            <h3 class="h-card">Fale direto</h3>
+            <p class="muted" style="margin-bottom:16px">
+              (51) 99979-0598<br>
+              contato@moinhod.com.br<br>
+              Instagram · LinkedIn · Facebook
+            </p>
+            <h3 class="h-card">Onde estamos</h3>
+            <div class="addr"><b>São Paulo, SP</b>Avenida Paulista, 1636, salas 103 e 105, Bela Vista</div>
+            <div class="addr"><b>Porto Alegre, RS</b>Avenida Nilo Peçanha, 1600, Boa Vista</div>
+            <div class="addr"><b>São Leopoldo, RS</b>Avenida Unisinos, 950, Cristo Rei</div>
+            <div class="addr"><b>Curitiba, PR</b>Rua Brigadeiro Franco, Batel</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <b>Os cinco campos que o briefing manda manter.</b> Os endereços são os do site do Atlantar sem
+        Tupandi, como pedido. As redes entram como ícone na versão final.
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="sec sec--alt" id="s12" style="padding:0">
+      <div style="padding:clamp(20px,3.4vw,48px) clamp(20px,3.4vw,48px) 0">
+        <span class="tag">Seção 12 · Rodapé</span>
+      </div>
+      <div class="wf-footer">
+        <div class="foot-grid">
+          <div>
+            <div class="wf-logo" style="margin-bottom:12px"><span class="mark"></span> moinho digital</div>
+            <p class="muted" style="max-width:42ch">
+              Há dez anos tracionamos empresas. Transformamos presença digital de marca em
+              oportunidades reais de negócio.
+            </p>
+          </div>
+          <div>
+            <b style="font-size:14px">Navegar</b>
+            <ul style="margin-top:8px"><li>Diferenciais</li><li>Serviços</li><li>Cases</li><li>Diagnóstico</li><li>Contato</li></ul>
+          </div>
+          <div>
+            <b style="font-size:14px">Ecossistema</b>
+            <ul style="margin-top:8px"><li>Atlantar</li><li>BD&amp;Co</li><li>SPO</li></ul>
+          </div>
+        </div>
+        <p class="muted" style="font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px">
+          © 2026 Moinho Digital. Todos os direitos reservados. · Política de privacidade
+        </p>
+      </div>
+    </section>
+
+    <div class="wpp"><span class="dot"></span> Conversar no WhatsApp</div>
+    <div style="padding:0 clamp(20px,3.4vw,48px) 28px">
+      <div class="note" style="margin-top:0">
+        <b>Botão flutuante de WhatsApp.</b> Fixo no canto inferior direito, visível em qualquer ponto da
+        navegação, em todas as telas. No celular ele encolhe para só o ícone, para não cobrir conteúdo.
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <div class="brief" style="margin-top:28px">
+    <h2 style="margin-top:0">O que precisamos definir com vocês</h2>
+    <ol class="ask">
+      <li><b>O quarto diferencial da seção 4.</b> Recebemos a indicação por imagem. Precisamos do texto
+        para incluir, já sem o trecho “sobre o digital”.</li>
+      <li><b>Fotos de rosto nos depoimentos.</b> Podemos usar? Rosto aumenta bastante a credibilidade
+        do bloco.</li>
+    </ol>
+
+    <h2>O que já está encaminhado e entra na versão final</h2>
+    <p class="muted" style="max-width:76ch;margin:0 0 12px">
+      Estes itens não dependem de vocês, estão sendo providenciados e entram no site antes da entrega.
+      Ficam listados aqui só para que ninguém estranhe a ausência deles neste documento.
+    </p>
+    <ol class="ask">
+      <li><b>Cases do 1º semestre de 2026</b> com Pega&amp;Cola, Lactare e WS, que ampliam a grade de
+        três para cinco ou seis cases.</li>
+      <li><b>Fotos</b> da abertura e dos cards de case.</li>
+      <li><b>Logos da BD&amp;Co e da SPO</b> no bloco do ecossistema.</li>
+      <li><b>Identidade visual completa</b>, aplicada na etapa de design.</li>
+    </ol>
+
+    <h2>Próximo passo</h2>
+    <p class="muted" style="max-width:76ch;margin:0">
+      Com a estrutura e o texto aprovados, seguimos para o design: paleta, tipografia, tratamento das
+      imagens e movimento, com o site já em código, pronto para publicar.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

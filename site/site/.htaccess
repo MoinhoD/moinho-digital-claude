@@ -1,0 +1,129 @@
+# ============================================================
+# Moinho Digital — https://moinhod.com.br
+# Apache / Hostinger. Este arquivo vai na RAIZ do site, junto
+# do index.html. Na Netlify ele e ignorado (ver nota no final).
+# ============================================================
+
+# ---------- 1. DOMINIO CANONICO ----------
+# Uma unica versao do site: https, sem www.
+# As duas regras sao independentes de proposito: cada origem
+# resolve em UM redirect so, sem corrente de 301 encadeado.
+
+RewriteEngine On
+
+# www (http ou https) -> https sem www, em um salto
+RewriteCond %{HTTP_HOST} ^www\.moinhod\.com\.br$ [NC]
+RewriteRule ^ https://moinhod.com.br%{REQUEST_URI} [R=301,L]
+
+# http sem www -> https. A segunda condicao existe porque a
+# Hostinger encerra o SSL num proxy: sem ela, o Apache acha que
+# a conexao e insegura mesmo em https e entra em loop de redirect.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://moinhod.com.br%{REQUEST_URI} [R=301,L]
+
+# /index.html -> /  (evita a home indexada em dois enderecos).
+# Usa THE_REQUEST, que le a linha original do pedido, entao o
+# DirectoryIndex servindo o index.html por dentro nao reativa a regra.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+
+# ---------- 2. CHARSET ----------
+# Sem isto, o Apache serve .txt como ISO-8859-1 e os acentos do
+# llms.txt chegam quebrados no crawler.
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+  AddCharset UTF-8 .html .css .js .txt .xml .svg .json
+</IfModule>
+
+
+# ---------- 3. COMPRESSAO ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/ld+json
+  AddOutputFilterByType DEFLATE application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/woff2 font/ttf
+</IfModule>
+
+
+# ---------- 4. CACHE ----------
+# css e js podem ficar um ano em cache porque sao chamados com
+# ?v=20260826093000. Ao publicar mudanca de estilo ou script,
+# troque esse numero no index.html e na politica de privacidade,
+# senao o visitante recorrente continua com a versao velha.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                        "access plus 1 month"
+
+  ExpiresByType text/html               "access plus 0 seconds"
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+
+  ExpiresByType text/plain              "access plus 1 day"
+  ExpiresByType application/xml         "access plus 1 day"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # O HTML nunca fica em cache: e o arquivo que aponta para as
+  # versoes novas de css, js e dados estruturados.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  <FilesMatch "\.(css|js|jpg|jpeg|png|svg|webp|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+
+# ---------- 5. SEGURANCA ----------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+
+  # HSTS: so ligar depois de confirmar que https funciona em todas
+  # as paginas. Uma vez enviado, o navegador recusa http por um ano
+  # e nao ha como voltar atras pelo servidor.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Nao listar o conteudo das pastas quando faltar index
+Options -Indexes
+
+# Bloquear arquivos ocultos e de apoio
+<FilesMatch "^\.|(\.md|\.rar|\.bak)$">
+  Require all denied
+</FilesMatch>
+
+
+# ---------- 6. PAGINA DE ERRO ----------
+# O site nao tem 404 ainda. Quando criar o arquivo 404.html na
+# raiz, descomente a linha abaixo. Nao aponte o 404 para o
+# index.html: o Google le isso como soft 404 e ignora a pagina.
+# ErrorDocument 404 /404.html
+
+
+# ============================================================
+# NOTA SOBRE NETLIFY
+# A Netlify nao roda Apache e ignora este arquivo por completo.
+# La, o dominio canonico se resolve marcando moinhod.com.br como
+# dominio primario no painel, e os headers ficam num arquivo
+# _headers. Se o deploy for Netlify, este .htaccess so ocupa
+# espaco na pasta.
+# ============================================================

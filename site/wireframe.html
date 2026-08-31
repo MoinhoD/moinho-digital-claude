@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Novo site Moinho Digital</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20fill='%23D2334F'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(90%20100%20100)'%20fill='%235A368C'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(180%20100%20100)'%20fill='%235A368C'/%3E%3Cpath%20d='M100,100%20L100,50%20A50,50%200%201%200%2050,100%20Z'%20transform='rotate(270%20100%20100)'%20fill='%235A368C'/%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   WIREFRAME — escala de cinza proposital.
+   Nenhuma decisão de cor, tipografia ou textura foi tomada aqui.
+   O objetivo é aprovar ESTRUTURA, HIERARQUIA e COPY.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root{
+  --ink:#1c1c1c;
+  --ink-2:#555;
+  --ink-3:#6e6e6e;
+  --line:#c4c4c4;
+  --line-2:#dcdcdc;
+  --fill:#ececec;
+  --fill-2:#f5f5f5;
+  --paper:#fff;
+  --note:#2b5c8a;
+  --note-bg:#eef4fa;
+  --flag:#8a5a00;
+  --flag-bg:#fdf4e3;
+  --gut: clamp(20px, 4vw, 64px);
+  --maxw: 1180px;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:#e8e8e6;
+  color:var(--ink);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation:none !important; transition:none !important; }
+}
+
+/* ---------- casca do documento ---------- */
+.doc{
+  max-width:1320px;
+  margin:0 auto;
+  padding: 24px var(--gut) 80px;
+}
+.page{
+  background:var(--paper);
+  border:1px solid var(--line);
+  margin:0 auto;
+  max-width:var(--maxw);
+}
+
+/* ---------- cabeçalho do entregável ---------- */
+.brief{
+  max-width:var(--maxw);
+  margin:0 auto 28px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding: clamp(20px,3vw,32px);
+}
+.brief h1{
+  font-size: clamp(20px,2.6vw,28px);
+  margin:0 0 6px;
+  letter-spacing:-.01em;
+}
+.brief .sub{ color:var(--ink-2); margin:0 0 20px; font-size:15px; }
+.brief h2{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:22px 0 10px; }
+.legend{ display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+.legend div{ font-size:13.5px; color:var(--ink-2); display:flex; gap:9px; align-items:flex-start; }
+.swatch{ width:15px; height:15px; flex:none; margin-top:3px; border:1px solid var(--line); }
+.sw-img{ background:var(--fill); background-image:repeating-linear-gradient(45deg,#dcdcdc 0 4px,transparent 4px 8px); }
+.sw-note{ background:var(--note-bg); border-color:var(--note); }
+.sw-flag{ background:var(--flag-bg); border-color:var(--flag); }
+.sw-box{ background:var(--fill-2); }
+
+.cmap{ border-collapse:collapse; width:100%; font-size:13.5px; min-width:560px; }
+.cmap th, .cmap td{ border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top; }
+.cmap th{ background:var(--fill); font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); font-weight:600; }
+.cmap td{ color:var(--ink-2); }
+.cmap tr.on td{ background:var(--fill); color:var(--ink); }
+.cmap tr.on b{ color:var(--ink); }
+
+.toc{ display:flex; flex-wrap:wrap; gap:6px; }
+.toc a{
+  font-size:13px; text-decoration:none; color:var(--ink-2);
+  border:1px solid var(--line); padding:5px 10px; background:var(--fill-2);
+}
+.toc a:hover{ background:var(--fill); color:var(--ink); }
+.toc a:focus-visible{ outline:2px solid var(--note); outline-offset:2px; }
+
+/* ---------- seções do wireframe ---------- */
+.sec{ border-bottom:1px solid var(--line); padding: clamp(28px,4vw,52px) clamp(20px,3.4vw,48px); position:relative; }
+.sec:last-of-type{ border-bottom:none; }
+.sec--alt{ background:#fafafa; }
+
+.tag{
+  display:inline-block; font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-3); border:1px solid var(--line); padding:3px 8px; margin-bottom:18px;
+  background:var(--paper);
+}
+
+/* blocos genéricos de wireframe */
+.box{ border:1px solid var(--line); background:var(--fill-2); padding:16px; }
+.box--dash{ border-style:dashed; background:transparent; }
+
+.ph{ /* placeholder de imagem */
+  border:1px solid var(--line);
+  background:var(--fill);
+  background-image:repeating-linear-gradient(45deg,#dedede 0 5px,transparent 5px 10px);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  color:var(--ink-3); font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  padding:12px; min-height:120px;
+}
+
+/* linhas simulando texto corrido, quando o texto exato ainda não importa */
+.lines{ display:grid; gap:8px; }
+.lines i{ display:block; height:9px; background:var(--line-2); }
+.lines i:nth-child(3n){ width:82%; }
+.lines i:last-child{ width:58%; }
+
+/* tipografia do conteúdo dentro do wireframe */
+.h-hero{ font-size:clamp(30px,5.4vw,58px); line-height:1.05; letter-spacing:-.02em; margin:0 0 18px; font-weight:700; }
+.h-sec{ font-size:clamp(22px,3.2vw,36px); line-height:1.15; letter-spacing:-.015em; margin:0 0 14px; font-weight:700; }
+.h-card{ font-size:17px; margin:0 0 8px; font-weight:700; }
+.eyebrow{ font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px; }
+.lead{ font-size:clamp(15px,1.5vw,17.5px); color:var(--ink-2); max-width:62ch; margin:0 0 20px; }
+p{ margin:0 0 12px; }
+.muted{ color:var(--ink-2); font-size:14.5px; }
+
+/* botões simulados */
+.btns{ display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0; }
+.btn{ border:1.5px solid var(--ink); padding:11px 20px; font-size:14.5px; font-weight:600; background:var(--paper); }
+.btn--primary{ background:var(--ink); color:var(--paper); }
+.btn--ghost{ border-color:var(--line); color:var(--ink-2); font-weight:500; }
+
+/* grids */
+.grid{ display:grid; gap:16px; }
+.g2{ grid-template-columns:repeat(2,1fr); }
+.g3{ grid-template-columns:repeat(3,1fr); }
+.g4{ grid-template-columns:repeat(4,1fr); }
+@media (max-width:860px){ .g3,.g4{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .g2,.g3,.g4{ grid-template-columns:1fr; } }
+
+/* anotações do designer */
+.note{
+  border-left:3px solid var(--note); background:var(--note-bg); color:var(--note);
+  font-size:13.5px; line-height:1.5; padding:11px 14px; margin:16px 0 0;
+}
+.note b{ font-weight:700; }
+.flag{
+  border-left:3px solid var(--flag); background:var(--flag-bg); color:var(--flag);
+  font-size:13.5px; line-height:1.5; padding:11px 14px; margin:16px 0 0;
+}
+.note code, .flag code{ font-family:ui-monospace,Consolas,monospace; font-size:12.5px; }
+
+/* ---------- nav do site (simulada) ---------- */
+.wf-nav{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  border-bottom:1px solid var(--line); padding:14px clamp(20px,3.4vw,48px); background:var(--paper);
+  position:sticky; top:0; z-index:20;
+}
+.wf-logo{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; }
+.wf-logo .mark{ width:26px; height:26px; border:1.5px solid var(--ink); }
+.wf-menu{ display:flex; gap:18px; font-size:14px; color:var(--ink-2); flex-wrap:wrap; }
+.wf-nav .btn{ padding:9px 15px; font-size:13.5px; }
+@media (max-width:820px){
+  .wf-menu{ display:none; }
+  .wf-nav::after{ content:"☰"; font-size:19px; }
+}
+
+/* ---------- hero ---------- */
+.hero-grid{ display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(20px,3vw,44px); align-items:center; }
+@media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } }
+.bignum{ font-size:clamp(56px,11vw,120px); line-height:.85; font-weight:800; letter-spacing:-.04em; display:block; }
+
+/* faixa de números */
+.stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.stats div{ background:var(--paper); padding:18px 14px; text-align:center; }
+.stats b{ display:block; font-size:clamp(20px,3vw,30px); font-weight:800; letter-spacing:-.02em; }
+.stats span{ font-size:12.5px; color:var(--ink-2); }
+@media (max-width:700px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+
+/* listas de serviço */
+.pillar ul{ margin:10px 0 0; padding:0 0 0 18px; }
+.pillar li{ font-size:14px; color:var(--ink-2); margin-bottom:5px; }
+
+/* palavra que ganharia cor no site final */
+.hl{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:4px;
+  text-decoration-color:var(--ink-3);
+}
+
+/* bloco de direção de design na capa */
+.dir{
+  border:1px solid var(--ink); background:var(--fill-2);
+  padding:16px 18px; margin:20px 0; max-width:80ch;
+}
+.dir h2{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); margin:0 0 10px; }
+.dir p{ font-size:14px; color:var(--ink-2); max-width:none; }
+
+/* título com a segunda linha vazada (contorno) */
+.void{ display:block; color:var(--ink); }
+@supports (-webkit-text-stroke: 1px black){
+  .void{ -webkit-text-stroke:1.4px var(--ink); color:transparent; }
+  .h-hero .void{ -webkit-text-stroke-width:2px; }
+}
+
+/* cases: métrica herói sobre a arte */
+.cases{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:860px){ .cases{ grid-template-columns:1fr; } }
+.case{ border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; }
+.case .art{
+  position:relative; aspect-ratio:4/5; padding:18px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  background:var(--fill);
+  background-image:repeating-linear-gradient(45deg,#dedede 0 5px,transparent 5px 10px);
+}
+.case .art::before{
+  content:"foto tratada"; position:absolute; top:13px; left:18px;
+  font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3);
+}
+.case .num{ font-size:clamp(40px,5.4vw,60px); font-weight:800; line-height:.86; letter-spacing:-.03em; }
+.case .num-lab{ font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2); margin-top:7px; }
+.case .body{ padding:16px 18px 18px; }
+.case .cli{ font-size:17px; font-weight:700; margin:0 0 3px; }
+.case .desc{ font-size:13.5px; color:var(--ink-2); margin:0 0 12px; }
+.case .sub{ border-top:1px solid var(--line-2); padding-top:11px; display:grid; gap:7px; }
+.case .sub div{ display:flex; justify-content:space-between; gap:10px; align-items:baseline; }
+.case .sub b{ font-size:15px; font-weight:800; letter-spacing:-.01em; }
+.case .sub span{ color:var(--ink-2); text-align:right; font-size:12.5px; }
+.case .sub .none{ font-size:12.5px; color:var(--ink-3); text-align:left; font-style:italic; }
+
+/* prévia do tratamento de imagem (único ponto com cor no documento) */
+.trat{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media (max-width:700px){ .trat{ grid-template-columns:1fr; } }
+.trat figure{ margin:0; }
+.trat .sw{ position:relative; aspect-ratio:4/5; overflow:hidden; display:flex; align-items:flex-end; padding:15px; }
+.trat .sw .photo{
+  position:absolute; inset:0; filter:grayscale(1);
+  background:
+    radial-gradient(58% 46% at 32% 24%, #fbfbfb 0%, #c6c6c6 46%, #8a8a8a 100%),
+    linear-gradient(160deg,#b8b8b8,#5f5f5f);
+}
+.trat .sw .lay{ position:absolute; inset:0; mix-blend-mode:multiply; }
+.trat .lay--roxo{ background:#5A368C; }
+.trat .lay--grad{ background:linear-gradient(135deg,#D2334F,#F0867D); }
+.trat .sw b{ position:relative; color:#fff; font-size:clamp(26px,3.4vw,36px); font-weight:800; line-height:.9; letter-spacing:-.02em; }
+.trat figcaption{ font-size:12.5px; color:var(--ink-2); margin-top:9px; }
+
+/* depoimentos */
+.quote p{ font-size:14.5px; color:var(--ink-2); }
+.quote footer{ font-size:13px; font-weight:600; border-top:1px solid var(--line-2); padding-top:10px; margin-top:12px; }
+.quote footer span{ display:block; font-weight:400; color:var(--ink-3); }
+
+/* logos */
+.logos{ display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+@media (max-width:860px){ .logos{ grid-template-columns:repeat(3,1fr); } }
+.logos .ph{ min-height:62px; font-size:11px; }
+
+/* diagnóstico */
+.diag{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(20px,3vw,44px); align-items:center; }
+@media (max-width:800px){ .diag{ grid-template-columns:1fr; } }
+.steps{ margin:0 0 6px; padding:0; list-style:none; counter-reset:st; }
+.steps li{
+  counter-increment:st; position:relative; padding-left:38px; margin-bottom:12px;
+  font-size:14.5px; color:var(--ink-2);
+}
+.steps li::before{
+  content:counter(st); position:absolute; left:0; top:-1px;
+  width:25px; height:25px; border:1.5px solid var(--ink); color:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700;
+}
+.steps b{ color:var(--ink); }
+
+.field{ margin-bottom:14px; }
+.field label{ display:block; font-size:13.5px; font-weight:600; margin-bottom:6px; }
+.field input{
+  width:100%; padding:11px 12px; font:inherit; font-size:15px;
+  border:1.5px solid var(--line); background:var(--paper); color:var(--ink);
+}
+.field input:focus-visible{ outline:2px solid var(--note); outline-offset:1px; border-color:var(--note); }
+.field .hint{ font-size:12.5px; color:var(--ink-3); margin-top:5px; }
+
+/* formulário */
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:640px){ .form-grid{ grid-template-columns:1fr; } }
+.span2{ grid-column:1/-1; }
+textarea{ width:100%; padding:11px 12px; font:inherit; font-size:15px; border:1.5px solid var(--line); background:var(--paper); min-height:110px; resize:vertical; }
+textarea:focus-visible{ outline:2px solid var(--note); outline-offset:1px; border-color:var(--note); }
+
+/* contato / footer */
+.contact-cols{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(20px,3vw,44px); }
+@media (max-width:860px){ .contact-cols{ grid-template-columns:1fr; } }
+.addr{ font-size:14px; color:var(--ink-2); margin-bottom:14px; }
+.addr b{ color:var(--ink); display:block; font-size:14px; }
+.wf-footer{ background:#f0f0f0; padding:clamp(24px,3.4vw,44px); border-top:1px solid var(--line); }
+.foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:24px; }
+@media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; } }
+.foot-grid ul{ list-style:none; margin:0; padding:0; font-size:14px; color:var(--ink-2); }
+.foot-grid li{ margin-bottom:6px; }
+
+/* whatsapp flutuante */
+.wpp{
+  position:sticky; bottom:20px; margin-left:auto; margin-right:20px; width:max-content;
+  border:1.5px solid var(--ink); background:var(--paper); padding:11px 16px; font-size:14px; font-weight:600;
+  display:flex; align-items:center; gap:8px; z-index:15;
+}
+.wpp .dot{ width:20px; height:20px; border:1.5px solid var(--ink); border-radius:50%; flex:none; }
+
+/* acessibilidade */
+a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--note); outline-offset:2px; }
+details{ border:1px solid var(--line); padding:13px 16px; margin-bottom:9px; background:var(--paper); }
+summary{ cursor:pointer; font-weight:600; font-size:15px; }
+details p{ margin:10px 0 0; font-size:14.5px; color:var(--ink-2); }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- ============ CAPA / INSTRUÇÕES ============ -->
+  <div class="brief">
+    <h1>Wireframe do novo site institucional da Moinho Digital</h1>
+    <p class="sub">Versão 1 para aprovação de estrutura e texto. Agosto de 2026.</p>
+
+    <p class="muted" style="max-width:75ch">
+      Este documento é propositalmente em escala de cinza. O que está aqui para aprovar é: a ordem das
+      seções, o que cada uma comunica, a hierarquia dentro de cada bloco e a proposta de texto.
+      Cor, tipografia e movimento entram na etapa seguinte.
+    </p>
+    <div class="dir">
+      <h2 style="margin-top:0">Direção de design definida em 03/08</h2>
+      <p>
+        A Moinho hoje está dentro de um grupo, com foco em RevOps, estratégia digital, dados e
+        resultado. O site precisa refletir esse momento, não o lado mais criativo que a identidade
+        antiga sugere. O desafio é trazer lembranças do lado criativo com um visual sério,
+        profissional, moderno, com ar hi-tech sem firula, sóbrio e elegante.
+      </p>
+      <p style="margin-bottom:0">
+        <b>Distribuição de cor.</b> Sobriedade tem cor: preto ou branco. A base do site é branca.
+        O roxo entra em no máximo dois blocos, o vermelho provavelmente só no CTA. Quem quebra a
+        sobriedade é a tipografia, com palavras em destaque dentro de títulos neutros. Neste
+        wireframe as palavras que ganhariam cor estão <span class="hl">sublinhadas assim</span>.
+        O mapa completo de cor, seção a seção, está em <code>referencias-visuais.md</code>.
+      </p>
+    </div>
+    <p class="muted" style="max-width:75ch">
+      <b>Decisões visuais já fechadas</b>, vindas da referência do Up Digital e aplicadas aqui: o card
+      de case com o número herói sobre a foto (seção 6) e o título de seção com a segunda linha vazada
+      em contorno, nas seções 6, 8 e 9. Design e animação são a última etapa e entram só na
+      apresentação do site pronto.
+    </p>
+
+    <h2>Mapa de distribuição de cor</h2>
+    <p class="muted" style="margin:0 0 12px;max-width:78ch">
+      Dois blocos cheios de cor na página inteira: o Atlantar, que sustenta autoridade, e o
+      diagnóstico, que converte. Todo o resto respira em branco. É isso que entrega a sobriedade,
+      e é por isso que cada uso de cor precisa de justificativa.
+    </p>
+    <div style="overflow-x:auto">
+    <table class="cmap">
+      <thead><tr><th>#</th><th>Seção</th><th>Fundo</th><th>Onde a cor aparece</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Abertura</td><td>branco</td><td>palavras em destaque no headline, botão principal</td></tr>
+        <tr><td>2</td><td>Prova em números</td><td>branco</td><td>os números em cor, fundo continua branco</td></tr>
+        <tr><td>3</td><td>Diferenciais</td><td>branco</td><td>palavra em destaque no título</td></tr>
+        <tr class="on"><td>4</td><td>Ecossistema Atlantar</td><td><b>roxo</b></td><td>bloco cheio, texto em branco</td></tr>
+        <tr><td>5</td><td>Serviços</td><td>branco</td><td>numeração e palavra em destaque</td></tr>
+        <tr><td>6</td><td>Cases</td><td>branco</td><td>foto em preto e branco, cor só no hover</td></tr>
+        <tr><td>7</td><td>Marcas atendidas</td><td>branco</td><td>nada, logos em cinza</td></tr>
+        <tr><td>8</td><td>Depoimentos</td><td>branco</td><td>aspas ou detalhe em cor</td></tr>
+        <tr class="on"><td>9</td><td>Diagnóstico</td><td><b>roxo ou vermelho</b></td><td>bloco de CTA, o mais forte da página</td></tr>
+        <tr><td>10</td><td>Dúvidas</td><td>branco</td><td>nada</td></tr>
+        <tr><td>11</td><td>Contato</td><td>branco</td><td>botão de envio</td></tr>
+        <tr><td>12</td><td>Rodapé</td><td>preto ou roxo escuro</td><td>fecha a página</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Como ler</h2>
+    <div class="legend">
+      <div><span class="swatch sw-box"></span> Caixa cinza: bloco de conteúdo real, com o texto proposto.</div>
+      <div><span class="swatch sw-img"></span> Caixa hachurada: imagem, ilustração ou colagem a definir.</div>
+      <div><span class="swatch sw-note"></span> Nota azul: intenção do bloco e como ele deve se comportar.</div>
+      <div><span class="swatch sw-flag"></span> Nota âmbar: decisão pendente, precisa da sua resposta.</div>
+    </div>
+
+    <h2>Seções</h2>
+    <nav class="toc">
+      <a href="#s1">1. Abertura</a>
+      <a href="#s2">2. Prova em números</a>
+      <a href="#s3">3. Diferenciais</a>
+      <a href="#s4">4. Ecossistema Atlantar</a>
+      <a href="#s5">5. Serviços</a>
+      <a href="#s6">6. Cases</a>
+      <a href="#s7">7. Marcas atendidas</a>
+      <a href="#s8">8. Depoimentos</a>
+      <a href="#s9">9. Diagnóstico</a>
+      <a href="#s10">10. Dúvidas</a>
+      <a href="#s11">11. Contato</a>
+      <a href="#s12">12. Rodapé</a>
+    </nav>
+
+    <div class="flag" style="margin-top:22px">
+      <b>Decisões pendentes.</b> Estão marcadas em âmbar ao longo do documento. Resumo:
+      (1) <b>branco puro ou o off-white <code>#EFEEDF</code> da marca</b>, a direção nova pede branco e a
+      diretriz da agência define off-white no lugar do branco, os dois entregam sobriedade;
+      (2) <b>os cases</b>, camada roxa nos três cards fura o teto de dois blocos roxos, proponho preto e
+      branco com cor só no hover, ver seção 6;
+      (3) <b>as fontes</b>, o briefing fixa Noto Serif nos títulos e Lexend no corpo, mas você pediu algo
+      moderno e não sóbrio demais, então vale decidir se mantemos a dupla do briefing ou se eu proponho outra;
+      (4) o vermelho aparece como <code>#D23E4F</code> no briefing e <code>#D2334F</code> nas diretrizes da agência;
+      (5) <b>para onde vai o formulário</b> de contato.
+      <br><br>
+      <b>Resolvido:</b> são 10 anos, telefone é o do site atual, e você providencia os cases do 1SEM26,
+      as fotos, os logos da BD&amp;Co e da SPO, o guia de marca e o depoimento da Sayonara.
+    </div>
+  </div>
+
+  <!-- ============ WIREFRAME ============ -->
+  <div class="page">
+
+    <!-- NAV -->
+    <div class="wf-nav">
+      <div class="wf-logo"><span class="mark"></span> moinho digital</div>
+      <nav class="wf-menu">
+        <span>Diferenciais</span><span>Serviços</span><span>Cases</span><span>Diagnóstico</span><span>Contato</span>
+      </nav>
+      <span class="btn btn--primary">Conversar no WhatsApp</span>
+    </div>
+
+    <!-- 1. HERO -->
+    <section class="sec" id="s1">
+      <span class="tag">Seção 1 · Abertura · briefing item 1</span>
+      <div class="hero-grid">
+        <div>
+          <h2 class="h-hero">
+            Construímos <span class="hl">marcas</span>, geramos <span class="hl">vendas</span>,
+            <span class="void">entregamos resultados</span>
+          </h2>
+          <p class="lead">
+            Conectamos marketing, vendas e dados numa operação só, para a sua empresa parar de
+            decidir no achismo.
+          </p>
+          <div class="btns">
+            <span class="btn btn--primary">Conversar no WhatsApp</span>
+            <span class="btn">Fazer diagnóstico gratuito</span>
+          </div>
+        </div>
+        <div class="ph" style="min-height:300px">Imagem de fundo tratada<br>ou foto, a definir</div>
+      </div>
+
+      <div class="note">
+        <b>Sobre o título.</b> Uma frase, três tempos, com marca, venda e resultado juntos. A cadência
+        ternária é o que dá corpo à frase curta, e o terceiro tempo, “entregamos resultados”, é o que
+        fica em contorno. O contorno cai bem justamente ali: é a palavra que a Moinho quer que sobre na
+        cabeça de quem lê, e o vazio dentro da letra segura o olho por mais tempo que o preenchido.
+      </div>
+      <div class="note">
+        <b>Onde foi parar o tempo de mercado.</b> Saiu do título e vai para a faixa de números logo
+        abaixo, que é onde ele funciona melhor, ao lado das 70+ marcas e dos R$ 3 mi+ em mídia. Sozinho
+        no título, “10 anos” não diz o que a empresa faz. Cercado dos outros números, vira tamanho de
+        operação. O item 6 do briefing continua atendido.
+      </div>
+      <div class="note">
+        <b>Comportamento.</b> Dois CTAs, como o briefing pede. O primário abre o WhatsApp. O secundário
+        leva ao diagnóstico, que hoje é a ferramenta externa em <code>diagnosticomoinho.lovable.app</code>
+        e abre em nova aba. Quem preferir entender antes de clicar encontra a seção 9 mais abaixo,
+        explicando o que a ferramenta faz.
+      </div>
+      <div class="flag">
+        <b>A imagem da abertura.</b> Tirei o símbolo da marca daqui, ele fica redundante ao lado do logo
+        na navegação. Três caminhos: uma foto do time ou de bastidor, tratada em preto e branco; uma
+        imagem de fundo abstrata ocupando a dobra inteira, com o texto por cima; ou nenhuma imagem, com
+        a abertura sendo só tipografia num espaço generoso, que é o caminho mais sóbrio e mais alinhado
+        com a direção nova. Me diga qual e eu monto.
+      </div>
+    </section>
+
+    <!-- 2. NÚMEROS -->
+    <section class="sec sec--alt" id="s2">
+      <span class="tag">Seção 2 · Prova em números · briefing item 2</span>
+      <div class="stats">
+        <div><b>10 anos</b><span>de atuação no mercado</span></div>
+        <div><b>70+</b><span>marcas atendidas</span></div>
+        <div><b>R$ 3 mi+</b><span>em anúncios gerenciados</span></div>
+        <div><b>150+</b><span>perfis gerenciados</span></div>
+      </div>
+      <div class="note">
+        <b>Intenção.</b> Faixa curta logo abaixo da abertura, para quem só bateu o olho já sair com a
+        noção de tamanho da operação. São os números que o briefing lista como prontos para reaproveitar.
+      </div>
+    </section>
+
+    <!-- 3. DIFERENCIAIS -->
+    <section class="sec" id="s3">
+      <span class="tag">Seção 3 · Diferenciais · briefing item 2</span>
+      <p class="eyebrow">Por que a Moinho</p>
+      <h2 class="h-sec">Nós já passamos<span class="void">por esse problema antes</span></h2>
+      <p class="lead">
+        Em dez anos atendendo mais de setenta marcas, quase todo cenário que chega até nós
+        já apareceu antes de alguma forma. Isso encurta o caminho entre contratar e ver resultado,
+        porque a estratégia não começa do zero, começa do que já funcionou e está medido.
+      </p>
+
+      <div class="grid g3">
+        <div class="box">
+          <h3 class="h-card">Time multidisciplinar</h3>
+          <p class="muted">Redatores, estrategistas, analistas, designers e especialistas em tráfego
+          trabalhando na mesma conta, não um generalista tentando cobrir tudo.</p>
+        </div>
+        <div class="box">
+          <h3 class="h-card">Estratégia antes da entrega</h3>
+          <p class="muted">Cada peça, campanha e conteúdo sai de uma decisão de estratégia,
+          com motivo declarado. Nada entra na conta só para cumprir volume mensal.</p>
+        </div>
+        <div class="box">
+          <h3 class="h-card">Decisão baseada em número</h3>
+          <p class="muted">Você acompanha o que foi investido, o que voltou e o que muda no
+          próximo ciclo. Sem número na mesa, a conversa vira opinião.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>Intenção.</b> O briefing pede os três pontos de autoridade: tempo de mercado, expertise real
+        do time e foco em resultado. Cada card cobre um. O texto foge do “somos um time multidisciplinar
+        que cria estratégias personalizadas e baseadas em dados” que está no site atual, porque essa
+        frase é a mesma de qualquer agência e não sustenta o diferencial.
+      </div>
+    </section>
+
+    <!-- 4. ATLANTAR -->
+    <section class="sec sec--alt" id="s4">
+      <span class="tag">Seção 4 · Ecossistema Atlantar · briefing item 2, bloco próprio</span>
+      <p class="eyebrow">Ecossistema Atlantar</p>
+      <h2 class="h-sec">Você contrata uma agência<span class="void">e acessa uma rede inteira</span></h2>
+      <p class="lead">
+        A Moinho faz parte do Atlantar, ao lado da BD&amp;Co, que cuida de branding e desenho de marca,
+        e da SPO, que cuida de tecnologia, desenvolvimento de software e IA. Dentro do ecossistema,
+        somos o pilar de tração: estratégia de marketing digital, geração de oportunidades e captação
+        de clientes. Na prática, você resolve marca, tecnologia e performance no mesmo lugar, sem juntar
+        fornecedores que não conversam entre si.
+      </p>
+      <div class="grid g3">
+        <div class="box"><h3 class="h-card">BD&amp;Co</h3><p class="muted">Branding e desenho de marca.</p></div>
+        <div class="box" style="border-width:2px;border-color:var(--ink)">
+          <p class="eyebrow" style="margin:0 0 6px">Você está aqui</p>
+          <h3 class="h-card">Moinho</h3>
+          <p class="muted">Tração: marketing digital, oportunidades e captação de clientes.</p>
+        </div>
+        <div class="box"><h3 class="h-card">SPO</h3><p class="muted">Tecnologia, desenvolvimento de software e IA.</p></div>
+      </div>
+      <div class="note">
+        <b>Intenção.</b> O briefing deixa livre entre virar bloco próprio ou entrar nos diferenciais.
+        Sugiro bloco próprio, como está aqui, porque é o argumento de autoridade mais difícil de copiar
+        e merece respiro. O diagrama das três empresas deixa o papel da Moinho explícito sem texto longo.
+      </div>
+      <div class="note">
+        <b>Logos.</b> Você providencia os da BD&amp;Co e da SPO, que entram no lugar dos nomes em texto.
+        Levantei antes se podia nomear as três empresas porque o site do Atlantar não faz isso hoje,
+        mas o briefing pede explicitamente esse bloco, então a autorização já está dada.
+      </div>
+    </section>
+
+    <!-- 5. SERVIÇOS -->
+    <section class="sec" id="s5">
+      <span class="tag">Seção 5 · Serviços · briefing item 3</span>
+      <p class="eyebrow">O que fazemos</p>
+      <h2 class="h-sec">Três pilares, na ordem em que<span class="void">o seu negócio precisa deles</span></h2>
+      <div class="grid g3">
+        <div class="box pillar">
+          <h3 class="h-card">Posicionamento</h3>
+          <p class="muted">Para quem ainda não tem presença digital que sustente uma venda.</p>
+          <ul>
+            <li>Criação de perfil</li>
+            <li>Criação de conteúdos para o perfil</li>
+            <li>Criação de identidade visual</li>
+            <li>Criação de site</li>
+            <li>Criação de landing pages</li>
+            <li>Planejamento de conteúdos de redes sociais</li>
+          </ul>
+        </div>
+        <div class="box pillar">
+          <h3 class="h-card">Geração de oportunidades</h3>
+          <p class="muted">Para quem já tem presença e precisa transformar isso em contato qualificado.</p>
+          <ul>
+            <li>Gestão e criação de conteúdos recorrentes para redes sociais</li>
+            <li>Gestão de anúncios digitais</li>
+            <li>Consultoria em anúncios digitais</li>
+            <li>Criação de processo de acompanhamento de vendas</li>
+            <li>Manutenção e hospedagem de sites</li>
+          </ul>
+        </div>
+        <div class="box pillar">
+          <h3 class="h-card">Escala</h3>
+          <p class="muted">Para quem já vende pelo digital e quer aumentar volume sem perder qualificação.</p>
+          <ul>
+            <li>Estratégias de anúncios integradas em duas ou mais plataformas</li>
+            <li>Materiais educativos</li>
+            <li>E-mail marketing e fluxos de e-mail</li>
+            <li>SEO e blog</li>
+            <li>Criação de processo de CRM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="box box--dash" style="margin-top:16px;text-align:center">
+        <b>Todos os pilares incluem relatórios e acompanhamento de resultados</b>
+        <p class="muted" style="margin:6px 0 0">Você sempre sabe o que foi feito, o que deu retorno e o que muda no próximo ciclo.</p>
+      </div>
+      <div class="note">
+        <b>Intenção.</b> Mantive os três pilares e a lista exata de serviços do site atual, como o briefing pede.
+        A linha nova é a frase de abertura de cada pilar, que diz para quem aquele pilar serve.
+        Sem isso a pessoa não sabe em qual dos três ela se encaixa. O fechamento sobre relatórios está
+        no rodapé do bloco, como o briefing sugere.
+      </div>
+    </section>
+
+    <!-- 6. CASES -->
+    <section class="sec sec--alt" id="s6">
+      <span class="tag">Seção 6 · Cases · briefing item 4</span>
+      <p class="eyebrow">Resultado real</p>
+      <h2 class="h-sec">Empresas que já<span class="void">cresceram conosco</span></h2>
+
+      <div class="cases">
+        <article class="case">
+          <div class="art">
+            <span class="num">90</span>
+            <span class="num-lab">leads por mês</span>
+          </div>
+          <div class="body">
+            <h3 class="cli">Pedro Janot</h3>
+            <p class="desc">Ex-presidente da Azul e ex-CEO da Zara Brasil.</p>
+            <div class="sub">
+              <div><b>4 mi</b><span>de pessoas alcançadas</span></div>
+              <div><b>1 a cada 3 dias</b><span>orçamento aberto</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="art">
+            <span class="num">R$ 6 mi</span>
+            <span class="num-lab">em vendas por canais digitais</span>
+          </div>
+          <div class="body">
+            <h3 class="cli">WS Cranes</h3>
+            <p class="desc">Indústria gaúcha com 20 anos de mercado.</p>
+            <div class="sub">
+              <div><b>46%</b><span>de qualificação, ante 20 a 30% do mercado</span></div>
+              <div><b>181</b><span>de ROAS</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="art">
+            <span class="num">2,5 mi</span>
+            <span class="num-lab">de pessoas alcançadas</span>
+          </div>
+          <div class="body">
+            <h3 class="cli">Instituto Eurofarma</h3>
+            <p class="desc">Braço social da Eurofarma.</p>
+            <div class="sub">
+              <span class="none">Sem métricas de apoio disponíveis até aqui.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <b>Aprovado, referência Up Digital.</b> Cada case agora tem um número herói, que ocupa mais
+        espaço que o nome do cliente e fica sobre a foto, não embaixo dela. As outras métricas viram
+        apoio no rodapé do card. Isso obrigou uma escolha por case, qual número carrega a história:
+        na WS ficou o faturamento, que qualquer pessoa entende, com o ROAS 181 como apoio. Se preferir
+        o ROAS na frente, é troca de uma linha.
+      </div>
+      <div class="note">
+        <b>Título vazado virou o padrão da página.</b> Primeira parte sólida, segunda em contorno, em
+        todos os títulos de seção e no hero. Como o recurso agora se repete, ele deixa de ser destaque
+        pontual e passa a ser a assinatura tipográfica do site, que é o que sustenta a diretriz de
+        “contornos de destaque” da marca. A consequência é que a quebra entre sólido e vazado precisa
+        cair num ponto que faça sentido de leitura em cada título, não no meio de qualquer frase.
+      </div>
+
+      <div class="note" style="border-left-color:var(--ink);background:var(--fill-2);color:var(--ink)">
+        <b>Tratamento da foto.</b> Foto sempre em preto e branco, com o número em branco por cima.
+        A questão é se entra uma camada de cor em <code>mix-blend-mode: multiply</code> e quando.
+        Abaixo, as três opções. É o único ponto colorido deste documento, o resto segue em cinza.
+      </div>
+
+      <div class="trat">
+        <figure>
+          <div class="sw"><span class="photo"></span><b>90</b></div>
+          <figcaption><b>Preto e branco puro.</b> O mais sóbrio. Precisa de escurecimento no rodapé da foto para o número não sumir.</figcaption>
+        </figure>
+        <figure>
+          <div class="sw"><span class="photo"></span><span class="lay lay--roxo"></span><b>90</b></div>
+          <figcaption><b>Camada roxa.</b> Leitura garantida, mas são três blocos roxos de uma vez.</figcaption>
+        </figure>
+        <figure>
+          <div class="sw"><span class="photo"></span><span class="lay lay--grad"></span><b>90</b></div>
+          <figcaption><b>Degradê vermelho e rosé.</b> Mais jovial, briga com a sobriedade pedida agora.</figcaption>
+        </figure>
+      </div>
+
+      <div class="flag">
+        <b>Isso mudou com a direção nova.</b> A decisão anterior era camada roxa nos três cards.
+        Com a regra de no máximo dois blocos roxos na página inteira, três cards roxos furam o teto
+        sozinhos, e o roxo deixa de ser exceção. <b>Proposta revisada:</b> foto em preto e branco puro,
+        número em branco, e a camada de cor entrando só no hover. Fica mais sóbrio, mais elegante,
+        mantém a diretriz de misturar preto e branco com colorido, e devolve o roxo para os dois
+        blocos que realmente importam, o Atlantar e o CTA do diagnóstico. Preciso do seu aval,
+        porque reverte algo que você já tinha aprovado.
+      </div>
+      <div class="note">
+        <b>A grade cresce na versão final.</b> Você providencia os cases do 1SEM26 com Pega&amp;Cola,
+        Lactare e WS, levando o bloco de três para cinco ou seis, e as fotos de cada card. Quando os
+        números chegarem, escolho o herói de cada um seguindo a mesma lógica dos três atuais.
+      </div>
+    </section>
+
+    <!-- 7. LOGOS -->
+    <section class="sec" id="s7">
+      <span class="tag">Seção 7 · Marcas atendidas · opcional no briefing</span>
+      <h2 class="h-sec">Algumas das marcas<span class="void">que já passaram por aqui</span></h2>
+      <div class="logos">
+        <div class="ph">Instituto Eurofarma</div><div class="ph">CORA</div><div class="ph">FSK</div>
+        <div class="ph">Smark</div><div class="ph">Dallasanta</div><div class="ph">WS Cranes</div>
+        <div class="ph">Wolensinc</div><div class="ph">Pedro Janot</div><div class="ph">Zait Gravataí</div>
+        <div class="ph">Ipa Farma</div><div class="ph">Elosul</div><div class="ph">Colégio Anchieta</div>
+      </div>
+      <div class="note">
+        <b>Intenção.</b> São os 12 logos que já estão no site atual. O briefing marca essa seção como
+        opcional. Sugiro manter, porque ela sustenta o “70+ marcas atendidas” da faixa de números,
+        mas em versão discreta, logo depois dos cases, para não competir com eles.
+      </div>
+    </section>
+
+    <!-- 8. DEPOIMENTOS -->
+    <section class="sec sec--alt" id="s8">
+      <span class="tag">Seção 8 · Depoimentos · briefing item 5</span>
+      <p class="eyebrow">Na palavra de quem contratou</p>
+      <h2 class="h-sec">O que os clientes dizem<span class="void">quando não estamos na sala</span></h2>
+      <div class="grid g3">
+        <div class="box quote">
+          <p>“Em 15 anos de mercado, nunca vi uma qualificação tão boa e um resultado tão assertivo.
+          Já vi muito volume, mas qualificação assim não. Vendemos duas unidades do nosso lançamento
+          já nos primeiros dois meses de trabalho. Isso foi um fato inédito na Dallasanta.”</p>
+          <footer>Raquel Pereira <span>Gerente de marketing, Dallasanta</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“A Moinho é uma empresa pronta. Especialista e focada nos resultados dos seus clientes.
+          A equipe de profissionais são super qualificados, o que traz segurança pra nós, clientes.”</p>
+          <footer>Joyce Grings <span>Pega e Cola Personalizações</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“O processo com a Moinho Digital tem sido muito gratificante. Eles não apenas entregaram
+          resultados tangíveis, mas também demonstraram um nível de profissionalismo e dedicação que é
+          raro encontrar.”</p>
+          <footer>Thaís Motta <span>Supervisora de vendas, WS Cranes</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Trabalho em conjunto com a Moinho há praticamente 2 anos e o resultado nunca parou de crescer.
+          Sentimos que é como se fosse uma extensão da empresa, mesmo com a distância física.”</p>
+          <footer>Caio Angarten <span>Marketing, Labgard</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Começamos a trabalhar com a Moinho no início do ano e desde então temos recebido elogios e
+          reconhecimento sobre como as redes sociais de nossa organização melhoraram.”</p>
+          <footer>Júlio Lima <span>Gerente, Instituto Eurofarma</span></footer>
+        </div>
+        <div class="box quote">
+          <p>“Já no primeiro mês de parceria deu pra perceber que a pegada do pessoal é diferente.
+          Sempre próximos à empresa, criando conteúdos com nossa participação e aprovação,
+          gerando bons resultados.”</p>
+          <footer>Ricardo Schwanke <span>Sócio-diretor, WS Cranes</span></footer>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:14px">Mais três disponíveis: Leandro Ceccato (Smark), Giovanna Biase (CORA) e Lucas Schwanke (FSK).</p>
+      <div class="note">
+        <b>Intenção.</b> Ordenei por força do depoimento, não por ordem de cliente. O da Raquel abre porque
+        é o único que cita venda fechada, e é o que mais converte. O da Joyce, que veio do NPS, entra em
+        segundo. Mostro seis dos nove para o bloco não cansar, com opção de expandir.
+      </div>
+      <div class="flag">
+        <b>Pendente.</b> O depoimento da Sayonara está em vídeo no Instagram. Definir se entra como texto
+        transcrito, como incorporação do post ou se fica de fora. Também confirmar se pode usar foto de
+        rosto de cada pessoa, o que aumenta bastante a credibilidade do bloco.
+      </div>
+    </section>
+
+    <!-- 9. DIAGNÓSTICO -->
+    <section class="sec" id="s9">
+      <span class="tag">Seção 9 · Diagnóstico · briefing item 7 · seção de destaque</span>
+      <div class="diag">
+        <div>
+          <p class="eyebrow">Diagnóstico gratuito</p>
+          <h2 class="h-sec">Descubra quanto o seu negócio<span class="void">deixa na mesa todo mês</span></h2>
+          <p class="lead">
+            Você informa dados simples do seu negócio e a ferramenta estima quanto de receita você deixa
+            de faturar por não investir em tráfego pago. Leva menos de um minuto e o resultado sai na hora.
+          </p>
+
+          <ol class="steps">
+            <li><b>Você informa</b> ticket médio e quantas vendas fecha por mês.</li>
+            <li><b>A ferramenta calcula</b> quanto você deixa de faturar sem investir em mídia.</li>
+            <li><b>Você recebe o resultado</b> e nós explicamos o que dá para fazer a respeito.</li>
+          </ol>
+
+          <div class="btns">
+            <span class="btn btn--primary">Fazer diagnóstico gratuito ↗</span>
+          </div>
+          <p class="muted" style="font-size:13px;margin-top:12px">
+            Leva menos de um minuto. Não precisa cadastro.
+          </p>
+        </div>
+        <div class="ph" style="min-height:260px">Prévia da ferramenta<br>(print ou ilustração da tela de resultado)</div>
+      </div>
+
+      <div class="note">
+        <b>Intenção.</b> O briefing diz que hoje o diagnóstico é só um link escondido no menu e que precisa
+        virar seção própria. É o que está aqui: bloco de destaque, com respiro, no ponto da página em que a
+        pessoa já viu cases e depoimentos e está mais propensa a agir. Os três passos existem para reduzir
+        o atrito de clicar num link que leva para fora do site, ela já sabe o que vai encontrar do outro lado.
+      </div>
+      <div class="note">
+        <b>Comportamento.</b> O botão aponta para <code>diagnosticomoinho.lovable.app</code> e abre em nova
+        aba, para não perder a visita do site. A captura do lead acontece na ferramenta, não aqui. Quando
+        você migrar para um subdomínio próprio, é só trocar o endereço do link, o resto da seção não muda.
+      </div>
+      <div class="flag">
+        <b>Sugestão, não bloqueio.</b> Vale apontar esse botão para um subdomínio seu desde já, por exemplo
+        <code>diagnostico.moinhod.com.br</code>, redirecionando para o Lovable por enquanto. Assim o
+        endereço divulgado já nasce sendo da Moinho e a migração depois fica invisível para quem acessa.
+      </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section class="sec sec--alt" id="s10">
+      <span class="tag">Seção 10 · Dúvidas · opcional no briefing</span>
+      <h2 class="h-sec">Dúvidas<span class="void">frequentes</span></h2>
+      <details open>
+        <summary>Para quem a Moinho trabalha?</summary>
+        <p>Para empresas que têm equipe de marketing ou comercial e precisam aumentar as solicitações de
+        proposta, orçamento e abertura de novos negócios.</p>
+      </details>
+      <details>
+        <summary>Como começa?</summary>
+        <p>Você entra em contato e conta o problema do seu time de marketing ou comercial. Nós avaliamos
+        o cenário e, se entendermos que conseguimos resolver, montamos uma proposta para a sua empresa.</p>
+      </details>
+      <details>
+        <summary>Quanto custa?</summary>
+        <p>O trabalho é montado a partir da necessidade da sua empresa, então não temos pacote nem valor
+        fixo. Na conversa inicial já conseguimos dar uma faixa.</p>
+      </details>
+      <div class="note">
+        <b>Intenção.</b> São as três perguntas do site atual, reescritas no tom do briefing. Mantive porque
+        elas derrubam objeção logo antes do formulário. A resposta de preço ganhou a frase final sobre
+        faixa de valor, para não parecer que a empresa esconde o preço.
+      </div>
+    </section>
+
+    <!-- 11. CONTATO -->
+    <section class="sec" id="s11">
+      <span class="tag">Seção 11 · Contato · briefing itens 8 e 10</span>
+      <div class="contact-cols">
+        <div>
+          <h2 class="h-sec">Vamos agendar nossa<span class="void">primeira conversa?</span></h2>
+          <p class="lead">Respondemos em até um dia útil. Se preferir resolver agora, chame no WhatsApp.</p>
+          <div class="form-grid">
+            <div class="field"><label for="f-nome">Nome</label><input type="text" id="f-nome"></div>
+            <div class="field"><label for="f-emp">Empresa</label><input type="text" id="f-emp"></div>
+            <div class="field"><label for="f-mail">E-mail corporativo</label><input type="email" id="f-mail"></div>
+            <div class="field"><label for="f-tel">Telefone</label><input type="tel" id="f-tel"></div>
+            <div class="field span2"><label for="f-msg">Mensagem</label><textarea id="f-msg"></textarea></div>
+            <div class="span2 muted" style="font-size:13px">☐ Autorizo o envio de e-mails da Moinho.</div>
+          </div>
+          <div class="btns"><span class="btn btn--primary">Receber contato</span></div>
+        </div>
+
+        <div>
+          <div class="box">
+            <h3 class="h-card">Fale direto</h3>
+            <p class="muted" style="margin-bottom:16px">
+              (51) 99979-0598<br>
+              contato@moinhod.com.br<br>
+              Instagram · LinkedIn · Facebook
+            </p>
+            <h3 class="h-card">Onde estamos</h3>
+            <div class="addr"><b>São Paulo, SP</b>Avenida Paulista, 1636, salas 103 e 105, Bela Vista, 01310-000</div>
+            <div class="addr"><b>Porto Alegre, RS</b>Avenida Nilo Peçanha, 1600, Boa Vista, 91330-002</div>
+            <div class="addr"><b>São Leopoldo, RS</b>Avenida Unisinos, 950, Cristo Rei, 93022-750</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <b>Intenção.</b> Formulário com os cinco campos que o briefing manda manter. Os endereços são os do
+        site do Atlantar sem Tupandi, como pedido. As redes entram como ícone na versão final.
+      </div>
+      <div class="flag">
+        <b>Falta o destino do formulário.</b> Telefone confirmado, é o (51) 99979-0598 do site atual, e
+        é ele que recebe o botão flutuante. O que ainda não existe é para onde o formulário envia:
+        e-mail, planilha ou CRM. Sem isso ele não entrega o contato em lugar nenhum.
+      </div>
+    </section>
+
+    <!-- 12. FOOTER -->
+    <section class="sec sec--alt" id="s12" style="padding:0">
+      <div style="padding:clamp(20px,3.4vw,48px) clamp(20px,3.4vw,48px) 0">
+        <span class="tag">Seção 12 · Rodapé</span>
+      </div>
+      <div class="wf-footer">
+        <div class="foot-grid">
+          <div>
+            <div class="wf-logo" style="margin-bottom:12px"><span class="mark"></span> moinho digital</div>
+            <p class="muted" style="max-width:42ch">
+              Agência de marketing digital do ecossistema Atlantar. Dez anos ajudando times de marketing
+              e comercial a transformar presença digital em oportunidade de negócio.
+            </p>
+          </div>
+          <div>
+            <b style="font-size:14px">Navegar</b>
+            <ul style="margin-top:8px">
+              <li>Diferenciais</li><li>Serviços</li><li>Cases</li><li>Diagnóstico</li><li>Contato</li>
+            </ul>
+          </div>
+          <div>
+            <b style="font-size:14px">Ecossistema</b>
+            <ul style="margin-top:8px">
+              <li>Atlantar</li><li>BD&amp;Co</li><li>SPO</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px">
+          © 2026 Moinho Digital. Todos os direitos reservados. · Política de privacidade
+        </p>
+      </div>
+    </section>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <div class="wpp"><span class="dot"></span> Conversar no WhatsApp</div>
+    <div style="padding:0 clamp(20px,3.4vw,48px) 28px">
+      <div class="note" style="margin-top:0">
+        <b>Botão flutuante de WhatsApp · briefing item 9.</b> Fixo no canto inferior direito, visível em
+        qualquer ponto da navegação, em todas as telas. No mobile ele encolhe para só o ícone, para não
+        cobrir conteúdo.
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <div class="brief" style="margin-top:28px">
+    <h2 style="margin-top:0">Próximo passo</h2>
+    <p class="muted" style="max-width:75ch;margin:0">
+      Assim que você aprovar a estrutura e o texto, e me mandar as referências visuais, eu parto para o
+      layout de verdade: paleta aplicada, Noto Serif e Lexend, colagem, half-tone e contornos, com o
+      site já em HTML, CSS e JavaScript puro, pronto para subir.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
