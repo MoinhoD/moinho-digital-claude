@@ -79,6 +79,18 @@ Não perguntar para tarefas pontuais ou perguntas simples. Só quando o padrão 
 
 ---
 
+## Sincronização com o GitHub
+
+Não sincronizar automaticamente a cada resposta. Ao terminar um material ou entrega (não em cada interação pontual), perguntar:
+
+> "Quer que eu sincronize isso no GitHub?"
+
+Se sim, usar a skill `/syncar` (ou commit + push direto). Nunca commitar ou dar push sozinho sem essa confirmação.
+
+Material salvo em `confidencial/` nunca sobe pro GitHub (pasta ignorada) — não perguntar sincronização pra esses arquivos.
+
+---
+
 ## Aprender com correções
 
 Quando o usuário corrigir algo, melhorar uma resposta ou dar uma instrução que parece permanente (frases como "na verdade é assim", "não faça mais isso", "prefiro assim", "sempre que...", "evita...", "da próxima vez..."), perguntar:
