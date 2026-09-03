@@ -79,6 +79,8 @@ Não há mapeamento formal. O que se sabe hoje:
 - **Fabricantes chineses:** concorrência relevante especificamente em **talhas elétricas**, e é o
   que dá peso ao argumento de fabricação 100% nacional. **Nomes não levantados ainda.** Outros
   concorrentes aparecem na busca do Google e não estão mapeados
+- **Demais equipamentos de movimentação de cargas:** GH Cranes, Demag, Abus, Omis e Brevil —
+  marcas citadas no briefing de 2023
 
 ### Tempo médio de fechamento
 
@@ -105,7 +107,9 @@ sai de OPEX e não precisa de aprovação de diretoria.
 | Conteúdo | 8 conteúdos institucionais por mês, em Instagram, Facebook e LinkedIn | Sarah Matos |
 | Relatórios | Relatório mensal, mais os fechamentos de trimestre, semestre e ano | Vinícius Luiz e Sarah |
 
-A verba de mídia gerida gira em torno de **R$ 3.000 por mês**, valor investido desde junho de 2023.
+A verba de mídia gerida gira em torno de **R$ 3.000 por mês**. Exceção em julho/2026, quando a
+campanha de Manutenção e Reforma entrou com mais R$ 912 — um teste que foi descontinuado e só volta
+quando houver mais verba disponível.
 
 ## Produtos/Serviços
 
@@ -352,4 +356,5 @@ Material de origem em `E:\moinho\ws-cranes`. Migrar para o repo conforme a deman
 | `marca/tom-de-voz.pdf` | Documento de tom de voz da marca, base da frente de conteúdo |
 | `marca/catalogo-2026.pdf` | Catálogo 2026, versão leve. Todas as linhas de produto e os serviços |
 | Drive | Catálogo 2026, versão completa: https://drive.google.com/file/d/1PfSX2VZa-Rad1Ny5gLoyqp7tkPQldYmO/view |
+| Site (catálogo público) | Mesmo catálogo 2026, PDF público: https://wscranes.com.br/wp-content/uploads/2026/08/wscranes-catalogo-versao-2026.pdf |
 | Site | https://wscranes.com.br |
