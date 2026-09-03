@@ -21,7 +21,7 @@ if (!input || !output) {
   await page.pdf({
     path: output,
     format: 'A4',
-    landscape: false,
+    landscape: true,
     printBackground: true,
     margin: { top: '0', right: '0', bottom: '0', left: '0' },
   });

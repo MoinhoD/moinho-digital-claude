@@ -148,6 +148,8 @@ Depois de escrever a análise — Conteúdos, Anúncios, ou o documento unido da
 
 ### 1. Gerar o HTML
 
+O relatório é um carrossel de slides (mesmo motor do `/proposta`), não uma página de rolagem única — cada seção é um ou mais slides completos, navegáveis por seta/teclado/swipe. Os padrões de slide por seção, incluindo como dividir uma seção longa em mais de um slide, estão em `.claude/skills/relatorios/blocos.md`.
+
 Ler `.claude/skills/relatorios/template.html`, substituir os placeholders e salvar em `clientes/[slug]/relatorios/analise-[slug]-[mes]-[ano].html` (Conteúdos), `clientes/[slug]/relatorios/relatorio-[slug]-[mes]-[ano].html` (Anúncios) ou `clientes/[slug]/relatorios/relatorio-completo-[slug]-[mes]-[ano].html` (Conteúdos + Anúncios unidos).
 
 | Placeholder | Conteúdo |
@@ -220,7 +222,7 @@ Se não estiver instalado: `npm install -D playwright && npx playwright install 
 node ".claude/skills/relatorios/exportar-pdf.js" "clientes/[slug]/relatorios/[arquivo].html" "clientes/[slug]/relatorios/[arquivo].pdf"
 ```
 
-**Se o Node não estiver instalado nesta máquina:** entregar markdown e HTML, avisar que o PDF não foi gerado e orientar a alternativa manual, que dá o mesmo resultado: abrir o HTML no navegador, `Ctrl+P`, destino "Salvar como PDF", A4 retrato, margens nenhuma, gráficos de plano de fundo ligados.
+**Se o Node não estiver instalado nesta máquina:** entregar markdown e HTML, avisar que o PDF não foi gerado e orientar a alternativa manual, que dá o mesmo resultado: abrir o HTML no navegador, `Ctrl+P`, destino "Salvar como PDF", A4 paisagem, margens nenhuma, gráficos de plano de fundo ligados.
 
 Não instalar Node por conta própria. Perguntar antes.
 
