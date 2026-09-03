@@ -1,6 +1,7 @@
 # Projeto Pequenos Olhares — Contexto do cliente
 
-Cliente da Moinho Digital. Estratégia, gestão de mídia e relatórios por **Vinícius Luiz**.
+Cliente da Moinho Digital. A estratégia do cliente é estruturada por **Bryan Caxias**, com revisão
+de **Vinícius Luiz** e atendimento intermediado por **Carol Casagrande**.
 Ler este arquivo antes de qualquer tarefa do cliente (relatório, briefing, campanha, proposta).
 
 ## Quem é
@@ -24,10 +25,11 @@ crianças matriculadas na rede pública de ensino.
 
 Gestão de **Meta Ads, somente Instagram**, em recorrência mensal.
 
-- **Verba:** R$ 1.000,00 bruto por mês, dos quais **R$ 875,00 vão para mídia** (12,5% de tributos)
-- **Ciclo:** do dia 12 ao dia 11 do mês seguinte. Primeiro ciclo: 12/08 a 11/09/2026
-- **Escopo:** impulsionamento de publicação que já existe no perfil. Produção de peça nova não
-  está incluída
+- **Verba:** R$ 1.000,00 bruto a cada 30 dias, dos quais **R$ 875,00 vão para mídia** (12,5% de
+  tributos)
+- **Escopo:** impulsionamento de publicação que já existe no perfil. As peças são produzidas
+  internamente pelo cliente e copy por **Carol Casagrande**. Gestor de tráfego fica responsável
+  por brifar ambos para o desenvolvimento de peças exclusivas que serão criadas
 - **Entregas por ciclo:** briefing das campanhas antes da subida, três leituras de otimização
   durante a veiculação e relatório de fechamento até o dia 15
 
@@ -58,7 +60,9 @@ São **dois públicos distintos**, que não se misturam na mesma campanha.
 
 ### 1. Famílias (foco do ciclo atual)
 
-Classe C para baixo, com criança de 4 a 13 anos na rede pública, no estado de São Paulo.
+Classe C para baixo, com criança de 4 a 13 anos na rede pública, em cidades que possuem
+franqueados associados ao programa. Foi dado o start na estratégia com segmentação para todo o
+Estado de São Paulo.
 
 **O Meta não segmenta classe social no Brasil.** Não existe caixa para marcar "classe C": renda
 familiar como critério só existe nos Estados Unidos, calculada por CEP. Aqui, classe se alcança
@@ -102,7 +106,7 @@ queima verba e queima a oportunidade.
 
 ## Foco da estratégia
 
-**Ciclo atual (12/08 a 11/09/2026): conhecimento do projeto e crescimento do perfil no Instagram.**
+**Ciclo atual (Agosto/Setembro.26): conhecimento do projeto e crescimento do perfil no Instagram.**
 Duas campanhas fixas e associadas, uma levando gente nova ao perfil e a outra garantindo que essa
 gente encontre um perfil com movimento quando chegar. Não há meta de conversão em loja neste ciclo.
 
@@ -118,7 +122,7 @@ O que vem depois, na ordem em que as travas caírem:
 
 O **refino de público por cidade e bairro** dentro de SP é o que mais aproxima de perfil
 socioeconômico no Brasil e entra no 2º ciclo, embasado no detalhamento por região que sai no
-relatório de 15/09.
+relatório.
 
 ## Estrutura das campanhas
 
@@ -213,16 +217,14 @@ público pequeno demais, e a saída é ampliar geografia ou faixa etária.
   apresentação da agência, não para peça do cliente.
 - **Tom.** É projeto social: falar de acesso e de saúde visual, com dado quando houver. Sem apelo
   à vulnerabilidade e sem promessa.
-- **Relatórios** assinados por **Vinícius Luiz — Moinho Digital**.
 - PT-BR, comunicação direta.
 - Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com
   `pequenos-olhares-`.
 
 ## Estilo do relatório
 
-Lido pela skill `relatorio-mensal`. **Ainda não há relatório consolidado.** O primeiro fecha o
-ciclo 12/08 a 11/09/2026 e sai até 15/09/2026. O estilo se firma nele e deve ser registrado aqui
-depois. Diretrizes iniciais:
+Lido pela skill `relatorio-mensal`. **Ainda não há relatório consolidado.** O estilo se firma no
+primeiro relatório e deve ser registrado aqui depois. Diretrizes iniciais:
 
 - **Ler as duas campanhas separadas**, cada uma pelo próprio objetivo. Não cobrar seguidor da
   campanha de engajamento nem engajamento da de tráfego. Mostrar como uma alimenta a outra.
@@ -237,7 +239,6 @@ depois. Diretrizes iniciais:
 - Fechar com recomendação para o ciclo seguinte, ligada ao que os números mostraram.
 - Leitor é o time do projeto e a franqueadora — linguagem clara, sem jargão de mídia. Explicar o que
   a métrica significa para o projeto em vez de descrever o número.
-- Assinado por **Vinícius Luiz — Moinho Digital**.
 
 ## Referências
 
