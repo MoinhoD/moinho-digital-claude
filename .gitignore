@@ -36,3 +36,7 @@ node_modules/
 
 # Pasta de arquivos confidenciais (financeiro, dados sensíveis) — nunca sobe pro GitHub
 confidencial/
+
+# Site institucional da Moinho — os PNGs são assets do site (logos, favicon,
+# prints), precisam subir apesar da regra *.png acima
+!site/**/*.png
