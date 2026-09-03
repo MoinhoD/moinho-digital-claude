@@ -31,7 +31,7 @@ Gestão de **Meta Ads, somente Instagram**, em recorrência mensal.
   internamente pelo cliente e copy por **Carol Casagrande**. Gestor de tráfego fica responsável
   por brifar ambos para o desenvolvimento de peças exclusivas que serão criadas
 - **Entregas por ciclo:** briefing das campanhas antes da subida, três leituras de otimização
-  durante a veiculação e relatório de fechamento até o dia 15
+  durante a veiculação e relatório de fechamento até o dia 10
 
 A estratégia aprovada já prevê meses com campanhas extras (Frentes 1 e 2), e esses meses exigem
 aumento de verba: com as 4 campanhas ativas, a conta vai a R$ 1.575,00 em mídia. Collab com
@@ -164,7 +164,7 @@ O slot `SP` é o recorte deste ciclo. Quando a segmentação descer para cidade 
 `SP-CAP`, `SP-ABC`, `SP-INT` e passa a existir um conjunto por recorte.
 
 **Cronograma do ciclo:** subida em 12/08, aprendizado sem mexer em nada até 18/08, leituras em
-19/08, 26/08 e 02/09, encerramento em 11/09 e relatório até 15/09.
+19/08, 26/08 e 02/09, encerramento e relatório até o dia 10 do mês seguinte.
 
 ## KPIs que acompanhamos
 
