@@ -91,6 +91,8 @@ Material salvo em `confidencial/` nunca sobe pro GitHub (pasta ignorada) — nã
 
 PRs abertos por mim usam a conta `MoinhoD` (mesma logada no `gh` CLI), e o GitHub não deixa autoaprovar o próprio PR quando a branch exige review. Nesses casos, mergear direto com `gh pr merge --admin`, sem esperar aprovação separada — é a exceção combinada com a Ina pra PRs meus. Essa exceção só vale pra PRs meus; PRs de outras pessoas do time (ex.: Vinícius) seguem a regra normal de 1 aprovação antes do merge.
 
+Commit direto na branch `main` é bloqueado pelo classificador do modo automático, mesmo sendo eu quem commita. Por isso, toda mudança (minha ou pedida pela Ina) sempre passa por branch + PR — o merge final pode ser com `--admin` quando o PR for meu, mas o commit em si nunca vai direto pra `main`.
+
 ---
 
 ## Aprender com correções
