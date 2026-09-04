@@ -236,8 +236,10 @@ comprador de equipamento depois.
 Três frentes de trabalho em aberto:
 
 1. **Página dedicada de manutenção, reforma e conserto.** Hoje o tráfego de serviço cai numa página
-   feita para vender equipamento novo, o que quebra a jornada. É pré-requisito antes de decidir o
-   orçamento da campanha
+   feita para vender equipamento novo, o que quebra a jornada. Era pré-requisito antes de abrir o
+   orçamento da campanha de Manutenção e Reforma, que rodou como teste em julho/2026 e está pausada
+   por falta de verba (ver `Serviços contratados com a Moinho`). Segue pré-requisito para quando a
+   campanha for retomada
 2. **Reequilibrar verba** entre Ponte Rolante, que está no leilão mais caro, e as frentes mais
    eficientes, Talha Elétrica e Pórtico Rolante, mantendo presença defensiva no termo principal
 3. **Reduzir a Institucional** ao mínimo de defesa de marca e realocar a verba para aquisição
@@ -246,21 +248,23 @@ Três frentes de trabalho em aberto:
 
 ## Estrutura das campanhas
 
-> *Última atualização: 25/08/2026, com base no relatório de julho/2026 e no briefing da campanha de
-> Manutenção. Este tópico muda com frequência. Revisar sempre que campanha subir, pausar ou for
-> renomeada.*
+> *Última atualização: 04/09/2026. Este tópico muda com frequência. Revisar sempre que campanha
+> subir, pausar ou for renomeada.*
 
-Cinco campanhas de Pesquisa no Google Ads.
+Cinco campanhas de Pesquisa no Google Ads, uma delas pausada.
 
 | Campanha | Papel na conta | Situação em julho/2026 |
 |---|---|---|
 | Talha Elétrica | Motor principal de conversão | Melhor mês do semestre. Custo por conversão caiu cerca de 26% e a campanha respondeu por quase dois terços das conversões. Ainda há espaço de escala |
 | Pórtico Rolante | Terceira frente estável, já fora de teste | Investimento dobrado gerou 2,5x mais conversões, com custo por lead cerca de 18% menor. Termos de pórtico móvel foram os mais baratos do mês |
 | Ponte Rolante | Presença no termo mais genérico e disputado do segmento | Ponto de atenção. Mesmo investimento de junho, menos conversões e custo por lead cerca de 58% maior |
-| Manutenção e Reforma | Frente nova de pós-venda | Estreou em julho. Uma conversão, mas CTR cerca de 3x acima das campanhas de produto. Alta intenção, volume pequeno |
+| Manutenção e Reforma *(pausada)* | Frente de pós-venda, em teste | Estreou em julho. Uma conversão, mas CTR cerca de 3x acima das campanhas de produto. Alta intenção, volume pequeno. Pausada depois de julho por falta de verba — volta quando houver mais orçamento disponível |
 | Institucional | Defesa de marca | CTR altíssima e nenhuma conversão. É tráfego de quem já conhece a WS, não aquisição |
 
 ### Campanha de Manutenção e Reforma, detalhe
+
+> **Pausada.** Rodou como teste em julho/2026 e foi descontinuada por falta de verba — a
+> configuração abaixo é a que rodou naquele mês e volta a valer quando a campanha for reativada.
 
 Nome: `LEADS PESQUISA SITE | Manutenção e Reforma`. R$ 30 por dia, cerca de R$ 912 por mês, verba
 nova sem remanejar as campanhas que já convertem.
@@ -295,7 +299,7 @@ anteriores e com a série histórica, para identificar tendência e sazonalidade
 | CPC médio | R$ 8,62 |
 | Taxa de conversão (campanhas de Pesquisa) | 8,3% |
 | Leads por mês, conta inteira | 33 |
-| Investimento mensal | R$ 3.404 em junho, cerca de R$ 4.300 a partir de julho |
+| Investimento mensal | R$ 3.404 em junho; cerca de R$ 3.912 em julho, com o teste de R$ 912 da campanha de Manutenção e Reforma; volta a girar em torno de R$ 3.000/mês de base depois disso, com a campanha pausada |
 
 **Metas da campanha de Manutenção**, em 90 dias: custo por lead até R$ 90, CPC entre R$ 6 e R$ 8,
 taxa de conversão acima de 8%, de 8 a 12 leads adicionais por mês e índice de qualidade 7 ou mais
