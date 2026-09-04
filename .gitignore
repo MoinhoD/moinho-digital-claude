@@ -40,3 +40,7 @@ confidencial/
 # Site institucional da Moinho — os PNGs são assets do site (logos, favicon,
 # prints), precisam subir apesar da regra *.png acima
 !site/**/*.png
+
+# Assets de marca — o injetar-logo.js das skills lê marca/md-1-branco.png para
+# montar capa e fechamento. Sem esta exceção o script cai no lettering de texto.
+!marca/*.png
