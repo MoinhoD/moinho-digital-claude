@@ -112,21 +112,38 @@ investimento, impressões, cliques, CPC, conversões (leads), custo por convers�
   Interpretar os números (o que significam para o negócio), não só descrever. Comparar com meses anteriores.
 - Manter consistência com relatórios anteriores do cliente (formato, tom, indicadores).
 - PT-BR, comunicação direta.
-- Skills deste cliente ficam na raiz do repo em `.claude/skills/`, prefixadas com `pega-cola-`
-  (ex.: `pega-cola-relatorio`, `pega-cola-briefing`).
+- As skills deste cliente são as gerais do repo, em `.claude/skills/` — a de relatório é a `relatorios`.
 
 ## Estilo do relatório
 
-Lido pela skill `relatorio-mensal`. Comparação: **mês vs. mês anterior** (e situar na série histórica).
+Lido pela skill `relatorios`. Comparação: **mês vs. mês anterior** (e situar na série histórica).
 Texto em bullets, com **frase-guia em negrito** abrindo cada bullet e o número/leitura na sequência.
-Seções, nesta ordem:
 
-1. **📈 Análise Contatos e Vendas** — vendas (R$) e nº de vendas, ticket médio, taxa de conversão em venda, oportunidades e oportunidades perdidas (com os motivos recorrentes), ROAS, e peso das vendas fora da Busca Paga.
-2. **📈 Análise Google Ads** — investimento, impressões, cliques, CPC, conversões (leads), custo por conversão, taxa de conversão de clique; grupos e campanhas que puxaram resultado; palavras-chave campeãs de venda. Fechar com **➡️ Interpretação:** conectando eficiência de clique × eficiência de negócio.
+O relatório é organizado em **blocos de análise**, um por fonte de dado, na mesma ordem em que o
+cliente já lê o relatório do Reportei. Dentro de cada bloco, sempre a mesma sequência:
+**métricas → leitura → tabelas**.
+
+**1. 📈 Contatos e Vendas** (RD Station CRM)
+
+- **Métricas** — vendas (nº e R$), ticket médio, taxa de conversão em venda, oportunidades criadas e perdidas, vendas e receita de Busca Paga.
+- **Leitura** — o que os números significam para o negócio, incluindo o peso das vendas fora da Busca Paga e o ROAS.
+- **Tabelas** — motivo das perdas, receita por origem, faixas de valor do pedido, série histórica.
+
+**2. 📈 Google Ads**
+
+- **Métricas** — investimento, impressões, cliques, CPC, conversões (leads), custo por conversão, taxa de conversão de clique, ROAS.
+- **Leitura** — grupos e campanhas que puxaram resultado, palavras-chave campeãs de venda. Fechar com **➡️ Interpretação:** conectando eficiência de clique × eficiência de negócio.
+- **Tabelas** — grupos de anúncio, retorno por grupo, realocação de verba, palavras-chave que geraram venda.
+
+**Depois dos dois blocos, na ordem:**
+
 3. **⚙️ Ações e otimizações realizadas** — o que foi executado no mês (marcar para confirmar quando inferido dos dados).
 4. **📊 Leitura estratégica de desempenho** — leitura de negócio, ganhos primeiro, pontos de atenção depois.
-5. **Próximos passos recomendados** — propositivos, ligados à análise.
-6. *(sob demanda)* **💰 Análise complementar** — quando pedirem um recorte extra (ex.: impacto do aumento de verba por campanha).
+5. **🚀 Próximos passos recomendados** — propositivos, ligados à análise.
+
+**Não incluir seção fora dessa lista.** A **💰 Análise complementar** (recorte extra, ex.: impacto do
+aumento de verba por campanha) só entra quando for pedida explicitamente naquele mês — ela aparecer
+no relatório do mês anterior não é motivo para repetir.
 
 Tom: direto, interpretativo, foco em fim de funil (venda, ticket, ROAS). Assinado por **Vinícius Luiz — Moinho Digital**.
 

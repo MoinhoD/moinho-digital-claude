@@ -186,6 +186,78 @@ Slide de abertura, sem grade. Sem número solto como texto de entrada — a fras
 </div>
 ```
 
+### Blocos de análise: métricas → leitura → tabelas
+
+Relatório de Anúncios se organiza por **bloco de análise** — normalmente um por fonte de dado
+(ex.: "Contatos e Vendas" do CRM e "Google Ads" da mídia). Dentro de cada bloco, sempre a mesma
+sequência de slides, na ordem em que o cliente já lê o relatório da ferramenta:
+
+1. **Métricas** — um slide de KPIs com os números do período e a variação sobre o período anterior.
+2. **Leitura** — os slides de interpretação daquele bloco (cards em grade, até 4 por slide).
+3. **Tabelas** — os slides de tabela daquele bloco.
+
+Todos os slides do bloco repetem o mesmo `<h2>` (o nome do bloco); o `<p class="subtitulo">` diz em
+que etapa está ("Métricas do período", "Leitura do período", "Tabelas do período"). Terminado um
+bloco, começa o próximo com a mesma sequência. Não juntar as métricas de todos os blocos num slide
+só, nem empurrar todas as tabelas para o fim do relatório: isso quebra a leitura por bloco.
+
+#### Slide de métricas (KPIs)
+
+Até 8 KPIs por slide, em grade de 4 colunas. A variação vai colorida por **efeito no negócio**, não
+pelo sinal: `bom` (roxo) para o que melhorou, `ruim` (vermelho) para o que piorou, sem classe para o
+que é neutro. Uma queda em "oportunidades perdidas" é `bom`; uma alta em "custo por conversão" é `ruim`.
+
+```html
+<div class="slide bg-creme">
+  <div class="container">
+    <div class="secao">
+      <h2>[Nome do bloco]</h2>
+      <p class="subtitulo">Métricas do período · [fonte do dado]</p>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <span class="rot">[Nome da métrica]</span>
+          <span class="val">[Valor do período]</span>
+          <span class="var bom">[+X%]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### Slide de tabelas
+
+Uma tabela por slide, ou duas lado a lado dentro de `.tabela-dupla` quando forem curtas. Cabeçalho e
+células numéricas usam `class="num"` (alinha à direita). A linha de fechamento usa `class="total"`.
+Destaques pontuais com `.alta` (roxo) e `.baixa` (vermelho) — não colorir a tabela inteira. A
+`p.legenda` explica origem do dado ou ressalva de método, e é onde entram as notas de apuração:
+o relatório não tem slide de ressalva quando a limitação é só de uma tabela.
+
+Tabela não rola: o que não couber na tela do slide some do PDF. Passou de ~11 linhas, dividir em
+dois slides ou cortar linhas para as que sustentam a análise.
+
+```html
+<div class="slide bg-creme">
+  <div class="container">
+    <div class="secao">
+      <h2>[Nome do bloco]</h2>
+      <p class="subtitulo">Tabelas do período</p>
+      <div class="tab-bloco">
+        <h3>[Título da tabela]</h3>
+        <table class="dados">
+          <thead><tr><th>[Dimensão]</th><th class="num">[Período anterior]</th><th class="num">[Período]</th></tr></thead>
+          <tbody>
+            <tr><td>[Linha]</td><td class="num">[valor]</td><td class="num"><span class="alta">[valor]</span></td></tr>
+            <tr class="total"><td>Total</td><td class="num">[valor]</td><td class="num">[valor]</td></tr>
+          </tbody>
+        </table>
+        <p class="legenda">[Origem do dado e ressalva de método, quando houver.]</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 ### ACOES_PERIODO
 
 Até 5 itens, objetivos, só o que foi executado — sem avaliação aqui, a leitura fica pra próxima seção.
