@@ -4,7 +4,7 @@ Referência para preencher os placeholders de `template.html`. Cada placeholder 
 
 O relatório é um carrossel (mesmo motor do `/proposta`): um slide por seção, navegação por setas/teclado/swipe, contador e barra de progresso. Impressão gera uma página A4 paisagem por slide — o que não coube na tela do slide não aparece no PDF, então nunca contar com rolagem interna para caber conteúdo.
 
-**Dividindo uma seção em mais de um slide:** nas seções em grade de duas colunas (Aprendizados, Indicadores, Conteúdo x Resultado, Oportunidades, Recomendações, Leitura de métricas, Próximos passos, Insights), se os cards não couberem confortavelmente em um slide — referência: até 4 cards por slide — dividir em slides consecutivos, todos com a mesma classe de fundo da seção. Repetir o `<h2>` e o `<p class="subtitulo">` em cada slide (idêntico, sem numerar "parte 1/2"), continuando a grade de onde parou no slide anterior.
+**Dividindo uma seção em mais de um slide:** nas seções em grade de duas colunas (Aprendizados, Indicadores, Conteúdo x Resultado, Oportunidades, Recomendações, Leitura de métricas, Próximos passos, Insights), a grade comporta **até 8 cards por slide** (duas colunas por quatro linhas) com card de três a quatro linhas de texto. Só dividir quando passar disso — dois slides de 4 cards desperdiçam metade da página cada. Passando de 8, dividir em slides consecutivos, todos com a mesma classe de fundo da seção. Repetir o `<h2>` e o `<p class="subtitulo">` em cada slide (idêntico, sem numerar "parte 1/2"), continuando a grade de onde parou no slide anterior.
 
 ---
 
@@ -190,18 +190,24 @@ Slide de abertura, sem grade. Sem número solto como texto de entrada — a fras
 
 Relatório de Anúncios se organiza por **bloco de análise** — normalmente um por fonte de dado
 (ex.: "Contatos e Vendas" do CRM e "Google Ads" da mídia). Dentro de cada bloco, sempre a mesma
-sequência de slides, na ordem em que o cliente já lê o relatório da ferramenta:
+sequência de slides, sem exceção:
 
-1. **Métricas** — um slide de KPIs com os números do período e a variação sobre o período anterior.
-2. **Leitura** — os slides de interpretação daquele bloco (cards em grade, até 4 por slide).
+1. **Dados** — um slide de KPIs com os números do período e a variação sobre o período anterior.
+2. **Leituras** — **tudo que é textual** daquele bloco: a análise, a interpretação, as ações, a
+   leitura estratégica, os próximos passos, o que houver.
 3. **Tabelas** — os slides de tabela daquele bloco.
 
-Todos os slides do bloco repetem o mesmo `<h2>` (o nome do bloco); o `<p class="subtitulo">` diz em
-que etapa está ("Métricas do período", "Leitura do período", "Tabelas do período"). Terminado um
-bloco, começa o próximo com a mesma sequência. Não juntar as métricas de todos os blocos num slide
-só, nem empurrar todas as tabelas para o fim do relatório: isso quebra a leitura por bloco.
+Os slides de dados, análise e tabelas repetem o mesmo `<h2>` (o nome do bloco), com o
+`<p class="subtitulo">` dizendo a etapa ("Dados do período", "Leituras do período", "Tabelas do
+período"). As seções nomeadas que vivem dentro das leituras (Interpretação, Ações, Leitura
+estratégica, Próximos passos) mantêm o próprio `<h2>`, porque o cliente as reconhece pelo nome.
 
-#### Slide de métricas (KPIs)
+Dois erros a evitar, os dois quebram a leitura por bloco: juntar os dados de todos os blocos num
+slide só, e **deixar texto voltar depois das tabelas**. Terminou a tabela, terminou o bloco.
+
+**Títulos sem ícone.** Nada de emoji abrindo `<h2>`.
+
+#### Slide de dados (KPIs)
 
 Até 8 KPIs por slide, em grade de 4 colunas. A variação vai colorida por **efeito no negócio**, não
 pelo sinal: `bom` (roxo) para o que melhorou, `ruim` (vermelho) para o que piorou, sem classe para o
@@ -212,7 +218,7 @@ que é neutro. Uma queda em "oportunidades perdidas" é `bom`; uma alta em "cust
   <div class="container">
     <div class="secao">
       <h2>[Nome do bloco]</h2>
-      <p class="subtitulo">Métricas do período · [fonte do dado]</p>
+      <p class="subtitulo">Dados do período · [fonte do dado]</p>
       <div class="kpi-grid">
         <div class="kpi">
           <span class="rot">[Nome da métrica]</span>

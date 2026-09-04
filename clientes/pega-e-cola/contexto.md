@@ -119,29 +119,26 @@ investimento, impressões, cliques, CPC, conversões (leads), custo por convers�
 Lido pela skill `relatorios`. Comparação: **mês vs. mês anterior** (e situar na série histórica).
 Texto em bullets, com **frase-guia em negrito** abrindo cada bullet e o número/leitura na sequência.
 
-O relatório é organizado em **blocos de análise**, um por fonte de dado, na mesma ordem em que o
-cliente já lê o relatório do Reportei. Dentro de cada bloco, sempre a mesma sequência:
-**métricas → leitura → tabelas**.
+O relatório é organizado em **blocos de análise**, um por fonte de dado. Dentro de cada bloco, sempre
+a mesma sequência, sem exceção: **dados → leituras → tabelas**. "Leituras" abarca **tudo que é
+textual** daquele bloco — a análise, a interpretação, as ações, a leitura estratégica, os próximos
+passos, o que houver. Nada de texto volta depois das tabelas.
 
-**1. 📈 Contatos e Vendas** (RD Station CRM)
+**1. Contatos e Vendas** (RD Station CRM)
 
-- **Métricas** — vendas (nº e R$), ticket médio, taxa de conversão em venda, oportunidades criadas e perdidas, vendas e receita de Busca Paga.
-- **Leitura** — o que os números significam para o negócio, incluindo o peso das vendas fora da Busca Paga e o ROAS.
+- **Dados** — vendas (nº e R$), ticket médio, taxa de conversão em venda, oportunidades criadas e perdidas, vendas e receita de Busca Paga.
+- **Leituras** — o que os números significam para o negócio, incluindo o peso das vendas fora da Busca Paga e o ROAS.
 - **Tabelas** — motivo das perdas, receita por origem, faixas de valor do pedido, série histórica.
 
-**2. 📈 Google Ads**
+**2. Google Ads**
 
-- **Métricas** — investimento, impressões, cliques, CPC, conversões (leads), custo por conversão, taxa de conversão de clique, ROAS.
-- **Leitura** — grupos e campanhas que puxaram resultado, palavras-chave campeãs de venda. Fechar com **➡️ Interpretação:** conectando eficiência de clique × eficiência de negócio.
-- **Tabelas** — grupos de anúncio, retorno por grupo, realocação de verba, palavras-chave que geraram venda.
+- **Dados** — investimento, impressões, cliques, CPC, conversões (leads), custo por conversão, taxa de conversão de clique, ROAS.
+- **Leituras** — grupos e campanhas que puxaram resultado e palavras-chave campeãs de venda; **Interpretação** conectando eficiência de clique × eficiência de negócio; **Ações e otimizações realizadas** (marcar para confirmar quando inferido dos dados); **Leitura estratégica de desempenho** (ganhos primeiro, pontos de atenção depois); **Próximos passos recomendados**, propositivos e ligados à análise.
+- **Tabelas** — grupos de anúncio, retorno por grupo, realocação de verba, palavras-chave que geraram venda, termos candidatos à negativação.
 
-**Depois dos dois blocos, na ordem:**
+**Títulos sem ícone.** Nada de emoji abrindo título de seção.
 
-3. **⚙️ Ações e otimizações realizadas** — o que foi executado no mês (marcar para confirmar quando inferido dos dados).
-4. **📊 Leitura estratégica de desempenho** — leitura de negócio, ganhos primeiro, pontos de atenção depois.
-5. **🚀 Próximos passos recomendados** — propositivos, ligados à análise.
-
-**Não incluir seção fora dessa lista.** A **💰 Análise complementar** (recorte extra, ex.: impacto do
+**Não incluir seção fora dessa lista.** A **Análise complementar** (recorte extra, ex.: impacto do
 aumento de verba por campanha) só entra quando for pedida explicitamente naquele mês — ela aparecer
 no relatório do mês anterior não é motivo para repetir.
 

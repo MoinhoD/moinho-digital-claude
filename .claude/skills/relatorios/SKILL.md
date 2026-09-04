@@ -157,7 +157,7 @@ Ler `.claude/skills/relatorios/template.html`, substituir os placeholders e salv
 | `{{CLIENTE}}` | Nome do cliente como a marca se escreve |
 | `{{PERIODO}}` | Ex: `Julho de 2026` |
 | `{{DATA}}` | Data da análise por extenso |
-| `{{CANAIS}}` | Canais analisados, separados por vírgula |
+| `{{CAPA_META}}` | Linha de apoio da capa: intervalo do período e período de comparação |
 | `{{LOGO_SRC}}` | Deixar o placeholder, o script injeta |
 
 Os demais placeholders são **seções completas** (título + subtítulo + conteúdo, o bloco `.secao` inteiro). Cada um vira string vazia quando não se aplica ao tipo de relatório — é assim que o mesmo `template.html` serve pra Conteúdos, Anúncios ou o documento unido, sem seção órfã aparecendo em branco.

@@ -97,9 +97,9 @@
   .aprendizado p { margin: 0; font-size: 13px; line-height: 1.55; color: #444; }
 
   /* ── INDICADORES ── */
-  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .bloco-indicador { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
-  .bloco-indicador h3 { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--roxo); margin-bottom: 8px; }
+  .bloco-indicador h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .bloco-indicador p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
   .bloco-indicador.tensao { border-left-color: var(--vermelho); }
   .bloco-indicador.tensao h3 { color: var(--vermelho); }
@@ -107,12 +107,12 @@
   /* ── PADROES (conteúdo x resultado) ── */
   .padroes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .padrao { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
-  .padrao h3 { font-size: 13px; font-weight: 600; color: var(--roxo); margin-bottom: 6px; }
+  .padrao h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .padrao p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
 
   /* ── LACUNA ── */
   .lacuna { border-left: 3px solid var(--vermelho); background: #fdf2f3; padding: 18px 20px; margin-top: 8px; border-radius: 0 8px 8px 0; max-width: 780px; }
-  .lacuna h3 { font-size: 13px; font-weight: 600; color: var(--vermelho); margin-bottom: 6px; }
+  .lacuna h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--vermelho); margin-bottom: 6px; }
   .lacuna p { margin: 0; font-size: 13.5px; color: #4a4a4a; line-height: 1.6; }
 
   /* ── OPORTUNIDADES ── */
@@ -150,7 +150,7 @@
   /* ── LEITURA ESTRATEGICA (Anúncios) ── */
   .leitura-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .leitura { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
-  .leitura h3 { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--roxo); margin-bottom: 8px; }
+  .leitura h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .leitura p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
   .leitura.atencao { border-left-color: var(--vermelho); }
   .leitura.atencao h3 { color: var(--vermelho); }
@@ -164,7 +164,7 @@
   /* ── INSIGHTS (Anúncios, opcional) ── */
   .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .insight { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
-  .insight h3 { font-size: 13px; font-weight: 600; color: var(--roxo); margin-bottom: 6px; }
+  .insight h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .insight p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
 
   /* ── METRICAS / KPIs (Anúncios) ── */
@@ -178,7 +178,7 @@
 
   /* ── TABELAS (Anúncios) ── */
   .tabela-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
-  .tab-bloco h3 { font-family: 'Noto Serif', serif; font-size: 15px; font-weight: 600; color: var(--texto); margin-bottom: 12px; }
+  .tab-bloco h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 12px; }
   table.dados { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
   table.dados thead th { background: var(--roxo); color: var(--creme); font-weight: 500; text-align: left; padding: 9px 12px; font-size: 10.5px; letter-spacing: .4px; line-height: 1.3; }
   table.dados thead th.num { text-align: right; }
@@ -234,7 +234,7 @@
       <p class="hero-tag">Análise de desempenho</p>
       <h1>Pega e Cola Personalizados</h1>
       <p class="hero-meta">Agosto de 2026</p>
-      <p class="hero-meta-sub">Canais analisados: Google Ads (Busca Paga) e RD Station CRM · Análise elaborada em 4 de setembro de 2026</p>
+      <p class="hero-meta-sub">01/08/2026 a 31/08/2026, comparado a julho de 2026 · Análise elaborada em 4 de setembro de 2026</p>
     </div>
   </div>
 
@@ -254,19 +254,11 @@
 
   
 
-    <div class="slide bg-roxo">
-    <div class="container">
-      <p class="label-tag">📆 Período analisado</p>
-      <p class="lead-relatorio">Agosto de 2026, comparado a julho de 2026 e situado na série histórica acompanhada desde novembro de 2025.</p>
-      <p class="lead-relatorio">Fontes: Google Ads, RD Station CRM e o cruzamento UTM × CRM da conta.</p>
-    </div>
-  </div>
-
-  <div class="slide bg-creme">
+    <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Contatos e Vendas</h2>
-        <p class="subtitulo">Métricas do período · RD Station CRM</p>
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Dados do período · RD Station CRM</p>
         <div class="kpi-grid">
           <div class="kpi"><span class="rot">Vendas</span><span class="val">93</span><span class="var bom">+25,68%</span></div>
           <div class="kpi"><span class="rot">Valor total das vendas</span><span class="val">R$23.124,83</span><span class="var bom">+41,9%</span></div>
@@ -284,8 +276,8 @@
   <div class="slide">
     <div class="container">
       <div class="secao">
-        <h2>📈 Contatos e Vendas</h2>
-        <p class="subtitulo">Leitura do período</p>
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Leituras do período</p>
         <div class="indicadores-grid">
           <div class="bloco-indicador">
             <h3>Melhor mês da série</h3>
@@ -303,20 +295,9 @@
             <h3>Conversão em venda em novo recorde</h3>
             <p>21,53% (+24,8%). Com praticamente as mesmas oportunidades de julho (432, +0,7%), fechamos 19 negócios a mais.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="container">
-      <div class="secao">
-        <h2>📈 Contatos e Vendas</h2>
-        <p class="subtitulo">Leitura do período</p>
-        <div class="indicadores-grid">
           <div class="bloco-indicador">
             <h3>A mídia paga voltou a crescer</h3>
-            <p>52 vendas (+13,04%) e R$9.455,93 (+17,63%), com ticket de R$181,84 (+4,06%). Depois da queda de julho, a conversão de lead pago em venda subiu de 11,6% para 13,4%.</p>
+            <p>52 vendas (+13,04%) e R$9.455,93 (+17,63%), com ticket de R$181,84 (+4,06%). A conversão de lead pago em venda subiu de 11,6% para 13,4%.</p>
           </div>
           <div class="bloco-indicador">
             <h3>59,1% da receita veio de fora da mídia paga</h3>
@@ -328,7 +309,7 @@
           </div>
           <div class="bloco-indicador">
             <h3>ROAS</h3>
-            <p>ROAS da Busca Paga de 1,73 (contra 1,51 em julho, +14,6%). O ROAS da conta inteira foi de 4,23, contra 3,07 em julho: o melhor da série.</p>
+            <p>ROAS da Busca Paga de 1,73, contra 1,51 em julho (+14,6%). O ROAS da conta inteira foi de 4,23, contra 3,07 em julho: o melhor da série.</p>
           </div>
         </div>
       </div>
@@ -338,7 +319,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Contatos e Vendas</h2>
+        <h2>Contatos e Vendas</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tabela-dupla">
         <div class="tab-bloco">
@@ -377,7 +358,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Contatos e Vendas</h2>
+        <h2>Contatos e Vendas</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tabela-dupla">
         <div class="tab-bloco">
@@ -419,8 +400,8 @@
     <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
-        <p class="subtitulo">Métricas do período · dados das campanhas</p>
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Dados do período · dados das campanhas</p>
         <div class="kpi-grid">
           <div class="kpi"><span class="rot">Valor investido</span><span class="val">R$5.460,55</span><span class="var ">+2,9%</span></div>
           <div class="kpi"><span class="rot">Impressões</span><span class="val">28.863</span><span class="var ">-2,31%</span></div>
@@ -438,8 +419,8 @@
   <div class="slide">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
-        <p class="subtitulo">Leitura do período</p>
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Leituras do período</p>
         <div class="indicadores-grid">
           <div class="bloco-indicador">
             <h3>Investimento estável, resultado por realocação</h3>
@@ -457,17 +438,6 @@
             <h3>Rastreamento em 88,7%</h3>
             <p>47 das 52 vendas de Busca Paga foram rastreadas até campanha e palavra-chave (R$8.508,98), contra 36 em julho.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="container">
-      <div class="secao">
-        <h2>📈 Google Ads</h2>
-        <p class="subtitulo">Leitura do período</p>
-        <div class="indicadores-grid">
           <div class="bloco-indicador">
             <h3>Etiquetas concentraram o retorno</h3>
             <p>O bloco de etiquetas fez R$3.080,21 em 17 vendas — 36% de toda a receita rastreada do mês, com R$1.820,77 investidos.</p>
@@ -489,18 +459,93 @@
     </div>
   </div>
 
-  <div class="slide bg-roxo">
+  <div class="slide">
     <div class="container">
-      <p class="label-tag">➡️ Interpretação</p>
-      <p class="lead-relatorio">Agosto confirma a tese de julho. Isolamos etiquetas, cortamos o que não vendia e realocamos a verba — e o mesmo investimento devolveu R$8.508,98 rastreados contra R$6.205,06 em julho, 37% a mais.</p>
-      <p class="lead-relatorio">O ROAS rastreado da mídia saiu de 1,19 para 1,56 e todos os grupos melhoraram a eficiência. Não houve mudança de mercado: houve redistribuição de orçamento para onde a venda já estava acontecendo.</p>
+      <div class="secao">
+        <h2>Interpretação</h2>
+        <p class="subtitulo">Eficiência de clique × eficiência de negócio</p>
+        <p>Agosto confirma a tese de julho. Isolamos etiquetas, cortamos o que não vendia e realocamos a verba — e o mesmo investimento devolveu R$8.508,98 rastreados contra R$6.205,06 em julho, 37% a mais.</p>
+        <p>O ROAS rastreado da mídia saiu de 1,19 para 1,56 e todos os grupos melhoraram a eficiência. Não houve mudança de mercado: houve redistribuição de orçamento para onde a venda já estava acontecendo.</p>
+      </div>
     </div>
   </div>
 
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
+        <h2>Ações e otimizações realizadas</h2>
+        <p class="subtitulo">O que foi executado no período</p>
+        <ul class="acao-lista">
+          <li>Ajuste de orçamento entre campanhas: a verba foi redistribuída sem aumento relevante do total investido (+2,9%), concentrando no bloco de etiquetas e zerando as duas campanhas que não vendiam.</li>
+          <li>Otimização dos termos de pesquisa e negativação continuada: impressões e cliques caíram cerca de 2% com CTR estável (8,73%) e taxa de conversão mantida — o tráfego foi filtrado sem perder captação.</li>
+          <li>Criação de anúncio com termos de demanda eleitoral: entrou no ar o grupo Camiseta-Campanha-Eleitoral, executando a recomendação que vinha desde o relatório do semestre.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="container">
+      <div class="secao">
+        <h2>Leitura estratégica de desempenho</h2>
+        <p class="subtitulo">Ganhos primeiro, pontos de atenção depois</p>
+        <div class="leitura-grid">
+          <div class="leitura">
+            <h3>Escala com eficiência</h3>
+            <p>Etiquetas escalaram sem perder retorno, e esse é o teste que importa. O grupo recebeu 2,5× mais verba e teve queda leve no ROAS (1,91 → 1,69), dobrando as vendas de 8 para 17.</p>
+          </div>
+          <div class="leitura">
+            <h3>DTF saiu do vermelho</h3>
+            <p>PEC – Produtos dobrou de eficiência (ROAS 0,59 → 1,17). O DTF é o motor dessa campanha: 5 das 6 vendas vieram de “dtf têxtil” e “dtf personalizado”.</p>
+          </div>
+          <div class="leitura">
+            <h3>Pedidos grandes de volta na mídia paga</h3>
+            <p>Julho não teve nenhuma venda paga acima de R$800; agosto teve duas — Isis (R$840, “etiquetas termocolantes”) e Andre Alves Martins (R$803,70, “adesivo termocolante personalizado”). Foi o que puxou o ticket da Busca Paga de R$174,75 para R$181,84.</p>
+          </div>
+          <div class="leitura atencao">
+            <h3>Concentração de faturamento</h3>
+            <p>Três clientes (Fabi Fit, Nathalia Linhar e Marcio Drifit) responderam por R$7.183,94, ou 31,1% do faturamento do mês. Somando a indicação gerada pela própria Fabi Fit (Michelle, R$1.187,11), o ecossistema de um único cliente representa 20,3% do mês.</p>
+          </div>
+          <div class="leitura atencao">
+            <h3>Pipeline inchando</h3>
+            <p>693 oportunidades em andamento, contra 463 em julho (+50%). Parte é demanda real represada e parte é oportunidade antiga sem desfecho no CRM. Vale uma limpeza para não distorcer a taxa de conversão dos próximos meses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Próximos passos recomendados</h2>
+        <p class="subtitulo">Propositivos, ligados à análise do período</p>
+        <div class="proximos-grid">
+          <div class="proximo-passo">
+            <h3>Negativar os termos que geram clique e não geram venda há três meses</h3>
+            <p>10 termos ativos sem uma única venda em 90 dias — 130 leads e cerca de R$1.823 estimados. O caso mais evidente é “estampa personalizada”, que consumiu R$318,42 só em agosto (174 cliques, 25 conversões) sem nenhuma venda.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Negativar ou restringir os termos com retorno negativo</h3>
+            <p>“estampa personalizada” e “adesivo personalizado” somam 110 leads em três meses e devolveram R$360 sobre cerca de R$1.549 investidos. Somadas as duas frentes, a negativação libera perto de R$1.120 por mês — algo em torno de 20% da verba — para reforçar etiquetas.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Pausar o anúncio de material eleitoral</h3>
+            <p>46 impressões, 4 cliques a R$2,47 de CPC e nenhuma conversão. O teste não encontrou demanda no volume necessário dentro da janela; a verba rende mais nos blocos que já convertem.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Finalizar o catálogo digital e o flyer com as novas fotos</h3>
+            <p>Material de apoio para o time comercial usar durante o atendimento — é no WhatsApp que toda venda é fechada, e hoje o atendimento não tem peça para acelerar a decisão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tab-bloco">
           <h3>Resumo dos grupos de anúncio</h3>
@@ -526,7 +571,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
+        <h2>Google Ads</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tabela-dupla">
         <div class="tab-bloco">
@@ -568,7 +613,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
+        <h2>Google Ads</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tab-bloco">
           <h3>Palavras-chave que geraram venda</h3>
@@ -593,7 +638,7 @@
   <div class="slide bg-creme">
     <div class="container">
       <div class="secao">
-        <h2>📈 Google Ads</h2>
+        <h2>Google Ads</h2>
         <p class="subtitulo">Tabelas do período</p>
         <div class="tab-bloco">
           <h3>Termos sem venda nos últimos 3 meses — candidatos à negativação</h3>
@@ -619,88 +664,7 @@
     </div>
   </div>
 
-    <div class="slide bg-creme">
-    <div class="container">
-      <div class="secao">
-        <h2>⚙️ Ações e otimizações realizadas</h2>
-        <p class="subtitulo">O que foi executado no período</p>
-        <ul class="acao-lista">
-          <li>Ajuste de orçamento entre campanhas: a verba foi redistribuída sem aumento relevante do total investido (+2,9%), concentrando no bloco de etiquetas e zerando as duas campanhas que não vendiam.</li>
-          <li>Otimização dos termos de pesquisa e negativação continuada: impressões e cliques caíram cerca de 2% com CTR estável (8,73%) e taxa de conversão mantida — o tráfego foi filtrado sem perder captação.</li>
-          <li>Criação de anúncio com termos de demanda eleitoral: entrou no ar o grupo Camiseta-Campanha-Eleitoral, executando a recomendação que vinha desde o relatório do semestre.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="container">
-      <div class="secao">
-        <h2>📊 Leitura estratégica de desempenho</h2>
-        <p class="subtitulo">Ganhos primeiro, pontos de atenção depois</p>
-        <div class="leitura-grid">
-          <div class="leitura">
-            <h3>Escala com eficiência</h3>
-            <p>Etiquetas escalaram sem perder retorno, e esse é o teste que importa. O grupo recebeu 2,5× mais verba e teve queda leve no ROAS (1,91 → 1,69), dobrando as vendas de 8 para 17.</p>
-          </div>
-          <div class="leitura">
-            <h3>DTF saiu do vermelho</h3>
-            <p>PEC – Produtos dobrou de eficiência (ROAS 0,59 → 1,17). O DTF é o motor dessa campanha: 5 das 6 vendas vieram de “dtf têxtil” e “dtf personalizado”.</p>
-          </div>
-          <div class="leitura">
-            <h3>Pedidos grandes de volta na mídia paga</h3>
-            <p>Julho não teve nenhuma venda paga acima de R$800; agosto teve duas — Isis (R$840, “etiquetas termocolantes”) e Andre Alves Martins (R$803,70, “adesivo termocolante personalizado”). Foi o que puxou o ticket da Busca Paga de R$174,75 para R$181,84.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="container">
-      <div class="secao">
-        <h2>📊 Leitura estratégica de desempenho</h2>
-        <p class="subtitulo">Ganhos primeiro, pontos de atenção depois</p>
-        <div class="leitura-grid">
-          <div class="leitura atencao">
-            <h3>Concentração de faturamento</h3>
-            <p>Três clientes (Fabi Fit, Nathalia Linhar e Marcio Drifit) responderam por R$7.183,94, ou 31,1% do faturamento do mês. Somando a indicação gerada pela própria Fabi Fit (Michelle, R$1.187,11), o ecossistema de um único cliente representa 20,3% do mês.</p>
-          </div>
-          <div class="leitura atencao">
-            <h3>Pipeline inchando</h3>
-            <p>693 oportunidades em andamento, contra 463 em julho (+50%). Parte é demanda real represada e parte é oportunidade antiga sem desfecho no CRM. Vale uma limpeza para não distorcer a taxa de conversão dos próximos meses.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <div class="slide bg-creme">
-    <div class="container">
-      <div class="secao">
-        <h2>🚀 Próximos passos recomendados</h2>
-        <p class="subtitulo">Propositivos, ligados à análise do período</p>
-        <div class="proximos-grid">
-          <div class="proximo-passo">
-            <h3>Negativar os termos que geram clique e não geram venda há três meses</h3>
-            <p>10 termos ativos sem uma única venda em 90 dias — 130 leads e cerca de R$1.823 estimados. O caso mais evidente é “estampa personalizada”, que consumiu R$318,42 só em agosto (174 cliques, 25 conversões) sem nenhuma venda.</p>
-          </div>
-          <div class="proximo-passo">
-            <h3>Negativar ou restringir os termos com retorno negativo</h3>
-            <p>“estampa personalizada” e “adesivo personalizado” somam 110 leads em três meses e devolveram R$360 sobre cerca de R$1.549 investidos. Somadas as duas frentes, a negativação libera perto de R$1.120 por mês — algo em torno de 20% da verba — para reforçar etiquetas.</p>
-          </div>
-          <div class="proximo-passo">
-            <h3>Pausar o anúncio de material eleitoral</h3>
-            <p>46 impressões, 4 cliques a R$2,47 de CPC e nenhuma conversão. O teste não encontrou demanda no volume necessário dentro da janela; a verba rende mais nos blocos que já convertem.</p>
-          </div>
-          <div class="proximo-passo">
-            <h3>Finalizar o catálogo digital e o flyer com as novas fotos</h3>
-            <p>Material de apoio para o time comercial usar durante o atendimento — é no WhatsApp que toda venda é fechada, e hoje o atendimento não tem peça para acelerar a decisão.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   
 
