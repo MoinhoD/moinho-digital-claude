@@ -30,8 +30,12 @@ Gestão de **Meta Ads, somente Instagram**, em recorrência mensal.
 - **Escopo:** impulsionamento de publicação que já existe no perfil. As peças são produzidas
   internamente pelo cliente e copy por **Carol Casagrande**. Gestor de tráfego fica responsável
   por brifar ambos para o desenvolvimento de peças exclusivas que serão criadas
-- **Entregas por ciclo:** briefing das campanhas antes da subida, três leituras de otimização
-  durante a veiculação e relatório de fechamento até o dia 10
+- **Entregas por ciclo:** briefing das campanhas antes da subida, leituras de otimização durante a
+  veiculação e relatório de fechamento, sempre repassado primeiro à **Carol Casagrande**
+  (interlocutora da conta) antes de ir para os responsáveis do Pequenos Olhares. **1º ciclo é
+  exceção:** fecha em 30 dias corridos a partir do início real da veiculação, a pedido da Carol, que
+  preferiu esperar o ciclo completo pra fechar a primeira análise. A partir do 2º ciclo, cadência
+  mensal normal — vira o mês, fecha e apresenta o relatório
 
 A estratégia aprovada já prevê meses com campanhas extras (Frentes 1 e 2), e esses meses exigem
 aumento de verba: com as 4 campanhas ativas, a conta vai a R$ 1.575,00 em mídia. Collab com
@@ -126,7 +130,7 @@ relatório.
 
 ## Estrutura das campanhas
 
-> *Última atualização: 25/08/2026. Este tópico muda a cada ciclo. Revisar sempre que subir, pausar
+> *Última atualização: 04/09/2026. Este tópico muda a cada ciclo. Revisar sempre que subir, pausar
 > ou renomear campanha.*
 
 Duas campanhas com **orçamento vitalício**, não diário — o ciclo tem 31 dias e não 30, e só o
@@ -163,8 +167,11 @@ Anúncios:  PO | ENG | POST-QUANDO-LEVAR-OFTALMO
 O slot `SP` é o recorte deste ciclo. Quando a segmentação descer para cidade ou região, ele vira
 `SP-CAP`, `SP-ABC`, `SP-INT` e passa a existir um conjunto por recorte.
 
-**Cronograma do ciclo:** subida em 12/08, aprendizado sem mexer em nada até 18/08, leituras em
-19/08, 26/08 e 02/09, encerramento e relatório até o dia 10 do mês seguinte.
+**Cronograma do ciclo:** campanha criada e aprovada em 12/08 (nome que carrega no Gerenciador), mas
+a veiculação real só começou em **24/08**. Primeira leitura interna em **31/08**, repassada primeiro
+à Carol Casagrande antes de ir para os responsáveis do Pequenos Olhares — foi ela quem pediu para
+esperar o ciclo completo antes de fechar a primeira análise. **Encerramento e 1º relatório: 30 dias
+corridos a partir de 24/08, em 23/09/2026.** A partir daí, cadência mensal normal.
 
 ## KPIs que acompanhamos
 
@@ -180,7 +187,8 @@ costuma ficar entre 10% e 25% e depende mais do perfil (bio, destaques, últimos
 anúncio.
 
 **Faixa de referência do 1º ciclo.** Estimativa para calibragem, **não é meta contratada**. O ciclo
-12/08 a 11/09 é o primeiro do projeto e existe justamente para trocar essas faixas por número real.
+24/08 a 23/09 (campanha criada em 12/08, veiculação real começou em 24/08 — ver "Cronograma do
+ciclo") é o primeiro do projeto e existe justamente para trocar essas faixas por número real.
 
 | Indicador | Faixa esperada |
 |---|---|
@@ -234,7 +242,7 @@ primeiro relatório e deve ser registrado aqui depois. Diretrizes iniciais:
   por cidade e bairro no 2º ciclo, e o cliente já foi avisado de que ele vem neste relatório.
 - **Trazer a leitura por dispositivo**, que é o que permite decidir sobre segmentar só Android com
   número na mão em vez de no chute.
-- **Registrar a variação de seguidores do ciclo** (Insights em 11/08 e em 11/09), que não sai do
+- **Registrar a variação de seguidores do ciclo** (Insights em 23/08 e em 23/09), que não sai do
   Gerenciador de Anúncios.
 - Fechar com recomendação para o ciclo seguinte, ligada ao que os números mostraram.
 - Leitor é o time do projeto e a franqueadora — linguagem clara, sem jargão de mídia. Explicar o que
@@ -251,5 +259,5 @@ skill. Logos são gitignored no repo (`*.png`).
 | `marca/identidade-visual.md` | Brandbook destrinchado: logo, paleta com Pantone, tipografia, fotografia |
 | `marca/*.svg` e `marca/*.png` | Logo horizontal (colorido e branco em fundo azul) e símbolo |
 | `estrategia-anuncios-pequenos-olhares.html` e `.pdf` | Estratégia apresentada ao cliente: verba, campanhas, Frentes 1 e 2, collabs |
-| `campanhas/briefing-meta-primeiras-campanhas-pequenos-olhares.md` e `.html` | Briefing do ciclo 12/08 a 11/09/2026 |
+| `campanhas/briefing-meta-primeiras-campanhas-pequenos-olhares.md` e `.html` | Briefing do ciclo 12/08 a 11/09/2026 (datas do planejamento original; a veiculação real começou em 24/08 — ver "Cronograma do ciclo") |
 | `Estrutura de anúncios - Pequenos Olhares.docx` | Estrutura de anúncios, material do cliente |
