@@ -97,9 +97,9 @@
   .aprendizado p { margin: 0; font-size: 13px; line-height: 1.55; color: #444; }
 
   /* ── INDICADORES ── */
-  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .bloco-indicador { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
-  .bloco-indicador h3 { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--roxo); margin-bottom: 8px; }
+  .bloco-indicador h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .bloco-indicador p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
   .bloco-indicador.tensao { border-left-color: var(--vermelho); }
   .bloco-indicador.tensao h3 { color: var(--vermelho); }
@@ -107,12 +107,12 @@
   /* ── PADROES (conteúdo x resultado) ── */
   .padroes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .padrao { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
-  .padrao h3 { font-size: 13px; font-weight: 600; color: var(--roxo); margin-bottom: 6px; }
+  .padrao h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .padrao p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
 
   /* ── LACUNA ── */
   .lacuna { border-left: 3px solid var(--vermelho); background: #fdf2f3; padding: 18px 20px; margin-top: 8px; border-radius: 0 8px 8px 0; max-width: 780px; }
-  .lacuna h3 { font-size: 13px; font-weight: 600; color: var(--vermelho); margin-bottom: 6px; }
+  .lacuna h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--vermelho); margin-bottom: 6px; }
   .lacuna p { margin: 0; font-size: 13.5px; color: #4a4a4a; line-height: 1.6; }
 
   /* ── OPORTUNIDADES ── */
@@ -150,7 +150,7 @@
   /* ── LEITURA ESTRATEGICA (Anúncios) ── */
   .leitura-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .leitura { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
-  .leitura h3 { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--roxo); margin-bottom: 8px; }
+  .leitura h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .leitura p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
   .leitura.atencao { border-left-color: var(--vermelho); }
   .leitura.atencao h3 { color: var(--vermelho); }
@@ -164,8 +164,31 @@
   /* ── INSIGHTS (Anúncios, opcional) ── */
   .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .insight { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
-  .insight h3 { font-size: 13px; font-weight: 600; color: var(--roxo); margin-bottom: 6px; }
+  .insight h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
   .insight p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
+
+  /* ── METRICAS / KPIs (Anúncios) ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .kpi { background: #fff; border-radius: 12px; border-top: 3px solid var(--roxo); box-shadow: 0 3px 16px rgba(0,0,0,.06); padding: 18px 20px 16px; }
+  .kpi .rot { display: block; font-size: 10px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; color: var(--suave); margin-bottom: 10px; line-height: 1.35; min-height: 27px; }
+  .kpi .val { display: block; font-family: 'Noto Serif', serif; font-size: 25px; font-weight: 600; color: var(--texto); line-height: 1.05; }
+  .kpi .var { display: block; font-size: 12px; margin-top: 7px; color: var(--suave); }
+  .kpi .var.bom { color: var(--roxo); font-weight: 600; }
+  .kpi .var.ruim { color: var(--vermelho); font-weight: 600; }
+
+  /* ── TABELAS (Anúncios) ── */
+  .tabela-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+  .tab-bloco h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 12px; }
+  table.dados { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  table.dados thead th { background: var(--roxo); color: var(--creme); font-weight: 500; text-align: left; padding: 9px 12px; font-size: 10.5px; letter-spacing: .4px; line-height: 1.3; }
+  table.dados thead th.num { text-align: right; }
+  table.dados tbody td { padding: 7px 12px; border-bottom: 1px solid #efefef; color: #333; line-height: 1.4; }
+  table.dados tbody tr:last-child td { border-bottom: none; }
+  table.dados tbody tr.total td { background: var(--creme); font-weight: 600; color: var(--roxo); }
+  table.dados td.num { text-align: right; white-space: nowrap; }
+  table.dados .alta { color: var(--roxo); font-weight: 600; }
+  table.dados .baixa { color: var(--vermelho); font-weight: 600; }
+  p.legenda { font-size: 11px; color: var(--suave); line-height: 1.5; margin-top: 10px; max-width: 900px; }
 
   /* ── CLOSING ── */
   .closing-logo { height: 42px; width: auto; opacity: .9; margin-bottom: 26px; display: block; }
@@ -211,7 +234,7 @@
       <p class="hero-tag">Análise de desempenho</p>
       <h1>{{CLIENTE}}</h1>
       <p class="hero-meta">{{PERIODO}}</p>
-      <p class="hero-meta-sub">Canais analisados: {{CANAIS}} · Análise elaborada em {{DATA}}</p>
+      <p class="hero-meta-sub">{{CAPA_META}} · Análise elaborada em {{DATA}}</p>
     </div>
   </div>
 

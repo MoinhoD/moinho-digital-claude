@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de desempenho — Pega e Cola Personalizados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #5A368C;
+    --roxo-escuro: #3d2260;
+    --vermelho: #D23E4F;
+    --salmao: #F0867D;
+    --creme: #EFEEDF;
+    --texto: #1C1C1C;
+    --suave: #666;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; overflow: hidden; background: #fff; }
+
+  body { font-family: 'Lexend', 'Calibri', sans-serif; color: var(--texto); line-height: 1.6; }
+
+  /* ── CAROUSEL ENGINE ── */
+  .slides-track { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 0 72px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(.25,.1,.25,1), opacity 0.35s ease;
+    background: #fff;
+  }
+
+  .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+
+  .slide.bg-creme { background: var(--creme); }
+  .slide.bg-roxo  { background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-escuro) 100%); color: #fff; }
+  .slide.bg-hero  { background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-escuro) 55%, var(--vermelho) 130%); color: #fff; }
+  .slide.bg-dark  { background: linear-gradient(135deg, #3d2260 0%, #2a1845 100%); color: #fff; }
+
+  .slide-tall { justify-content: flex-start; padding-top: 64px; }
+
+  /* ── NAV ── */
+  .carousel-nav {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(20,8,40,.78); backdrop-filter: blur(14px);
+    border-radius: 40px; padding: 9px 22px; z-index: 200;
+  }
+  .nav-btn { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 2px 8px; opacity: .75; transition: opacity .2s; line-height: 1; }
+  .nav-btn:hover { opacity: 1; }
+  .nav-btn:disabled { opacity: .22; cursor: default; }
+  .counter { color: rgba(255,255,255,.65); font-size: 11px; letter-spacing: 1.5px; min-width: 36px; text-align: center; }
+
+  .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--salmao); z-index: 200; transition: width .4s ease; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 64px; width: 100%; }
+
+  .label-tag { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--salmao); margin-bottom: 12px; }
+
+  /* ── HERO (capa) ── */
+  .hero-logo { height: 44px; width: auto; margin-bottom: 40px; display: block; }
+  .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+  .hero h1 { font-family: 'Noto Serif', serif; font-weight: 600; font-size: 56px; line-height: 1.1; margin-bottom: 16px; }
+  .hero-meta { font-size: 16px; color: rgba(255,255,255,.8); font-weight: 300; }
+  .hero-meta-sub { font-size: 13px; color: rgba(255,255,255,.45); font-weight: 300; margin-top: 6px; }
+
+  /* ── LEAD (visão geral / período analisado) ── */
+  .lead-relatorio { font-size: 19px; font-weight: 300; line-height: 1.65; color: rgba(255,255,255,.92); max-width: 780px; margin-bottom: 18px; }
+  .lead-relatorio:last-child { margin-bottom: 0; }
+
+  /* ── SECAO (título + kicker) ── */
+  .secao h2 { font-family: 'Noto Serif', serif; font-size: 28px; font-weight: 600; color: var(--texto); line-height: 1.2; margin-bottom: 6px; }
+  .secao .subtitulo { font-size: 13px; color: var(--suave); font-weight: 300; margin-bottom: 26px; }
+  .secao > p { font-size: 15px; line-height: 1.75; color: #333; margin-bottom: 14px; max-width: 780px; }
+  .secao > p:last-of-type { margin-bottom: 22px; }
+
+  /* ── APRENDIZADOS ── */
+  .aprendizados-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .aprendizado { display: flex; gap: 14px; background: #fff; border-radius: 12px; padding: 20px 22px; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  .aprendizado .num {
+    flex: 0 0 26px; height: 26px; border-radius: 50%; background: var(--creme); color: var(--roxo);
+    font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .aprendizado h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .aprendizado p { margin: 0; font-size: 13px; line-height: 1.55; color: #444; }
+
+  /* ── INDICADORES ── */
+  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bloco-indicador { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
+  .bloco-indicador h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .bloco-indicador p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
+  .bloco-indicador.tensao { border-left-color: var(--vermelho); }
+  .bloco-indicador.tensao h3 { color: var(--vermelho); }
+
+  /* ── PADROES (conteúdo x resultado) ── */
+  .padroes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .padrao { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
+  .padrao h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .padrao p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
+
+  /* ── LACUNA ── */
+  .lacuna { border-left: 3px solid var(--vermelho); background: #fdf2f3; padding: 18px 20px; margin-top: 8px; border-radius: 0 8px 8px 0; max-width: 780px; }
+  .lacuna h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--vermelho); margin-bottom: 6px; }
+  .lacuna p { margin: 0; font-size: 13.5px; color: #4a4a4a; line-height: 1.6; }
+
+  /* ── OPORTUNIDADES ── */
+  .oportunidades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .oportunidade { background: #fff; border-top: 3px solid var(--salmao); box-shadow: 0 3px 16px rgba(0,0,0,.06); padding: 18px 20px; border-radius: 0 0 10px 10px; }
+  .oportunidade h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .oportunidade p { margin: 0; font-size: 13px; line-height: 1.55; color: #444; }
+
+  /* ── RECOMENDACOES ── */
+  .recomendacoes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .recomendacao { border: 1px solid #e2ddea; border-top: 3px solid var(--roxo); background: #fff; padding: 18px 20px; border-radius: 0 0 10px 10px; }
+  .recomendacao h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--roxo); margin-bottom: 10px; }
+  .recomendacao .linha { margin-bottom: 8px; }
+  .recomendacao .linha:last-child { margin-bottom: 0; }
+  .recomendacao .rot { display: block; font-size: 9px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--salmao); margin-bottom: 2px; }
+  .recomendacao .linha p { margin: 0; font-size: 12.5px; line-height: 1.5; color: #333; }
+
+  /* ── RESSALVA ── */
+  .ressalva-box { background: #fff; padding: 24px 28px; border-radius: 10px; max-width: 700px; font-size: 14px; line-height: 1.7; color: #5a5045; box-shadow: 0 3px 16px rgba(0,0,0,.05); }
+  .ressalva-box strong { color: var(--roxo); }
+
+  /* ── ACOES DO PERIODO (Anúncios) ── */
+  .acao-lista { list-style: none; margin: 0; padding: 0; max-width: 780px; }
+  .acao-lista li {
+    display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+    border-bottom: 1px solid #e4e0d8; font-size: 14.5px; line-height: 1.6; color: #333;
+  }
+  .acao-lista li:last-child { border-bottom: none; }
+  .acao-lista li::before {
+    content: "✓"; flex: 0 0 20px; width: 20px; height: 20px; border-radius: 5px;
+    background: var(--roxo); color: #fff; font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+
+  /* ── LEITURA ESTRATEGICA (Anúncios) ── */
+  .leitura-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .leitura { border-left: 3px solid var(--roxo); background: #fafafa; padding: 16px 20px; border-radius: 0 8px 8px 0; }
+  .leitura h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .leitura p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
+  .leitura.atencao { border-left-color: var(--vermelho); }
+  .leitura.atencao h3 { color: var(--vermelho); }
+
+  /* ── PROXIMOS PASSOS (Anúncios) ── */
+  .proximos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .proximo-passo { background: #fff; border-top: 3px solid var(--salmao); box-shadow: 0 3px 16px rgba(0,0,0,.06); padding: 18px 20px; border-radius: 0 0 10px 10px; }
+  .proximo-passo h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .proximo-passo p { margin: 0; font-size: 13px; line-height: 1.55; color: #444; }
+
+  /* ── INSIGHTS (Anúncios, opcional) ── */
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .insight { background: #fff; box-shadow: 0 3px 16px rgba(0,0,0,.05); padding: 18px 20px; border-radius: 10px; }
+  .insight h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .insight p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #333; }
+
+  /* ── METRICAS / KPIs (Anúncios) ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .kpi { background: #fff; border-radius: 12px; border-top: 3px solid var(--roxo); box-shadow: 0 3px 16px rgba(0,0,0,.06); padding: 18px 20px 16px; }
+  .kpi .rot { display: block; font-size: 10px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; color: var(--suave); margin-bottom: 10px; line-height: 1.35; min-height: 27px; }
+  .kpi .val { display: block; font-family: 'Noto Serif', serif; font-size: 25px; font-weight: 600; color: var(--texto); line-height: 1.05; }
+  .kpi .var { display: block; font-size: 12px; margin-top: 7px; color: var(--suave); }
+  .kpi .var.bom { color: var(--roxo); font-weight: 600; }
+  .kpi .var.ruim { color: var(--vermelho); font-weight: 600; }
+
+  /* ── TABELAS (Anúncios) ── */
+  .tabela-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+  .tab-bloco h3 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 12px; }
+  table.dados { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  table.dados thead th { background: var(--roxo); color: var(--creme); font-weight: 500; text-align: left; padding: 9px 12px; font-size: 10.5px; letter-spacing: .4px; line-height: 1.3; }
+  table.dados thead th.num { text-align: right; }
+  table.dados tbody td { padding: 7px 12px; border-bottom: 1px solid #efefef; color: #333; line-height: 1.4; }
+  table.dados tbody tr:last-child td { border-bottom: none; }
+  table.dados tbody tr.total td { background: var(--creme); font-weight: 600; color: var(--roxo); }
+  table.dados td.num { text-align: right; white-space: nowrap; }
+  table.dados .alta { color: var(--roxo); font-weight: 600; }
+  table.dados .baixa { color: var(--vermelho); font-weight: 600; }
+  p.legenda { font-size: 11px; color: var(--suave); line-height: 1.5; margin-top: 10px; max-width: 900px; }
+
+  /* ── CLOSING ── */
+  .closing-logo { height: 42px; width: auto; opacity: .9; margin-bottom: 26px; display: block; }
+  .closing-h2 { font-family: 'Noto Serif', serif; font-size: 34px; font-weight: 600; line-height: 1.15; margin-bottom: 14px; }
+  .closing-sub { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; max-width: 520px; margin-bottom: 22px; }
+  .closing-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .closing-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: 13.5px; }
+  .closing-links a:hover { color: #fff; }
+  .closing-tagline { font-family: 'Noto Serif', serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,.3); margin-top: 26px; }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 22px; }
+    .aprendizados-grid, .indicadores-grid, .padroes-grid, .oportunidades-grid, .recomendacoes-grid, .leitura-grid, .proximos-grid, .insights-grid { grid-template-columns: 1fr; }
+    .secao h2 { font-size: 21px; }
+    .hero h1 { font-size: 34px; }
+    .lead-relatorio { font-size: 16px; }
+  }
+
+  /* ── PRINT (PDF A4 paisagem, uma seção por página) ── */
+  @media print {
+    html, body { height: auto; overflow: visible; }
+    .slides-track { position: static; height: auto; overflow: visible; }
+    .carousel-nav, .progress-bar { display: none !important; }
+    .slide {
+      position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto;
+      height: 100vh; page-break-after: always; overflow: hidden; padding-bottom: 0;
+    }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="slides-track">
+
+  <!-- CAPA -->
+  <div class="slide bg-hero">
+    <div class="container">
+      <img class="hero-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAyNjAgNDAiPgogICAgPHRleHQgeD0iMCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJOb3RvIFNlcmlmLCBHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIyNiIgZmlsbD0iI0VGRUVERiI+bW9pbmhvIGRpZ2l0YWw8L3RleHQ+CiAgPC9zdmc+" alt="Moinho Digital">
+      <p class="hero-tag">Análise de desempenho</p>
+      <h1>Pega e Cola Personalizados</h1>
+      <p class="hero-meta">Agosto de 2026</p>
+      <p class="hero-meta-sub">01/08/2026 a 31/08/2026, comparado a julho de 2026 · Análise elaborada em 4 de setembro de 2026</p>
+    </div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Dados do período · RD Station CRM</p>
+        <div class="kpi-grid">
+          <div class="kpi"><span class="rot">Vendas</span><span class="val">93</span><span class="var bom">+25,68%</span></div>
+          <div class="kpi"><span class="rot">Valor total das vendas</span><span class="val">R$23.124,83</span><span class="var bom">+41,9%</span></div>
+          <div class="kpi"><span class="rot">Ticket médio</span><span class="val">R$248,65</span><span class="var bom">+12,91%</span></div>
+          <div class="kpi"><span class="rot">Taxa de conversão</span><span class="val">21,53%</span><span class="var bom">+24,8%</span></div>
+          <div class="kpi"><span class="rot">Oportunidades criadas</span><span class="val">432</span><span class="var ">+0,7%</span></div>
+          <div class="kpi"><span class="rot">Oportunidades perdidas</span><span class="val">84</span><span class="var bom">-32,8%</span></div>
+          <div class="kpi"><span class="rot">Vendas · Busca Paga</span><span class="val">52</span><span class="var bom">+13,04%</span></div>
+          <div class="kpi"><span class="rot">Receita · Busca Paga</span><span class="val">R$9.455,93</span><span class="var bom">+17,63%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="container">
+      <div class="secao">
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Leituras do período</p>
+        <div class="indicadores-grid">
+          <div class="bloco-indicador">
+            <h3>Melhor mês da série</h3>
+            <p>93 vendas (+25,68%) e R$23.124,83 de receita (+41,9%) — recorde nas duas pontas e sexto mês seguido de crescimento em número de negócios.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>O ticket médio voltou a subir</h3>
+            <p>R$248,65 (+12,91%), revertendo a queda de julho. Mais vendas e pedidos maiores na mesma conta: foi essa combinação que produziu o salto de faturamento.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Os pedidos grandes voltaram</h3>
+            <p>4 vendas acima de R$1 mil (julho teve 1) e 8 acima de R$800 (julho teve 2). Essas 8 somaram R$8.653,92 — 37,4% do faturamento do mês, contra 13,0% em julho.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Conversão em venda em novo recorde</h3>
+            <p>21,53% (+24,8%). Com praticamente as mesmas oportunidades de julho (432, +0,7%), fechamos 19 negócios a mais.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>A mídia paga voltou a crescer</h3>
+            <p>52 vendas (+13,04%) e R$9.455,93 (+17,63%), com ticket de R$181,84 (+4,06%). A conversão de lead pago em venda subiu de 11,6% para 13,4%.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>59,1% da receita veio de fora da mídia paga</h3>
+            <p>R$13.668,90 em 41 vendas, contra 50,7% em julho. Indicação: 17 vendas · R$2.533,92. Outras origens: 8 · R$1.345,16. Orgânico: 1 · R$97,60.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>A recompra é o maior negócio da casa</h3>
+            <p>15 vendas, R$9.692,22 e ticket médio de R$646,15 — +67% em vendas e +87,5% em receita sobre julho, com custo de mídia zero. Os cinco maiores pedidos do mês são todos de recompra.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>ROAS</h3>
+            <p>ROAS da Busca Paga de 1,73, contra 1,51 em julho (+14,6%). O ROAS da conta inteira foi de 4,23, contra 3,07 em julho: o melhor da série.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tabela-dupla">
+        <div class="tab-bloco">
+          <h3>Motivo das perdas</h3>
+          <table class="dados">
+            <thead><tr><th>Motivo</th><th class="num">Julho</th><th class="num">Agosto</th><th class="num">Variação</th></tr></thead>
+            <tbody>
+            <tr><td>Parou de responder</td><td class="num">69</td><td class="num">42</td><td class="num"><span class="alta">-39,1%</span></td></tr>
+            <tr><td>Pedido abaixo de 100 un.</td><td class="num">46</td><td class="num">36</td><td class="num"><span class="alta">-21,7%</span></td></tr>
+            <tr><td>Não fornecemos este produto</td><td class="num">5</td><td class="num">3</td><td class="num">-40,0%</td></tr>
+            <tr><td>Queria entrega mais rápida</td><td class="num">4</td><td class="num">1</td><td class="num">-75,0%</td></tr>
+            <tr><td>Queria outro serviço</td><td class="num">—</td><td class="num">2</td><td class="num">novo</td></tr>
+            <tr class="total"><td>Total</td><td class="num">125</td><td class="num">84</td><td class="num"><span class="alta">-32,8%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-bloco">
+          <h3>Receita por origem</h3>
+          <table class="dados">
+            <thead><tr><th>Origem</th><th class="num">Julho</th><th class="num">Agosto</th></tr></thead>
+            <tbody>
+            <tr><td>Busca Paga</td><td class="num">R$8.038,70</td><td class="num">R$9.455,93</td></tr>
+            <tr><td>Recompra (Cliente Ativo)</td><td class="num">R$5.169,03</td><td class="num"><span class="alta">R$9.692,22</span></td></tr>
+            <tr><td>Indicação</td><td class="num">R$2.174,00</td><td class="num">R$2.533,92</td></tr>
+            <tr><td>Outras origens</td><td class="num">R$499,46</td><td class="num">R$1.345,16</td></tr>
+            <tr><td>Orgânico</td><td class="num">R$415,00</td><td class="num"><span class="baixa">R$97,60</span></td></tr>
+            <tr class="total"><td>Total</td><td class="num">R$16.296,19</td><td class="num">R$23.124,83</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Contatos e Vendas</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tabela-dupla">
+        <div class="tab-bloco">
+          <h3>Vendas de Busca Paga por faixa</h3>
+          <table class="dados">
+            <thead><tr><th>Faixa de valor</th><th class="num">Julho</th><th class="num">Agosto</th></tr></thead>
+            <tbody>
+            <tr><td>Até R$99</td><td class="num">10</td><td class="num">16</td></tr>
+            <tr><td>R$100 – R$199</td><td class="num">25</td><td class="num">19</td></tr>
+            <tr><td>R$200 – R$399</td><td class="num">9</td><td class="num">13</td></tr>
+            <tr><td>R$400 – R$799</td><td class="num">2</td><td class="num">2</td></tr>
+            <tr><td>R$800 ou mais</td><td class="num">0</td><td class="num"><span class="alta">2</span></td></tr>
+            <tr><td>Mediana do pedido</td><td class="num">R$160,00</td><td class="num">R$160,00</td></tr>
+            <tr class="total"><td>Total</td><td class="num">46 vendas</td><td class="num">52 vendas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-bloco">
+          <h3>Série histórica</h3>
+          <table class="dados">
+            <thead><tr><th>Indicador</th><th class="num">Junho</th><th class="num">Julho</th><th class="num">Agosto</th></tr></thead>
+            <tbody>
+            <tr><td>Investimento</td><td class="num">R$5.155,82</td><td class="num">R$5.306,45</td><td class="num">R$5.460,55</td></tr>
+            <tr><td>Vendas totais</td><td class="num">65</td><td class="num">74</td><td class="num"><span class="alta">93</span></td></tr>
+            <tr><td>Receita total</td><td class="num">R$16.830,41</td><td class="num">R$16.296,19</td><td class="num"><span class="alta">R$23.124,83</span></td></tr>
+            <tr><td>ROAS da conta</td><td class="num">3,26</td><td class="num">3,07</td><td class="num"><span class="alta">4,23</span></td></tr>
+            <tr><td>ROAS Busca Paga</td><td class="num">2,69</td><td class="num">1,51</td><td class="num">1,73</td></tr>
+            <tr><td>Custo por venda</td><td class="num">R$79,32</td><td class="num">R$71,71</td><td class="num"><span class="alta">R$58,72</span></td></tr>
+            <tr><td>Taxa de perda</td><td class="num">44,9%</td><td class="num">29,1%</td><td class="num"><span class="alta">19,4%</span></td></tr>
+            <tr><td>Receita fora da paga</td><td class="num">17,5%</td><td class="num">50,7%</td><td class="num">59,1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Dados do período · dados das campanhas</p>
+        <div class="kpi-grid">
+          <div class="kpi"><span class="rot">Valor investido</span><span class="val">R$5.460,55</span><span class="var ">+2,9%</span></div>
+          <div class="kpi"><span class="rot">Impressões</span><span class="val">28.863</span><span class="var ">-2,31%</span></div>
+          <div class="kpi"><span class="rot">Cliques</span><span class="val">2.519</span><span class="var ">-2,14%</span></div>
+          <div class="kpi"><span class="rot">Custo por clique</span><span class="val">R$2,17</span><span class="var ruim">+5,15%</span></div>
+          <div class="kpi"><span class="rot">Conversões</span><span class="val">378,98</span><span class="var ">-2,58%</span></div>
+          <div class="kpi"><span class="rot">Custo por conversão</span><span class="val">R$14,41</span><span class="var ruim">+5,63%</span></div>
+          <div class="kpi"><span class="rot">Taxa de conversão</span><span class="val">15,04%</span><span class="var ">-0,45%</span></div>
+          <div class="kpi"><span class="rot">ROAS · Busca Paga</span><span class="val">1,73</span><span class="var bom">+14,6%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Leituras do período</p>
+        <div class="indicadores-grid">
+          <div class="bloco-indicador">
+            <h3>Investimento estável, resultado por realocação</h3>
+            <p>R$5.460,55 (+2,9%). O ganho do mês veio de redistribuição de verba entre os grupos, não de aporte novo.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Menos tráfego, mesma captação</h3>
+            <p>28.863 impressões (-2,31%) e 2.519 cliques (-2,14%) geraram 378,98 conversões (-2,58%), com taxa de conversão estável em 15,04%.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>O lead ficou 5,6% mais caro e a venda 9% mais barata</h3>
+            <p>Pagamos mais por contato e recebemos contatos que compram: a conversão de lead pago em venda subiu para 13,4% e o custo por venda paga caiu para R$105,01.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Rastreamento em 88,7%</h3>
+            <p>47 das 52 vendas de Busca Paga foram rastreadas até campanha e palavra-chave (R$8.508,98), contra 36 em julho.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Etiquetas concentraram o retorno</h3>
+            <p>O bloco de etiquetas fez R$3.080,21 em 17 vendas — 36% de toda a receita rastreada do mês, com R$1.820,77 investidos.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Termos campeões de venda</h3>
+            <p>“etiquetas termocolantes” (6 vendas · R$1.550,00) e “adesivo termocolante personalizado” (6 · R$1.440,50) lideraram a receita do mês.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Menor custo por conversão da conta</h3>
+            <p>Tampografia-Serigrafia entregou conversão a R$8,88 e Impressão-Têxtil/DTF a R$11,43 — os dois grupos mais baratos da conta.</p>
+          </div>
+          <div class="bloco-indicador">
+            <h3>Três frentes novas no relatório</h3>
+            <p>Vinil-Termocolante (26 cliques, 1 conversão), Película-Termocolante (36 impressões, sem clique) e Camiseta-Campanha-Eleitoral (46 impressões, 4 cliques), no ar só nos últimos dias do mês.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="container">
+      <div class="secao">
+        <h2>Interpretação</h2>
+        <p class="subtitulo">Eficiência de clique × eficiência de negócio</p>
+        <p>Agosto confirma a tese de julho. Isolamos etiquetas, cortamos o que não vendia e realocamos a verba — e o mesmo investimento devolveu R$8.508,98 rastreados contra R$6.205,06 em julho, 37% a mais.</p>
+        <p>O ROAS rastreado da mídia saiu de 1,19 para 1,56 e todos os grupos melhoraram a eficiência. Não houve mudança de mercado: houve redistribuição de orçamento para onde a venda já estava acontecendo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Ações e otimizações realizadas</h2>
+        <p class="subtitulo">O que foi executado no período</p>
+        <ul class="acao-lista">
+          <li>Ajuste de orçamento entre campanhas: a verba foi redistribuída sem aumento relevante do total investido (+2,9%), concentrando no bloco de etiquetas e zerando as duas campanhas que não vendiam.</li>
+          <li>Otimização dos termos de pesquisa e negativação continuada: impressões e cliques caíram cerca de 2% com CTR estável (8,73%) e taxa de conversão mantida — o tráfego foi filtrado sem perder captação.</li>
+          <li>Criação de anúncio com termos de demanda eleitoral: entrou no ar o grupo Camiseta-Campanha-Eleitoral, executando a recomendação que vinha desde o relatório do semestre.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="container">
+      <div class="secao">
+        <h2>Leitura estratégica de desempenho</h2>
+        <p class="subtitulo">Ganhos primeiro, pontos de atenção depois</p>
+        <div class="leitura-grid">
+          <div class="leitura">
+            <h3>Escala com eficiência</h3>
+            <p>Etiquetas escalaram sem perder retorno, e esse é o teste que importa. O grupo recebeu 2,5× mais verba e teve queda leve no ROAS (1,91 → 1,69), dobrando as vendas de 8 para 17.</p>
+          </div>
+          <div class="leitura">
+            <h3>DTF saiu do vermelho</h3>
+            <p>PEC – Produtos dobrou de eficiência (ROAS 0,59 → 1,17). O DTF é o motor dessa campanha: 5 das 6 vendas vieram de “dtf têxtil” e “dtf personalizado”.</p>
+          </div>
+          <div class="leitura">
+            <h3>Pedidos grandes de volta na mídia paga</h3>
+            <p>Julho não teve nenhuma venda paga acima de R$800; agosto teve duas — Isis (R$840, “etiquetas termocolantes”) e Andre Alves Martins (R$803,70, “adesivo termocolante personalizado”). Foi o que puxou o ticket da Busca Paga de R$174,75 para R$181,84.</p>
+          </div>
+          <div class="leitura atencao">
+            <h3>Concentração de faturamento</h3>
+            <p>Três clientes (Fabi Fit, Nathalia Linhar e Marcio Drifit) responderam por R$7.183,94, ou 31,1% do faturamento do mês. Somando a indicação gerada pela própria Fabi Fit (Michelle, R$1.187,11), o ecossistema de um único cliente representa 20,3% do mês.</p>
+          </div>
+          <div class="leitura atencao">
+            <h3>Pipeline inchando</h3>
+            <p>693 oportunidades em andamento, contra 463 em julho (+50%). Parte é demanda real represada e parte é oportunidade antiga sem desfecho no CRM. Vale uma limpeza para não distorcer a taxa de conversão dos próximos meses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Próximos passos recomendados</h2>
+        <p class="subtitulo">Propositivos, ligados à análise do período</p>
+        <div class="proximos-grid">
+          <div class="proximo-passo">
+            <h3>Negativar os termos que geram clique e não geram venda há três meses</h3>
+            <p>10 termos ativos sem uma única venda em 90 dias — 130 leads e cerca de R$1.823 estimados. O caso mais evidente é “estampa personalizada”, que consumiu R$318,42 só em agosto (174 cliques, 25 conversões) sem nenhuma venda.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Negativar ou restringir os termos com retorno negativo</h3>
+            <p>“estampa personalizada” e “adesivo personalizado” somam 110 leads em três meses e devolveram R$360 sobre cerca de R$1.549 investidos. Somadas as duas frentes, a negativação libera perto de R$1.120 por mês — algo em torno de 20% da verba — para reforçar etiquetas.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Pausar o anúncio de material eleitoral</h3>
+            <p>46 impressões, 4 cliques a R$2,47 de CPC e nenhuma conversão. O teste não encontrou demanda no volume necessário dentro da janela; a verba rende mais nos blocos que já convertem.</p>
+          </div>
+          <div class="proximo-passo">
+            <h3>Finalizar o catálogo digital e o flyer com as novas fotos</h3>
+            <p>Material de apoio para o time comercial usar durante o atendimento — é no WhatsApp que toda venda é fechada, e hoje o atendimento não tem peça para acelerar a decisão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tab-bloco">
+          <h3>Resumo dos grupos de anúncio</h3>
+          <table class="dados">
+            <thead><tr><th>Grupo de anúncio</th><th class="num">Cliques</th><th class="num">CPC médio</th><th class="num">Conversões</th><th class="num">Custo/conv.</th><th class="num">Vendas</th></tr></thead>
+            <tbody>
+            <tr><td>Termocolantes-Adesivos</td><td class="num">1.313</td><td class="num">R$2,03</td><td class="num">204,16</td><td class="num">R$13,07</td><td class="num">23</td></tr>
+            <tr><td>Etiqueta-Termocolante</td><td class="num">703</td><td class="num">R$2,59</td><td class="num">99,81</td><td class="num">R$18,25</td><td class="num">17</td></tr>
+            <tr><td>Impressão-Têxtil (DTF)</td><td class="num">287</td><td class="num">R$1,91</td><td class="num">48,00</td><td class="num"><span class="alta">R$11,43</span></td><td class="num">5</td></tr>
+            <tr><td>Materiais-Gráficos</td><td class="num">150</td><td class="num">R$1,95</td><td class="num">18,00</td><td class="num">R$16,24</td><td class="num">1</td></tr>
+            <tr><td>Tampografia-Serigrafia</td><td class="num">36</td><td class="num">R$1,97</td><td class="num">8,00</td><td class="num"><span class="alta">R$8,88</span></td><td class="num">0</td></tr>
+            <tr><td>Vinil-Termocolante</td><td class="num">26</td><td class="num">R$1,84</td><td class="num">1,00</td><td class="num"><span class="baixa">R$47,88</span></td><td class="num">0</td></tr>
+            <tr><td>Camiseta-Campanha-Eleitoral</td><td class="num">4</td><td class="num">R$2,47</td><td class="num">0,00</td><td class="num">—</td><td class="num">0</td></tr>
+            <tr><td>Película-Termocolante</td><td class="num">0</td><td class="num">—</td><td class="num">0,00</td><td class="num">—</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+          <p class="legenda">Cliques, CPC e conversões vêm do Google Ads. A coluna de vendas vem do cruzamento UTM × CRM e é venda fechada, não conversão.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tabela-dupla">
+        <div class="tab-bloco">
+          <h3>Retorno por grupo</h3>
+          <table class="dados">
+            <thead><tr><th>Grupo</th><th class="num">Investimento</th><th class="num">Vendas</th><th class="num">Receita</th><th class="num">ROAS ago</th><th class="num">jul</th></tr></thead>
+            <tbody>
+            <tr><td>Etiqueta-Termocolante</td><td class="num">R$1.820,77</td><td class="num">17</td><td class="num">R$3.080,21</td><td class="num"><span class="alta">1,69</span></td><td class="num">1,91</td></tr>
+            <tr><td>Termocolantes-Adesivos</td><td class="num">R$2.665,39</td><td class="num">23</td><td class="num">R$4.153,77</td><td class="num"><span class="alta">1,56</span></td><td class="num">1,19</td></tr>
+            <tr><td>PEC – Produtos</td><td class="num">R$911,59</td><td class="num">6</td><td class="num">R$1.065,00</td><td class="num"><span class="alta">1,17</span></td><td class="num">0,59</td></tr>
+            <tr><td>Melhores-Termos (pausada)</td><td class="num">R$0,00</td><td class="num">1</td><td class="num">R$210,00</td><td class="num">—</td><td class="num">2,21</td></tr>
+            <tr><td>Vinil-Termocolante</td><td class="num">R$47,84</td><td class="num">0</td><td class="num">R$0,00</td><td class="num"><span class="baixa">0,00</span></td><td class="num">—</td></tr>
+            <tr class="total"><td>Total</td><td class="num">R$5.460,55</td><td class="num">47</td><td class="num">R$8.508,98</td><td class="num">1,56</td><td class="num">1,19</td></tr>
+            </tbody>
+          </table>
+          <p class="legenda">A receita rastreada não inclui as vendas pagas sem UTM — por isso o ROAS desta tabela fica abaixo do ROAS real da Busca Paga (1,73).</p>
+        </div>
+        <div class="tab-bloco">
+          <h3>Realocação de verba</h3>
+          <table class="dados">
+            <thead><tr><th>Grupo / campanha</th><th class="num">Julho</th><th class="num">Agosto</th><th class="num">Variação</th></tr></thead>
+            <tbody>
+            <tr><td>Etiqueta-Termocolante</td><td class="num">R$715,30</td><td class="num">R$1.820,77</td><td class="num"><span class="alta">+155%</span></td></tr>
+            <tr><td>Termocolantes-Adesivos</td><td class="num">R$2.985,64</td><td class="num">R$2.665,39</td><td class="num">-10,7%</td></tr>
+            <tr><td>PEC – Produtos</td><td class="num">R$910,63</td><td class="num">R$911,59</td><td class="num">estável</td></tr>
+            <tr><td>Melhores Termos</td><td class="num">R$344,04</td><td class="num">R$0,00</td><td class="num">pausada</td></tr>
+            <tr><td>PEC – Uniformes</td><td class="num">R$273,39</td><td class="num">R$0,00</td><td class="num">encerrada</td></tr>
+            <tr><td>Novos grupos</td><td class="num">—</td><td class="num">R$57,72</td><td class="num">estreia</td></tr>
+            <tr class="total"><td>Total alocado</td><td class="num">R$5.229,00</td><td class="num">R$5.455,47</td><td class="num">+4,3%</td></tr>
+            </tbody>
+          </table>
+          <p class="legenda">Investimento por grupo reconstruído a partir de cliques × CPC médio.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tab-bloco">
+          <h3>Palavras-chave que geraram venda</h3>
+          <table class="dados">
+            <thead><tr><th>Palavra-chave</th><th class="num">Vendas</th><th class="num">Receita</th><th class="num">Investido</th><th class="num">ROAS</th></tr></thead>
+            <tbody>
+            <tr><td>"etiquetas termocolantes"</td><td class="num">6</td><td class="num">R$1.550,00</td><td class="num">R$729,12</td><td class="num"><span class="alta">2,13</span></td></tr>
+            <tr><td>"adesivo termocolante personalizado"</td><td class="num">6</td><td class="num">R$1.440,50</td><td class="num">R$187 est.</td><td class="num"><span class="alta">7,7 est.</span></td></tr>
+            <tr><td>"adesivos termocolantes personalizados"</td><td class="num">5</td><td class="num">R$1.138,48</td><td class="num">R$497,42</td><td class="num"><span class="alta">2,29</span></td></tr>
+            <tr><td>"dtf têxtil"</td><td class="num">4</td><td class="num">R$580,00</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>"etiqueta termocolante personalizada para roupas"</td><td class="num">4</td><td class="num">R$536,96</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>"adesivo termo colante"</td><td class="num">2</td><td class="num">R$474,29</td><td class="num">R$277,14</td><td class="num">1,71</td></tr>
+            <tr><td>"estampa personalizada"</td><td class="num">0</td><td class="num">R$0,00</td><td class="num">R$318,42</td><td class="num"><span class="baixa">0,00</span></td></tr>
+            </tbody>
+          </table>
+          <p class="legenda">O investido de “adesivo termocolante personalizado” é estimado pelo custo médio por conversão do mês — o termo não aparece na tabela de palavras-chave em destaque do Google Ads por ter volume baixo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-creme">
+    <div class="container">
+      <div class="secao">
+        <h2>Google Ads</h2>
+        <p class="subtitulo">Tabelas do período</p>
+        <div class="tab-bloco">
+          <h3>Termos sem venda nos últimos 3 meses — candidatos à negativação</h3>
+          <table class="dados">
+            <thead><tr><th>Termo</th><th class="num">Leads jun</th><th class="num">jul</th><th class="num">ago</th><th class="num">Total</th><th class="num">Custo est. 3m</th></tr></thead>
+            <tbody>
+            <tr><td>adesivos termocolantes</td><td class="num">14</td><td class="num">7</td><td class="num">7</td><td class="num">28</td><td class="num">R$394,17</td></tr>
+            <tr><td>adesivo termocolante para roupa</td><td class="num">7</td><td class="num">10</td><td class="num">8</td><td class="num">25</td><td class="num">R$350,59</td></tr>
+            <tr><td>adesivos termocolantes para camisetas</td><td class="num">9</td><td class="num">7</td><td class="num">2</td><td class="num">18</td><td class="num">R$251,47</td></tr>
+            <tr><td>adesivo tecido termocolante</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">15</td><td class="num">R$210,90</td></tr>
+            <tr><td>etiqueta personalizada</td><td class="num">5</td><td class="num">7</td><td class="num">2</td><td class="num">14</td><td class="num">R$194,95</td></tr>
+            <tr><td>adesivo termocolante onde comprar</td><td class="num">2</td><td class="num">6</td><td class="num">1</td><td class="num">9</td><td class="num">R$124,51</td></tr>
+            <tr><td>etiquetas termocolantes personalizadas</td><td class="num">3</td><td class="num">0</td><td class="num">5</td><td class="num">8</td><td class="num">R$114,44</td></tr>
+            <tr><td>adesivos termocolantes para roupas onde comprar</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">5</td><td class="num">R$69,95</td></tr>
+            <tr><td>adesivo termocolante personalizado para roupa</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td class="num">5</td><td class="num">R$69,46</td></tr>
+            <tr><td>vinil termocolante</td><td class="num">2</td><td class="num">0</td><td class="num">1</td><td class="num">3</td><td class="num">R$42,67</td></tr>
+            <tr class="total"><td>Total</td><td class="num">50</td><td class="num">47</td><td class="num">33</td><td class="num">130</td><td class="num">R$1.823,11</td></tr>
+            </tbody>
+          </table>
+          <p class="legenda">Custo estimado a partir dos leads do termo × custo médio por conversão de cada mês. Termos que consomem clique sem gerar lead não aparecem nesta leitura: conferir o relatório de termos de pesquisa antes de negativar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+
+  <!-- FECHAMENTO -->
+  <div class="slide bg-dark">
+    <div class="container">
+      <img class="closing-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAyNjAgNDAiPgogICAgPHRleHQgeD0iMCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJOb3RvIFNlcmlmLCBHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIyNiIgZmlsbD0iI0VGRUVERiI+bW9pbmhvIGRpZ2l0YWw8L3RleHQ+CiAgPC9zdmc+" alt="Moinho Digital">
+      <p class="closing-h2">Dúvidas sobre esta análise?</p>
+      <p class="closing-sub">Fala com a gente — seguimos à disposição para aprofundar qualquer ponto deste relatório.</p>
+      <ul class="closing-links">
+        <li><a href="mailto:contato@moinhod.com.br" target="_blank">contato@moinhod.com.br</a></li>
+        <li><a href="https://wa.me/5551999790598" target="_blank">(51) 9 9979-0598</a></li>
+      </ul>
+      <p class="closing-tagline">Tração para negócios que importam.</p>
+    </div>
+  </div>
+
+</div><!-- /slides-track -->
+
+<nav class="carousel-nav">
+  <button class="nav-btn" id="prevBtn" aria-label="Anterior">←</button>
+  <span class="counter" id="counter">1 / 1</span>
+  <button class="nav-btn" id="nextBtn" aria-label="Próximo">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let busy = false;
+
+  function goTo(n) {
+    if (busy || n === current || n < 0 || n >= total) return;
+    busy = true;
+    const dir = n > current ? 1 : -1;
+    const out = slides[current];
+    const into = slides[n];
+    into.style.transition = 'none';
+    into.style.transform = 'translateX(' + (dir * 100) + '%)';
+    into.style.opacity = '0';
+    into.classList.add('active');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        into.style.transition = '';
+        out.style.transform = 'translateX(' + (-dir * 100) + '%)';
+        out.style.opacity = '0';
+        into.style.transform = 'translateX(0)';
+        into.style.opacity = '1';
+        setTimeout(function() {
+          out.classList.remove('active');
+          out.style.cssText = '';
+          current = n;
+          busy = false;
+          sync();
+        }, 450);
+      });
+    });
+  }
+
+  function sync() {
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = (((current + 1) / total) * 100) + '%';
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    var diff = tx - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  slides[0].classList.add('active');
+  sync();
+</script>
+
+</body>
+</html>

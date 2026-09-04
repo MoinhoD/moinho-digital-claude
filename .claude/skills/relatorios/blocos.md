@@ -4,7 +4,7 @@ Referência para preencher os placeholders de `template.html`. Cada placeholder 
 
 O relatório é um carrossel (mesmo motor do `/proposta`): um slide por seção, navegação por setas/teclado/swipe, contador e barra de progresso. Impressão gera uma página A4 paisagem por slide — o que não coube na tela do slide não aparece no PDF, então nunca contar com rolagem interna para caber conteúdo.
 
-**Dividindo uma seção em mais de um slide:** nas seções em grade de duas colunas (Aprendizados, Indicadores, Conteúdo x Resultado, Oportunidades, Recomendações, Leitura de métricas, Próximos passos, Insights), se os cards não couberem confortavelmente em um slide — referência: até 4 cards por slide — dividir em slides consecutivos, todos com a mesma classe de fundo da seção. Repetir o `<h2>` e o `<p class="subtitulo">` em cada slide (idêntico, sem numerar "parte 1/2"), continuando a grade de onde parou no slide anterior.
+**Dividindo uma seção em mais de um slide:** nas seções em grade de duas colunas (Aprendizados, Indicadores, Conteúdo x Resultado, Oportunidades, Recomendações, Leitura de métricas, Próximos passos, Insights), a grade comporta **até 8 cards por slide** (duas colunas por quatro linhas) com card de três a quatro linhas de texto. Só dividir quando passar disso — dois slides de 4 cards desperdiçam metade da página cada. Passando de 8, dividir em slides consecutivos, todos com a mesma classe de fundo da seção. Repetir o `<h2>` e o `<p class="subtitulo">` em cada slide (idêntico, sem numerar "parte 1/2"), continuando a grade de onde parou no slide anterior.
 
 ---
 
@@ -182,6 +182,84 @@ Slide de abertura, sem grade. Sem número solto como texto de entrada — a fras
   <div class="container">
     <p class="label-tag">📆 Período analisado</p>
     <p class="lead-relatorio">[Ex: julho de 2026, comparado a junho de 2026 e situado na série histórica desde novembro de 2025.]</p>
+  </div>
+</div>
+```
+
+### Blocos de análise: métricas → leitura → tabelas
+
+Relatório de Anúncios se organiza por **bloco de análise** — normalmente um por fonte de dado
+(ex.: "Contatos e Vendas" do CRM e "Google Ads" da mídia). Dentro de cada bloco, sempre a mesma
+sequência de slides, sem exceção:
+
+1. **Dados** — um slide de KPIs com os números do período e a variação sobre o período anterior.
+2. **Leituras** — **tudo que é textual** daquele bloco: a análise, a interpretação, as ações, a
+   leitura estratégica, os próximos passos, o que houver.
+3. **Tabelas** — os slides de tabela daquele bloco.
+
+Os slides de dados, análise e tabelas repetem o mesmo `<h2>` (o nome do bloco), com o
+`<p class="subtitulo">` dizendo a etapa ("Dados do período", "Leituras do período", "Tabelas do
+período"). As seções nomeadas que vivem dentro das leituras (Interpretação, Ações, Leitura
+estratégica, Próximos passos) mantêm o próprio `<h2>`, porque o cliente as reconhece pelo nome.
+
+Dois erros a evitar, os dois quebram a leitura por bloco: juntar os dados de todos os blocos num
+slide só, e **deixar texto voltar depois das tabelas**. Terminou a tabela, terminou o bloco.
+
+**Títulos sem ícone.** Nada de emoji abrindo `<h2>`.
+
+#### Slide de dados (KPIs)
+
+Até 8 KPIs por slide, em grade de 4 colunas. A variação vai colorida por **efeito no negócio**, não
+pelo sinal: `bom` (roxo) para o que melhorou, `ruim` (vermelho) para o que piorou, sem classe para o
+que é neutro. Uma queda em "oportunidades perdidas" é `bom`; uma alta em "custo por conversão" é `ruim`.
+
+```html
+<div class="slide bg-creme">
+  <div class="container">
+    <div class="secao">
+      <h2>[Nome do bloco]</h2>
+      <p class="subtitulo">Dados do período · [fonte do dado]</p>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <span class="rot">[Nome da métrica]</span>
+          <span class="val">[Valor do período]</span>
+          <span class="var bom">[+X%]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### Slide de tabelas
+
+Uma tabela por slide, ou duas lado a lado dentro de `.tabela-dupla` quando forem curtas. Cabeçalho e
+células numéricas usam `class="num"` (alinha à direita). A linha de fechamento usa `class="total"`.
+Destaques pontuais com `.alta` (roxo) e `.baixa` (vermelho) — não colorir a tabela inteira. A
+`p.legenda` explica origem do dado ou ressalva de método, e é onde entram as notas de apuração:
+o relatório não tem slide de ressalva quando a limitação é só de uma tabela.
+
+Tabela não rola: o que não couber na tela do slide some do PDF. Passou de ~11 linhas, dividir em
+dois slides ou cortar linhas para as que sustentam a análise.
+
+```html
+<div class="slide bg-creme">
+  <div class="container">
+    <div class="secao">
+      <h2>[Nome do bloco]</h2>
+      <p class="subtitulo">Tabelas do período</p>
+      <div class="tab-bloco">
+        <h3>[Título da tabela]</h3>
+        <table class="dados">
+          <thead><tr><th>[Dimensão]</th><th class="num">[Período anterior]</th><th class="num">[Período]</th></tr></thead>
+          <tbody>
+            <tr><td>[Linha]</td><td class="num">[valor]</td><td class="num"><span class="alta">[valor]</span></td></tr>
+            <tr class="total"><td>Total</td><td class="num">[valor]</td><td class="num">[valor]</td></tr>
+          </tbody>
+        </table>
+        <p class="legenda">[Origem do dado e ressalva de método, quando houver.]</p>
+      </div>
+    </div>
   </div>
 </div>
 ```
